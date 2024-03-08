@@ -1,7 +1,7 @@
 # Introduction
 Imagine exploring an exhibition with a personalized robot guide by your side! **iTourbot** connects you with a friendly robot who can navigate you to specific station in a exhibit, share their fascinating details. No more aimlessly wandering or missing hidden gems - **iTourbot** makes your exhibition experience enriching and interactive!
 
-'i' in **iTourbot** stand for *"internet, individual, instruct, inform and inspire"*
+'i' in **iTourbot** stands for *"internet, individual, instruct, inform and inspire"*
 
 # Expo Router Example
 

@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { initializeApp } from 'firebase/app';
-// import { getAuth } from "firebase/auth";
-import firebaseConfig from '../env/firebaseConfig';
 import { getDatabase, ref, set, get, onValue } from "firebase/database";
+// import { getAuth } from "firebase/auth";
 
 // Optionally import the services that you want to use
 // import {...} from "firebase/auth";
@@ -10,6 +9,17 @@ import { getDatabase, ref, set, get, onValue } from "firebase/database";
 // import {...} from "firebase/firestore";
 // import {...} from "firebase/functions";
 // import {...} from "firebase/storage";
+
+const firebaseConfig = {
+    apiKey: process.env.apiKey,
+    databaseURL: process.env.databaseURL,
+    projectId: process.env.projectId,
+    appId: process.env.appId,
+    // authDomain: 'turtlebot3-3bd17.firebaseapp.com',
+    // storageBucket: 'turtlebot3-3bd17.appspot.com',
+    // messagingSenderId: 'sender-id',
+    // measurementId: 'G-measurement-id',
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
