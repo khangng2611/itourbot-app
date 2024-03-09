@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { SafeAreaView, ScrollView, View } from "react-native";
+import { SafeAreaView, ScrollView, View, StatusBar } from "react-native";
 import { Stack, useRouter } from "expo-router";
-import styles from './app.style';
+import styles from '../styles/app.style';
 import { COLORS, icons, images, SIZES } from "../constants";
 import {
   Nearbyjobs,
@@ -48,12 +48,11 @@ const Home = () => {
               }
             }}
           />
-
           <Popularjobs />
-          <Nearbyjobs />
         </View>
       </ScrollView>
       <TabNavigator chosenTab={chosenTab} />
+      <StatusBar barStyle='dark-content' />
     </SafeAreaView>
   );
 };

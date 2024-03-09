@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  ActivityIndicator,
-} from "react-native";
+import {View,Text,TouchableOpacity,FlatList,ActivityIndicator,} from "react-native";
 
 import styles from "./popularjobs.style";
 import { COLORS, SIZES } from "../../../constants";
@@ -32,7 +26,7 @@ const Popularjobs = () => {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Popular destinations</Text>
         <TouchableOpacity>
-          <Text style={styles.headerBtn}>Show all</Text>
+          <Text style={styles.headerBtn}>View all</Text>
         </TouchableOpacity>
       </View>
 
