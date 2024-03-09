@@ -1,8 +1,9 @@
-import { SafeAreaView, View, Text } from "react-native";
+import { SafeAreaView, View, Text, ScrollView, StatusBar } from "react-native";
 import { Stack } from "expo-router";
-import styles from './app.style';
+import styles from '../styles/app.style';
 import { ScreenHeaderBtn, TabNavigator, LocationSpot, MapImage, BotStateBox } from "../components";
 import stateFetch from '../hook/firebaseFetch';
+import { SIZES } from "../constants";
 
 const Map = () => {
     const chosenTab = "map";
@@ -27,10 +28,20 @@ const Map = () => {
             <View style={styles.container}>
                 <Text style={styles.title}>Maps</Text>
             </View>
-            <MapImage/>
-            <LocationSpot x={x} y={y}/>
-            <BotStateBox/>
+            <View style={{flex:2}}>
+                <MapImage/>
+                <LocationSpot x={x} y={y}/>
+            </View>
+            <ScrollView
+                style={{
+                    flex: 1,
+                    padding: SIZES.medium,
+                }}
+            >
+                <BotStateBox x={x} y={y} battery={battery} isFree={isFree}/>
+            </ScrollView>
             <TabNavigator chosenTab={chosenTab} />
+            <StatusBar barStyle='dark-content' />
         </SafeAreaView>
     );
 };
