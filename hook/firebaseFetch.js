@@ -11,10 +11,10 @@ import { getDatabase, ref, set, get, onValue } from "firebase/database";
 // import {...} from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: process.env.apiKey,
-    databaseURL: process.env.databaseURL,
-    projectId: process.env.projectId,
-    appId: process.env.appId,
+    apiKey: process.env.EXPO_PUBLIC_APIKEY,
+    databaseURL: process.env.EXPO_PUBLIC_DATABASE_URL,
+    projectId: process.env.EXPO_PUBLIC_PROJECT_ID,
+    appId: process.env.EXPO_PUBLIC_APP_ID,
     // authDomain: 'turtlebot3-3bd17.firebaseapp.com',
     // storageBucket: 'turtlebot3-3bd17.appspot.com',
     // messagingSenderId: 'sender-id',
@@ -27,8 +27,8 @@ const database = getDatabase(app);
 // const auth = getAuth(app);
 
 export default stateFetch = () => {
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
+  const [x, setX] = useState();
+  const [y, setY] = useState();
   const [battery, setBattery] = useState();
   const [isFree, setIsFree] = useState();
   // const dbRef = query(ref(database, folder), orderByChild(field), startAt(start), limitToLast(limit))
