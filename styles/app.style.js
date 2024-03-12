@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: FONT.bold,
-    fontSize: SIZES.xxLarge,
+    fontSize: SIZES.xLarge,
     color: COLORS.primary,
   },
   container: {

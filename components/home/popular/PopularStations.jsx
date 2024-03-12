@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useRouter } from "expo-router";
 import {View,Text,TouchableOpacity,FlatList,ActivityIndicator,} from "react-native";
 
-import styles from "./popularjobs.style";
+import styles from "./popularstations.style";
 import { COLORS, SIZES } from "../../../constants";
-import PopularJobCard from "../../common/cards/popular/PopularJobCard";
+import PopularStationCard from "../../common/cards/PopularStationCard";
 import useFetch from "../../../hook/useFetch";
 
-const Popularjobs = () => {
+const PopularStations = () => {
   const router = useRouter();
   const { data, isLoading, error } = useFetch("search", {
     query: "React developer",
@@ -34,19 +34,20 @@ const Popularjobs = () => {
         {isLoading ? (
           <ActivityIndicator size='large' color={COLORS.primary} />
         ) : error ? (
-          <Text>Something went wrong</Text>
+          <Text>No station available</Text>
         ) : (
           <FlatList
             data={data}
             renderItem={({ item }) => (
-              <PopularJobCard
+              <PopularStationCard
                 item={item}
-                selectedJob={selectedJob}
+                // selectedJob={selectedJob}
                 handleCardPress={handleCardPress}
               />
             )}
-            keyExtractor={(item) => item.job_id}
-            contentContainerStyle={{ columnGap: SIZES.medium }}
+            ListEmptyComponent={<Text>No station available</Text>}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={{ columnGap: SIZES.large }}
             horizontal
           />
         )}
@@ -55,4 +56,4 @@ const Popularjobs = () => {
   );
 };
 
-export default Popularjobs;
+export default PopularStations;

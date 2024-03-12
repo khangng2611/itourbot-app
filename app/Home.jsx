@@ -4,8 +4,7 @@ import { Stack, useRouter } from "expo-router";
 import styles from '../styles/app.style';
 import { COLORS, icons, images, SIZES } from "../constants";
 import {
-  Nearbyjobs,
-  Popularjobs,
+  PopularStations,
   ScreenHeaderBtn,
   Welcome,
   TabNavigator
@@ -31,12 +30,11 @@ const Home = () => {
           // headerTitle: "",
         }}
       />
-
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }} >
         <View
           style={{
-            flex: 1,
             padding: SIZES.medium,
+            flex: 1
           }}
         >
           <Welcome
@@ -48,7 +46,7 @@ const Home = () => {
               }
             }}
           />
-          <Popularjobs />
+          <PopularStations />
         </View>
       </ScrollView>
       <TabNavigator chosenTab={chosenTab} />
