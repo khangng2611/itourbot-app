@@ -47,6 +47,5 @@ const styles = StyleSheet.create({
     },
     logo: {
         width: 25,
-        // opacity: 0.5
     }
 });

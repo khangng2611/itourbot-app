@@ -32,12 +32,7 @@ const Map = () => {
                 <MapImage/>
                 <LocationSpot x={x} y={y}/>
             </View>
-            <ScrollView
-                style={{
-                    flex: 1,
-                    padding: SIZES.medium,
-                }}
-            >
+            <ScrollView style={[{flex: 1}, styles.container]}>
                 <BotStateBox x={x} y={y} battery={battery} isFree={isFree}/>
             </ScrollView>
             <TabNavigator chosenTab={chosenTab} />

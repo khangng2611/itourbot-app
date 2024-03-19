@@ -19,6 +19,11 @@ import LocationSpot from "./map/LocationSpot";
 import MapImage from "./map/MapImage";
 import BotStateBox from "./map/BotStateBox";
 
+// station details
+import About from "./stationdetails/about/About";
+import Poster from './stationdetails/poster/Poster';
+import RequestBar from './stationdetails/requestbar/RequestBar';
+
 export {
   ScreenHeaderBtn,
   Welcome,
@@ -32,4 +37,7 @@ export {
   LocationSpot,
   MapImage,
   BotStateBox,
+  About, 
+  Poster,
+  RequestBar,
 };

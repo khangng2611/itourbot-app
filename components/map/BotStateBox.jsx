@@ -12,7 +12,7 @@ export default function BotStateBox({x, y, battery, isFree}) {
             </View>
             <View style={styles.row}>
                 <Text style={styles.title}>Turtlebot's battery:</Text>
-                <Text style={styles.value}>{battery}</Text>
+                <Text style={styles.value}>{battery}%</Text>
             </View>
             <View style={styles.row}>
                 <Text style={styles.title}>Turtlebot's state: </Text>

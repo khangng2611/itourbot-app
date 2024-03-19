@@ -9,16 +9,10 @@ import useFetch from "../../../hook/useFetch";
 
 const PopularStations = () => {
   const router = useRouter();
-  const { data, isLoading, error } = useFetch("search", {
-    query: "React developer",
-    num_pages: "1",
-  });
-
-  const [selectedJob, setSelectedJob] = useState();
+  const { data, isLoading, error } = useFetch("stations", {});
 
   const handleCardPress = (item) => {
-    router.push(`/station-details/${item.job_id}`);
-    setSelectedJob(item.job_id);
+    router.push({pathname : `/station-details/${item._id}`, params: item});
   };
 
   return (
@@ -41,12 +35,11 @@ const PopularStations = () => {
             renderItem={({ item }) => (
               <PopularStationCard
                 item={item}
-                // selectedJob={selectedJob}
                 handleCardPress={handleCardPress}
               />
             )}
             ListEmptyComponent={<Text>No station available</Text>}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item._id}
             contentContainerStyle={{ columnGap: SIZES.large }}
             horizontal
           />

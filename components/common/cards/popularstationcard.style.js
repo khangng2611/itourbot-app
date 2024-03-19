@@ -16,17 +16,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
-  companyName: {
-    fontSize: SIZES.medium,
-    fontFamily: FONT.regular,
-    color: "#B3AEC6",
-    marginTop: SIZES.small / 1.5,
-  },
-  infoContainer: {
-    marginTop: SIZES.large,
-  },
-  infoWrapper: {
-    width: '80%',
+  infoWrapper: (size) => ({
+    width: (size == SIZES.large) ? '90%' : '80%',
     flex: 1,
     position: 'absolute',
     bottom: 0,
@@ -35,29 +26,67 @@ const styles = StyleSheet.create({
     margin: SIZES.large,
     borderRadius: SIZES.medium,
     backgroundColor: 'black',
-    opacity: 0.6
-  },
-  zoneName: {
-    fontSize: SIZES.medium-1,
+    opacity: 0.5
+  }),
+  zoneName: (size) => ({
+    fontSize: size-1,
     fontFamily: FONT.bold,
     color: COLORS.white,
-  },
+  }),
   locationRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 5
   },
-  location: {
-    fontSize: SIZES.small,
+  location: (size) => ({
+    fontSize: size-1,
     fontFamily: FONT.medium,
     color: COLORS.white,
-  },
-  ratingIcon: {
+  }),
+  locationIcon: (size) => ({
     tintColor: COLORS.white,
-    width: 15, 
-    height: 15,
+    width: size, 
+    height: size,
     marginEnd: 5
-  }
+  }),
+  loveWrapper: (size) => ({
+    width: 2*size,
+    height: 2*size,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    justifyContent: 'center',
+    padding: size,
+    margin: size-5,
+    borderRadius: SIZES.xLarge,
+    backgroundColor: 'black',
+    opacity: 0.5
+  }),
+  loveIcon: (size) => ({
+    alignSelf: 'center',
+    tintColor: COLORS.white,
+    width: size, 
+    height: size,
+  }),
+  backWrapper: {
+    width: SIZES.xxLarge,
+    height: SIZES.xxLarge,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    justifyContent: 'center',
+    padding: SIZES.large,
+    margin: SIZES.medium,
+    borderRadius: SIZES.xLarge,
+    backgroundColor: 'black',
+    opacity: 0.5
+  },
+  backIcon: {
+    alignSelf: 'center',
+    tintColor: COLORS.white,
+    width: SIZES.xLarge, 
+    height: SIZES.xLarge,
+  },
 });
 
 export default styles;
