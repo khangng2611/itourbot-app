@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
-import {View,Text,TouchableOpacity,FlatList,ActivityIndicator,} from "react-native";
+import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, } from "react-native";
 
 import styles from "./popularstations.style";
 import { COLORS, SIZES } from "../../../constants";
@@ -10,9 +10,9 @@ import useFetch from "../../../hook/useFetch";
 const PopularStations = () => {
   const router = useRouter();
   const { data, isLoading, error } = useFetch("stations", {});
-
+  const stationList = data.map((item) => ({ label: `(${item.stationId}) ${item.name}`, value: item.stationId }));
   const handleCardPress = (item) => {
-    router.push({pathname : `/station-details/${item._id}`, params: item});
+    router.push({ pathname: `/station-details/${item._id}`, params: {...item, stationList: JSON.stringify(stationList) }});
   };
 
   return (

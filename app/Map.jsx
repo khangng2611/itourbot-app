@@ -1,9 +1,8 @@
 import { SafeAreaView, View, Text, ScrollView, StatusBar } from "react-native";
 import { Stack } from "expo-router";
 import styles from '../styles/app.style';
-import { ScreenHeaderBtn, TabNavigator, LocationSpot, MapImage, BotStateBox } from "../components";
+import { TabNavigator, LocationSpot, MapImage, BotStateBox } from "../components";
 import stateFetch from '../hook/firebaseFetch';
-import { SIZES } from "../constants";
 
 const Map = () => {
     const chosenTab = "map";

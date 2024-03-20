@@ -3,8 +3,8 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         marginTop: SIZES.large,
+        flex: 1,
     },
     title: {
         fontFamily: FONT.bold,

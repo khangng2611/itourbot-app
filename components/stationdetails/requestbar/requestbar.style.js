@@ -4,20 +4,21 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: SIZES.medium,
-        flexDirection: 'row',
     },
-    button: {
+    button: (isFree) => ({
+        width: '40%',
         paddingHorizontal: SIZES.medium,
         alignSelf: 'flex-end',
         borderRadius: SIZES.large,
-        backgroundColor: COLORS.tertiary,
+        backgroundColor: isFree ? COLORS.tertiary : COLORS.gray2,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
+    }),
     sendIcon: {
         tintColor: COLORS.lightWhite,
-        width: 30
+        width: 20,
+        marginLeft: SIZES.xSmall,
     },
     dropdown: {
         borderColor: COLORS.gray,
@@ -46,5 +47,13 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
     },
+    requestStatus: (status) => ({
+        borderRadius: SIZES.small,
+        paddingVertical: SIZES.xSmall,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: SIZES.xSmall,
+        backgroundColor: status === "OK" ? COLORS.lightgreen : COLORS.lightred,
+    }),
 });
 export default styles;

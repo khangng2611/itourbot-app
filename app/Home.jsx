@@ -3,12 +3,7 @@ import { SafeAreaView, ScrollView, View, StatusBar } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import styles from '../styles/app.style';
 import { COLORS, icons, images, SIZES } from "../constants";
-import {
-  PopularStations,
-  ScreenHeaderBtn,
-  Welcome,
-  TabNavigator
-} from "../components";
+import { PopularStations, ScreenHeaderBtn, Welcome, TabNavigator } from "../components";
 
 const Home = () => {
   const chosenTab = "home";
