@@ -4,9 +4,9 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: SIZES.medium,
+        height: '10%'
     },
     button: (isFree) => ({
-        width: '40%',
         paddingHorizontal: SIZES.medium,
         alignSelf: 'flex-end',
         borderRadius: SIZES.large,
@@ -48,11 +48,16 @@ const styles = StyleSheet.create({
         height: 20,
     },
     requestStatus: (status) => ({
+        height: 30,
+        top: -SIZES.large,
+        left: 0,
+        right: 0,
+        marginHorizontal: SIZES.medium,
+        alignSelf: 'center',
+        position: 'absolute',
         borderRadius: SIZES.small,
-        paddingVertical: SIZES.xSmall,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: SIZES.xSmall,
         backgroundColor: status === "OK" ? COLORS.lightgreen : COLORS.lightred,
     }),
 });

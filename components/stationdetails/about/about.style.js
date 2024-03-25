@@ -4,7 +4,6 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 const styles = StyleSheet.create({
     container: {
         marginTop: SIZES.large,
-        flex: 1,
     },
     title: {
         fontFamily: FONT.bold,
@@ -12,10 +11,11 @@ const styles = StyleSheet.create({
         color: COLORS.primary,
     },
     content: {
-        marginTop: SIZES.medium,
+        marginTop: SIZES.small,
         fontFamily: FONT.medium,
         fontSize: SIZES.medium,
         color: COLORS.secondary,
+        paddingBottom: SIZES.xxLarge,
     },
 });
 

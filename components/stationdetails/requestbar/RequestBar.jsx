@@ -13,7 +13,6 @@ const RequestBar = ({ item }) => {
     const [isFocus, setIsFocus] = useState(false);
     const [requestStatus, setRequestStatus] = useState([false, ""]);
 
-
     const handleRequestTour = () => {
         if (value) {
             if (value == item.stationId) {
@@ -24,7 +23,7 @@ const RequestBar = ({ item }) => {
                     {
                         text: 'Confirm', onPress: async () => {
                             try {
-                                const response = await postTours({ fromStation: value, toStation: item.stationId })
+                                const response = await postTours({ fromStation: parseInt(value), toStation: parseInt(item.stationId) })
                                 setRequestStatus([true, "OK"]);
                             } catch (error) {
                                 setRequestStatus([true, error.message]);
@@ -46,12 +45,12 @@ const RequestBar = ({ item }) => {
                     style={styles.requestStatus(requestStatus[1])}
                     onPress={() => setRequestStatus(false, "")}
                 >
-                    <Text style={[styles.textStyle, {color : requestStatus[1] === "OK" ? COLORS.red : COLORS.red}]}>
+                    <Text style={[styles.textStyle, {color : requestStatus[1] === "OK" ? COLORS.green : COLORS.red}]}>
                         {requestStatus[1] === "OK" ? "Request Successfully !" : requestStatus[1]}
                     </Text>
                 </TouchableOpacity>
             ) : null}
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row' , alignItems:'flex-end'}}>
                 <View style={{ flex: 1.5, marginEnd: SIZES.large }}>
                     <Text style={[styles.textStyle, { color: COLORS.secondary, marginBottom: 5 }]}>Pickup station: </Text>
                     <Dropdown
@@ -76,14 +75,17 @@ const RequestBar = ({ item }) => {
                         }}
                     />
                 </View>
-                <TouchableOpacity
-                    style={styles.button(isFree)}
-                    onPress={() => handleRequestTour()}
-                    disabled={!isFree}
-                >
-                    <Text style={[styles.textStyle, { color: COLORS.lightWhite, flexShrink: 1 }]}>{isFree ? "Request Tour" : "Robot not available"}</Text>
-                    <Image source={icons.send} resizeMode='contain' style={styles.sendIcon} />
-                </TouchableOpacity>
+                <View style={{width:"40%"}}>
+                    <Text style={{alignSelf: 'center', color:COLORS.yellow}}>{!isFree ? "Robot is in service": ""} </Text>
+                    <TouchableOpacity
+                        style={styles.button(isFree)}
+                        onPress={() => handleRequestTour()}
+                        disabled={!isFree}
+                    >
+                        <Text style={[styles.textStyle, { color: COLORS.lightWhite, flexShrink: 1 }]}>Request Tour</Text>
+                        <Image source={icons.send} resizeMode='contain' style={styles.sendIcon} />
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     )
