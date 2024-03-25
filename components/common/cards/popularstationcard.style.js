@@ -11,11 +11,11 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.lightWhite,
     ...SHADOWS.medium,
   },
-  cardImage: {
+  cardImage: (windowHeight) => ({
     borderRadius: SIZES.large,
     width: '100%',
-    height: '100%'
-  },
+    height: windowHeight ? 0.5 * windowHeight : '100%'
+  }),
   infoWrapper: (size) => ({
     width: (size == SIZES.large) ? '90%' : '80%',
     flex: 1,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     opacity: 0.5
   }),
   zoneName: (size) => ({
-    fontSize: size-1,
+    fontSize: size - 1,
     fontFamily: FONT.bold,
     color: COLORS.white,
   }),
@@ -39,25 +39,25 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   location: (size) => ({
-    fontSize: size-1,
+    fontSize: size - 1,
     fontFamily: FONT.medium,
     color: COLORS.white,
   }),
   locationIcon: (size) => ({
     tintColor: COLORS.white,
-    width: size, 
+    width: size,
     height: size,
     marginEnd: 5
   }),
   loveWrapper: (size) => ({
-    width: 2*size,
-    height: 2*size,
+    width: 2 * size,
+    height: 2 * size,
     position: 'absolute',
     top: 0,
     right: 0,
     justifyContent: 'center',
     padding: size,
-    margin: size-5,
+    margin: size - 5,
     borderRadius: SIZES.xLarge,
     backgroundColor: 'black',
     opacity: 0.5
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   loveIcon: (size) => ({
     alignSelf: 'center',
     tintColor: COLORS.white,
-    width: size, 
+    width: size,
     height: size,
   }),
   backWrapper: {
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   backIcon: {
     alignSelf: 'center',
     tintColor: COLORS.white,
-    width: SIZES.xLarge, 
+    width: SIZES.xLarge,
     height: SIZES.xLarge,
   },
 });

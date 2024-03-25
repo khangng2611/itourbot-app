@@ -10,6 +10,7 @@ const useFetch = (endpoint, query) => {
     method: "GET",
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}${endpoint}`,
     headers: {
+      "Content-Type": "application/json",
       // "Authorization": `Bearer ${accessToken}`,
     },
     params: { ...query },

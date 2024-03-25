@@ -1,42 +1,23 @@
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { COLORS, FONT, SIZES } from "../../constants";
+import { View, Text } from 'react-native';
+import styles from './map.style';
 
 export default function BotStateBox({x, y, battery, isFree}) {
     const state = (isFree==undefined) ? "" : ((isFree) ? "READY" : "BUSY");
     const location = (x==undefined || y==undefined) ? "" :  `(${parseFloat(x).toFixed(2)}, ${parseFloat(y).toFixed(2)})`;
     return (
         <View style={{ flex: 1 }}>
-            <View style={styles.row}>
-                <Text style={styles.title}>Turtlebot's location:</Text>
-                <Text style={styles.value}>{location}</Text>
+            <View style={styles.botStateRow}>
+                <Text style={styles.botStateTitle}>Turtlebot's location:</Text>
+                <Text style={styles.botStateValue}>{location}</Text>
             </View>
-            <View style={styles.row}>
-                <Text style={styles.title}>Turtlebot's battery:</Text>
-                <Text style={styles.value}>{battery}%</Text>
+            <View style={styles.botStateRow}>
+                <Text style={styles.botStateTitle}>Turtlebot's battery:</Text>
+                <Text style={styles.botStateValue}>{battery}%</Text>
             </View>
-            <View style={styles.row}>
-                <Text style={styles.title}>Turtlebot's state: </Text>
-                <Text style={styles.value}>{state}</Text>
+            <View style={styles.botStateRow}>
+                <Text style={styles.botStateTitle}>Turtlebot's state: </Text>
+                <Text style={styles.botStateValue}>{state}</Text>
             </View>
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginTop: SIZES.small,
-    },
-    title: {
-        fontSize: SIZES.medium,
-        fontFamily: FONT.medium,
-        color: COLORS.primary,
-    },
-    value: {
-        fontSize: SIZES.medium,
-        fontFamily: FONT.medium,
-        color: COLORS.gray,
-    },
-});

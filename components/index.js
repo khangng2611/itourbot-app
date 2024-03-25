@@ -4,6 +4,10 @@ import ScreenHeaderBtn from "./common/header/ScreenHeaderBtn";
 import Welcome from "./home/welcome/Welcome";
 import PopularStations from "./home/popular/PopularStations";
 
+// auth screen
+import BotLoginImage from "./auth/BotLoginImage";
+import LoginForm from "./auth/LoginForm";
+
 // job details screen
 import Company from "./jobdetails/company/Company";
 import { default as JobTabs } from "./jobdetails/tabs/Tabs";
@@ -13,6 +17,7 @@ import Specifics from "./jobdetails/specifics/Specifics";
 
 // common
 import TabNavigator from "./common/navigation/TabNavigator";
+import Input from "./common/input/Input";
 
 //map screen
 import LocationSpot from "./map/LocationSpot";
@@ -40,4 +45,7 @@ export {
   About, 
   Poster,
   RequestBar,
+  BotLoginImage,
+  LoginForm,
+  Input
 };

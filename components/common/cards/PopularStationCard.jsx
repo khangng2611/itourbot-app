@@ -13,7 +13,7 @@ const PopularStationCard = ({ item, handleCardPress }) => {
       <Image
         source={{ uri: item.imgUrl }}
         resizeMode='cover'
-        style={styles.cardImage}
+        style={styles.cardImage(null)}
       />
       <InfoWrapper size={SIZES.medium} item={item}/>
       <LoveWrapper size={SIZES.medium}/>
