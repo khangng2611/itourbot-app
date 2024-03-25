@@ -10,6 +10,7 @@ import chevronLeft from '../assets/icons/chevron-left.png'
 import chevronRight from '../assets/icons/chevron-right.png'
 import locationIcon from '../assets/icons/location-ol.png'
 import send from '../assets/icons/send.png';
+import hidePassword from '../assets/icons/hide-password.png';
 
 // navigator
 import home from '../assets/icons/tab-navigator/home.png'
@@ -33,5 +34,6 @@ export default {
   map,
   profile,
   locationIcon,
-  send
+  send,
+  hidePassword
 };

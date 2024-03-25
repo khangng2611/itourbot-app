@@ -21,7 +21,7 @@ const Layout = () => {
   }
 
   return (
-    <Stack initialRouteName="Home" screenOptions={{animation: 'none'}}>
+    <Stack initialRouteName="Home" screenOptions={{animation: 'none', headerShown: false}}>
       <Stack.Screen name="Home" />
     </Stack>
   )

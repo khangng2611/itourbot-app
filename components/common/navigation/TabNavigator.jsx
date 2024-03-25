@@ -27,7 +27,7 @@ export default function TabNavigator({chosenTab}) {
                     resizeMode='contain'
                 /> 
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => router.push(`/Map`)}>     
+            <TouchableOpacity onPress={() => router.push({pathname: `/auth/Login`})}>     
                 <Image
                     style={[styles.logo, {opacity: (chosenTab == "profile") ? 1 : 0.5}]}
                     source={icons.profile}

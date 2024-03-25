@@ -9,7 +9,22 @@
     "plugins": [
       "expo-router"
     ],
-    "name": "react_native_jobs",
-    "slug": "react_native_jobs"
+    "name": "itourbot",
+    "slug": "itourbot",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "621fdcc1-e368-4c15-b6a5-931328818067"
+      }
+    },
+    "owner": "khangng2611",
+    "android": {
+      "package": "com.khangng2611.itourbot"
+    },
+    "ios": {
+      "bundleIdentifier": "com.khangng2611.itourbot"
+    }
   }
 }
