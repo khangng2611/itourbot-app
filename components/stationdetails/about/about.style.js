@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
         fontSize: SIZES.medium,
         color: COLORS.secondary,
         paddingBottom: SIZES.xxLarge,
+        textAlign: 'justify'
     },
 });
 

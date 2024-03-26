@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, get, onValue } from "firebase/database";
+import { STATIONS } from "../constants";
 
 const firebaseConfig = {
-    apiKey: process.env.EXPO_PUBLIC_APIKEY,
-    databaseURL: process.env.EXPO_PUBLIC_DATABASE_URL,
-    projectId: process.env.EXPO_PUBLIC_PROJECT_ID,
-    appId: process.env.EXPO_PUBLIC_APP_ID,
-    // authDomain: 'turtlebot3-3bd17.firebaseapp.com',
-    // storageBucket: 'turtlebot3-3bd17.appspot.com',
-    // messagingSenderId: 'sender-id',
-    // measurementId: 'G-measurement-id',
+  apiKey: process.env.EXPO_PUBLIC_APIKEY,
+  databaseURL: process.env.EXPO_PUBLIC_DATABASE_URL,
+  projectId: process.env.EXPO_PUBLIC_PROJECT_ID,
+  appId: process.env.EXPO_PUBLIC_APP_ID,
+  // authDomain: 'turtlebot3-3bd17.firebaseapp.com',
+  // storageBucket: 'turtlebot3-3bd17.appspot.com',
+  // messagingSenderId: 'sender-id',
+  // measurementId: 'G-measurement-id',
 };
 
 // Initialize Firebase
@@ -18,12 +19,12 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 // const auth = getAuth(app);
 
-export default stateFetch = () => {
+export const fetchState = () => {
   const [x, setX] = useState();
   const [y, setY] = useState();
   const [battery, setBattery] = useState();
   const [isFree, setIsFree] = useState();
-  // const dbRef = query(ref(database, folder), orderByChild(field), startAt(start), limitToLast(limit))
+
   useEffect(() => onValue(
     ref(database, "/turtlebot_state"),
     (snapshot) => {
@@ -38,13 +39,22 @@ export default stateFetch = () => {
   return { x, y, battery, isFree };
 }
 
-// get(ref(db, '/request')).then((a) => console.log(a));
-// return 1;
-//   set(ref(db, '/' + userId), {
-//     username: name,
-//     email: email,
-//     profile_picture : imageUrl
-//   });
+export const firebaseSetRequestStage = (fromStation, stage) => {
+  const stationId = parseInt(fromStation.stationId);
+  set(ref(database, "/request"), {
+    id: stage,
+    param: {
+      x: STATIONS[stationId][0],
+      y: STATIONS[stationId][1],
+      yaw: 90
+    },
+    station: {
+      desc: fromStation.description,
+      id: stationId,
+      name: fromStation.name
+    }
+  });
+};
 
 // const qrCodeReference = firebase.database().ref('qrcodes/' + codeId+ '/gotScanned');
 // qrCodeReference.on('value', function(snapshot) {

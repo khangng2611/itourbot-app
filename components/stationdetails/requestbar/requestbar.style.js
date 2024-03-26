@@ -4,7 +4,9 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: SIZES.medium,
-        height: '10%'
+        marginBottom: SIZES.xSmall,
+        height: '10%',
+        paddingTop: SIZES.xSmall
     },
     button: (isFree) => ({
         paddingHorizontal: SIZES.medium,
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.small,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: status === "OK" ? COLORS.lightgreen : COLORS.lightred,
+        backgroundColor: status === "success" ? COLORS.lightgreen : COLORS.lightred,
     }),
 });
 export default styles;

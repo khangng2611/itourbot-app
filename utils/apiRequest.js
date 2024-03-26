@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { firebaseSetRequestStage } from "../hook/firebaseFetch";
 
-const postTours = async (reqBody) => {
+const postTours = async (reqBody, item) => {
     const options = {
         method: "POST",
         url: `${process.env.EXPO_PUBLIC_BASE_API_URL}tours/mockup`,
@@ -11,9 +11,12 @@ const postTours = async (reqBody) => {
         },
         data: JSON.stringify(reqBody)
     }
-    console.log(options);
-    const response = await axios.request(options);
-    return response;
+    try {
+        const response = await axios.request(options);
+        firebaseSetRequestStage(item, 1);
+    } catch (e) {
+        throw new Error(e.message);
+    }
 };
 
 export { postTours };

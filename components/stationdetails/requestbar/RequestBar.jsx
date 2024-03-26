@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import styles from "./requestbar.style";
 import { COLORS, SIZES, icons } from "../../../constants";
 import { Dropdown } from "react-native-element-dropdown"
-import stateFetch from "../../../hook/firebaseFetch";
+import {fetchState} from "../../../hook/firebaseFetch";
 import { postTours } from "../../../utils/apiRequest";
 
 const RequestBar = ({ item }) => {
     const stationList = JSON.parse(item.stationList);
-    const { isFree } = stateFetch();
+    const { isFree } = fetchState();
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const [requestStatus, setRequestStatus] = useState([false, ""]);
@@ -23,8 +23,8 @@ const RequestBar = ({ item }) => {
                     {
                         text: 'Confirm', onPress: async () => {
                             try {
-                                const response = await postTours({ fromStation: parseInt(value), toStation: parseInt(item.stationId) })
-                                setRequestStatus([true, "OK"]);
+                                const response = await postTours({ fromStation: parseInt(value), toStation: (item.stationId) }, item)
+                                setRequestStatus([true, "success"]);
                             } catch (error) {
                                 setRequestStatus([true, error.message]);
                                 console.log(error);
@@ -45,8 +45,8 @@ const RequestBar = ({ item }) => {
                     style={styles.requestStatus(requestStatus[1])}
                     onPress={() => setRequestStatus(false, "")}
                 >
-                    <Text style={[styles.textStyle, {color : requestStatus[1] === "OK" ? COLORS.green : COLORS.red}]}>
-                        {requestStatus[1] === "OK" ? "Request Successfully !" : requestStatus[1]}
+                    <Text style={[styles.textStyle, {color : requestStatus[1] === "success" ? COLORS.green : COLORS.red}]}>
+                        {requestStatus[1] === "success" ? "Request Successfully !" : requestStatus[1]}
                     </Text>
                 </TouchableOpacity>
             ) : null}
