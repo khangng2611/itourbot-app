@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
         fontFamily: FONT.medium,
         color: COLORS.gray,
     },
-    locationSpot: (topPosition, leftPosition) => ({
+    locationSpot: (leftPosition, bottomPosition) => ({
         position:'absolute', 
-        top: topPosition, 
         left: leftPosition,
+        bottom: bottomPosition
     }),
     mapImage: {
         flex:2,
