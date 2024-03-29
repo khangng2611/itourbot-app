@@ -1,5 +1,5 @@
 import { Image, View, useWindowDimensions } from 'react-native'
-import styles from "../../common/cards/popularstationcard.style";
+import styles from "../../common/cards/stationcard.style";
 import { SIZES } from '../../../constants';
 import InfoWrapper from '../../common/cards/InfoWrapper';
 import LoveWrapper from '../../common/cards/LoveWrapper';

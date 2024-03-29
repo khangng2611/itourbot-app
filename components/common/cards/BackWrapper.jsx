@@ -1,5 +1,5 @@
 import { Image, TouchableOpacity } from "react-native";
-import styles from "./popularstationcard.style";
+import styles from "./stationcard.style";
 import { icons } from "../../../constants";
 import { useRouter } from "expo-router";
 

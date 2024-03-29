@@ -23,7 +23,7 @@ const RequestBar = ({ item }) => {
                     {
                         text: 'Confirm', onPress: async () => {
                             try {
-                                const response = await postTours({ fromStation: parseInt(value), toStation: (item.stationId) }, item)
+                                const response = await postTours({ fromStation: parseInt(value), toStation: parseInt(item.stationId) }, item)
                                 setRequestStatus([true, "success"]);
                             } catch (error) {
                                 setRequestStatus([true, error.message]);

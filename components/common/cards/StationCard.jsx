@@ -1,10 +1,10 @@
 import { TouchableOpacity, Image } from "react-native";
-import styles from "./popularstationcard.style";
+import styles from "./stationcard.style";
 import InfoWrapper from "./InfoWrapper"
 import { SIZES } from "../../../constants";
 import LoveWrapper from "./LoveWrapper";
 
-const PopularStationCard = ({ item, handleCardPress }) => {
+const StationCard = ({ item, handleCardPress }) => {
   return (
     <TouchableOpacity
       style={styles.container}
@@ -22,4 +22,4 @@ const PopularStationCard = ({ item, handleCardPress }) => {
   );
 };
 
-export default PopularStationCard;
+export default StationCard;

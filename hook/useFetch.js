@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const useFetch = (endpoint, query) => {
   const [data, setData] = useState([]);
@@ -7,10 +7,10 @@ const useFetch = (endpoint, query) => {
   const [error, setError] = useState(null);
 
   const options = {
-    method: "GET",
+    method: 'GET',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}${endpoint}`,
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       // "Authorization": `Bearer ${accessToken}`,
     },
     params: { ...query },
@@ -21,9 +21,9 @@ const useFetch = (endpoint, query) => {
       const response = await axios.request(options);
       setData(response.data);
       setIsLoading(false);
-    } catch (error) {
-      setError(error);
-      console.log(error);
+    } catch (err) {
+      setError(err);
+      console.log(err);
     } finally {
       setIsLoading(false);
     }
@@ -37,7 +37,9 @@ const useFetch = (endpoint, query) => {
     fetchData();
   };
 
-  return { data, isLoading, error, refetch };
+  return {
+    data, isLoading, error, refetch,
+  };
 };
 
 export default useFetch;

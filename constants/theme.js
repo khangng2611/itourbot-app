@@ -1,28 +1,28 @@
 const COLORS = {
-  primary: "#2F2F2F",
-  secondary: "#888888",
-  tertiary: "#2F2F2F",
+  primary: '#2F2F2F',
+  secondary: '#888888',
+  tertiary: '#2F2F2F',
 
-  gray: "#83829A",
-  gray2: "#C1C0C8",
+  gray: '#83829A',
+  gray2: '#C1C0C8',
 
-  white: "#F3F4F8",
-  lightWhite: "#FAFAFC",
+  white: '#F3F4F8',
+  lightWhite: '#FAFAFC',
 
-  lightgreen: "#EAFAEB",
-  green: "#4CAF50",
+  lightgreen: '#EAFAEB',
+  green: '#4CAF50',
 
-  lightyellow: "#FEF7EC",
-  yellow: "#F2AB58",
+  lightyellow: '#FEF7EC',
+  yellow: '#F2AB58',
 
-  lightred: "#FFB5B5",
-  red: "#FF0000"
+  lightred: '#FFB5B5',
+  red: '#FF0000',
 };
 
 const FONT = {
-  regular: "DMRegular",
-  medium: "DMMedium",
-  bold: "DMBold",
+  regular: 'DMRegular',
+  medium: 'DMMedium',
+  bold: 'DMBold',
 };
 
 const SIZES = {
@@ -36,7 +36,7 @@ const SIZES = {
 
 const SHADOWS = {
   small: {
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -57,4 +57,6 @@ const SHADOWS = {
   },
 };
 
-export { COLORS, FONT, SIZES, SHADOWS };
+export {
+  COLORS, FONT, SIZES, SHADOWS,
+};

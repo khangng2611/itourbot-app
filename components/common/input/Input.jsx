@@ -4,7 +4,7 @@ import { COLORS } from '../../../constants';
 import {icons} from '../../../constants';
 import styles from './input.style';
 
-const Input = ({ label, iconName, error, password, onFocus = () => { }, ...props }) => {
+const Input = ({ label, error, password, onFocus = () => { }, ...props }) => {
     const [hidePassword, setHidePassword] = useState(password);
     const [isFocused, setIsFocused] = useState(false);
     return (
@@ -20,6 +20,7 @@ const Input = ({ label, iconName, error, password, onFocus = () => { }, ...props
                 ]}>
                 <TextInput
                     autoCorrect={false}
+                    autoCapitalize='none'
                     onFocus={() => {
                         onFocus();
                         setIsFocused(true);

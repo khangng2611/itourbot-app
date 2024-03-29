@@ -1,5 +1,5 @@
 import { View, Image, Text } from "react-native"
-import styles from "./popularstationcard.style";
+import styles from "./stationcard.style";
 import { icons } from "../../../constants";
 
 const InfoWrapper = ({size, item }) => {

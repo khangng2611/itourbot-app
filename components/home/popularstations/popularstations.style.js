@@ -1,16 +1,15 @@
-import { StyleSheet } from "react-native";
-
-import { FONT, SIZES, COLORS } from "../../../constants";
+import { StyleSheet } from 'react-native';
+import { FONT, SIZES, COLORS } from '../../../constants';
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     marginTop: SIZES.xLarge,
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   headerTitle: {
     fontSize: SIZES.large,
@@ -23,7 +22,7 @@ const styles = StyleSheet.create({
     color: COLORS.gray,
   },
   cardsContainer: {
-    flex:1,
+    flex: 1,
     marginTop: SIZES.medium,
   },
 });

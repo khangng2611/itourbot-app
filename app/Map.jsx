@@ -9,21 +9,6 @@ const Map = () => {
     const { x, y, battery, isFree } = fetchState();
     return (
         <SafeAreaView style={styles.safeAreaView}>
-            <Stack.Screen
-                options={{
-                    headerShown: false,
-                    // headerStyle: { backgroundColor: COLORS.lightWhite },
-                    // headerShadowVisible: false,
-                    // headerLeft: () => (
-                    //     <ScreenHeaderBtn
-                    //         iconUrl={icons.left}
-                    //         dimension='60%'
-                    //         handlePress={() => router.back()}
-                    //     />
-                    // ),
-                    // headerTitle: "",
-                }}
-            />
             <View style={styles.container}>
                 <Text style={styles.title}>Maps</Text>
             </View>

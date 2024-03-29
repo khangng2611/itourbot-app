@@ -1,6 +1,6 @@
 import { Image, TouchableOpacity } from "react-native";
 import { useState } from "react";
-import styles from "./popularstationcard.style";
+import styles from "./stationcard.style";
 import { icons } from "../../../constants";
 
 const LoveWrapper = ({ size }) => {

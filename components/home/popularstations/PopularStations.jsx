@@ -1,10 +1,9 @@
-import { useState } from "react";
 import { useRouter } from "expo-router";
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, } from "react-native";
 
 import styles from "./popularstations.style";
 import { COLORS, SIZES } from "../../../constants";
-import PopularStationCard from "../../common/cards/PopularStationCard";
+import StationCard from "../../common/cards/StationCard";
 import useFetch from "../../../hook/useFetch";
 
 const PopularStations = () => {
@@ -33,7 +32,7 @@ const PopularStations = () => {
           <FlatList
             data={data}
             renderItem={({ item }) => (
-              <PopularStationCard
+              <StationCard
                 item={item}
                 handleCardPress={handleCardPress}
               />

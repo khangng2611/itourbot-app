@@ -1,6 +1,8 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
+import {
+  COLORS, FONT, SHADOWS, SIZES,
+} from '../../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,10 +16,10 @@ const styles = StyleSheet.create({
   cardImage: (windowHeight) => ({
     borderRadius: SIZES.large,
     width: '100%',
-    height: windowHeight ? 0.5 * windowHeight : '100%'
+    height: windowHeight ? 0.5 * windowHeight : '100%',
   }),
   infoWrapper: (size) => ({
-    width: (size == SIZES.large) ? '90%' : '80%',
+    width: (size === SIZES.large) ? '90%' : '80%',
     flex: 1,
     position: 'absolute',
     bottom: 0,
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
     margin: SIZES.large,
     borderRadius: SIZES.medium,
     backgroundColor: 'black',
-    opacity: 0.5
+    opacity: 0.5,
   }),
   zoneName: (size) => ({
     fontSize: size - 1,
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
   locationRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 5
+    marginTop: 5,
   },
   location: (size) => ({
     fontSize: size - 1,
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
     tintColor: COLORS.white,
     width: size,
     height: size,
-    marginEnd: 5
+    marginEnd: 5,
   }),
   loveWrapper: (size) => ({
     width: 2 * size,
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
     margin: size - 5,
     borderRadius: SIZES.xLarge,
     backgroundColor: 'black',
-    opacity: 0.5
+    opacity: 0.5,
   }),
   loveIcon: (size) => ({
     alignSelf: 'center',
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
     margin: SIZES.medium,
     borderRadius: SIZES.xLarge,
     backgroundColor: 'black',
-    opacity: 0.5
+    opacity: 0.5,
   },
   backIcon: {
     alignSelf: 'center',

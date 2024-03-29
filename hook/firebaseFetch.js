@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set, get, onValue } from "firebase/database";
-import { STATIONS } from "../constants";
+import {
+  getDatabase, ref, set, onValue,
+} from 'firebase/database';
+import { STATIONS } from '../constants';
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_APIKEY,
@@ -26,33 +28,35 @@ export const fetchState = () => {
   const [isFree, setIsFree] = useState();
 
   useEffect(() => onValue(
-    ref(database, "/turtlebot_state"),
+    ref(database, '/turtlebot_state'),
     (snapshot) => {
-      let data = snapshot.val();
+      const data = snapshot.val();
       // const values = Object.values(snapshot.val());
-      setX(data["position"]["x"]);
-      setY(data["position"]["y"]);
-      setBattery(data["battery"]);
-      setIsFree(data["isFree"]);
-    }
+      setX(data.position.x);
+      setY(data.position.y);
+      setBattery(data.battery);
+      setIsFree(data.isFree);
+    },
   ));
-  return { x, y, battery, isFree };
-}
+  return {
+    x, y, battery, isFree,
+  };
+};
 
 export const firebaseSetRequestStage = (fromStation, stage) => {
-  const stationId = parseInt(fromStation.stationId);
-  set(ref(database, "/request"), {
+  const stationId = parseInt(fromStation.stationId, 10);
+  set(ref(database, '/request'), {
     id: stage,
     param: {
       x: STATIONS[stationId][0],
       y: STATIONS[stationId][1],
-      yaw: 90
+      yaw: 90,
     },
     station: {
       desc: fromStation.description,
       id: stationId,
-      name: fromStation.name
-    }
+      name: fromStation.name,
+    },
   });
 };
 

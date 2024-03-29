@@ -7,7 +7,8 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "@react-native-firebase/app"
     ],
     "name": "itourbot",
     "slug": "itourbot",
@@ -24,7 +25,8 @@
       "package": "com.khangng2611.itourbot"
     },
     "ios": {
-      "bundleIdentifier": "com.khangng2611.itourbot"
+      "bundleIdentifier": "com.khangng2611.itourbot",
+      "googleServicesFile": "./GoogleService-Info.plist"
     }
   }
 }

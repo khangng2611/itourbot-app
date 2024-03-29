@@ -1,11 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES } from "../constants";
+import { COLORS, FONT, SIZES } from '../constants';
 
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    backgroundColor: COLORS.lightWhite
+    backgroundColor: COLORS.lightWhite,
   },
   title: {
     fontFamily: FONT.bold,
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: SIZES.medium,
-  }
+  },
 });
 
 export default styles;

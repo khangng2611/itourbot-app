@@ -1,6 +1,10 @@
-import images from "./images";
-import icons from "./icons";
-import { COLORS, FONT, SIZES, SHADOWS } from "./theme";
-import STATIONS from "./stations";
+import images from './images';
+import icons from './icons';
+import {
+  COLORS, FONT, SIZES, SHADOWS,
+} from './theme';
+import STATIONS from './stations';
 
-export { images, icons, COLORS, FONT, SIZES, SHADOWS, STATIONS };
+export {
+  images, icons, COLORS, FONT, SIZES, SHADOWS, STATIONS,
+};
