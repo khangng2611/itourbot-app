@@ -16,7 +16,8 @@ import { Poster, RequestBar, About } from "../../components";
 const tabs = ["About", "Qualifications", "Responsibilities"];
 
 const StationDetails = () => {
-  const item = useLocalSearchParams();
+  const data = useLocalSearchParams();
+  const item = JSON.parse(data.data);
   const router = useRouter();
 
   // const { data, isLoading, error, refetch } = useFetch("station-details", {
