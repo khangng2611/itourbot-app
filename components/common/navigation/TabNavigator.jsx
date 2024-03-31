@@ -1,6 +1,7 @@
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import {icons} from '../../../constants'
+import { removeSession } from "../../../utils/asyncStorage";
 
 export default function TabNavigator({chosenTab}) {
     const router = useRouter()
@@ -13,7 +14,8 @@ export default function TabNavigator({chosenTab}) {
                     resizeMode='contain'
                 />     
             </TouchableOpacity> 
-            <TouchableOpacity onPress={() => router.replace(`Map`)}>
+            {/* <TouchableOpacity onPress={() => router.replace(`Map`)}> */}
+            <TouchableOpacity onPress={() => removeSession()}>
                 <Image
                     style={[styles.logo, {opacity: (chosenTab == "history") ? 1 : 0.5}]}
                     source={icons.history}

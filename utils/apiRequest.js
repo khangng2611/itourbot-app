@@ -3,7 +3,7 @@ import { firebaseSetRequestStage } from '../hook/firebaseFetch';
 import { localStore, localRetrieve } from './asyncStorage';
 
 const postTours = async (reqBody, item) => {
-  const token = JSON.parse(await localRetrieve('TOKEN'));
+  const token = JSON.parse(await localRetrieve('ACCESS_KEY'));
   const options = {
     method: 'POST',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}tours`,
@@ -44,8 +44,9 @@ const normalLogin = async ({ email, password }) => {
   try {
     const response = await axios.request(options);
     Promise.all([
-      localStore('TOKEN', JSON.stringify(response.data.token)),
+      localStore('ACCESS_KEY', JSON.stringify(response.data.token)),
       localStore('USER', JSON.stringify(response.data.user)),
+      localStore('LAST_LOGIN', Date.now().toString()),
     ]);
     return true;
   } catch (error) {
