@@ -1,0 +1,14 @@
+import { Stack } from 'expo-router';
+// import * as SplashScreen from "expo-splash-screen";
+
+// SplashScreen.preventAutoHideAsync();
+
+function AuthLayout() {
+  return (
+    <Stack screenOptions={{ animation: 'none', headerShown: false }}>
+      <Stack.Screen name="Login" />
+    </Stack>
+  );
+}
+
+export default AuthLayout;

@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  itourbot-app:
+    image: itourbot-app:latest
+    container_name: itourbot-app
+    build: .
+    command: npm run tunnel
+    env_file:
+      - .env
+    ports:
+      - "8081:8081"
+    restart: always

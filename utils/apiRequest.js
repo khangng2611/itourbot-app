@@ -1,22 +1,34 @@
 import axios from 'axios';
 import { firebaseSetRequestStage } from '../hook/firebaseFetch';
+import { localStore, localRetrieve } from './asyncStorage';
 
 const postTours = async (reqBody, item) => {
+  const token = JSON.parse(await localRetrieve('TOKEN'));
   const options = {
     method: 'POST',
-    url: `${process.env.EXPO_PUBLIC_BASE_API_URL}tours/mockup`,
+    url: `${process.env.EXPO_PUBLIC_BASE_API_URL}tours`,
     headers: {
-      // "Authorization": `Bearer ${accessToken}`,
+      Authorization: `Bearer ${token.accessToken}`,
       'Content-Type': 'application/json',
     },
     data: JSON.stringify(reqBody),
   };
   try {
-    const response = await axios.request(options);
-    console.log(response);
+    await axios.request(options);
+    // console.log(response);
     firebaseSetRequestStage(item, 1);
-  } catch (e) {
-    throw new Error(e.message);
+  } catch (error) {
+    if (error.response) {
+      throw error.response.data;
+    } else if (error.request) {
+      console.log('error.request');
+      console.log(error.request);
+      throw error.request;
+    } else if (error.message) {
+      console.log('error.message');
+      console.log(error.message);
+      throw error.message;
+    }
   }
 };
 
@@ -31,10 +43,13 @@ const normalLogin = async ({ email, password }) => {
   };
   try {
     const response = await axios.request(options);
-    return response.data;
+    Promise.all([
+      localStore('TOKEN', JSON.stringify(response.data.token)),
+      localStore('USER', JSON.stringify(response.data.user)),
+    ]);
+    return true;
   } catch (error) {
     if (error.response) {
-      console.log(error.response.data);
       throw error.response.data;
     } else if (error.request) {
       console.log('error.request');
