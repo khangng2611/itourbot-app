@@ -7,7 +7,7 @@ import {fetchState} from "../../../hook/firebaseFetch";
 import { postTours } from "../../../utils/apiRequest";
 
 const RequestBar = ({ item }) => {
-    const stationList = JSON.parse(item.stationList);
+    const stationList = item.stationList;
     const { isFree } = fetchState();
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);

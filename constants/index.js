@@ -3,8 +3,7 @@ import icons from './icons';
 import {
   COLORS, FONT, SIZES, SHADOWS,
 } from './theme';
-import STATIONS from './stations';
 
 export {
-  images, icons, COLORS, FONT, SIZES, SHADOWS, STATIONS,
+  images, icons, COLORS, FONT, SIZES, SHADOWS,
 };

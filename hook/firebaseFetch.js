@@ -3,7 +3,6 @@ import { initializeApp } from 'firebase/app';
 import {
   getDatabase, ref, set, onValue,
 } from 'firebase/database';
-import { STATIONS } from '../constants';
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_APIKEY,
@@ -48,8 +47,8 @@ export const firebaseSetRequestStage = (fromStation, stage) => {
   set(ref(database, '/request'), {
     id: stage,
     param: {
-      x: STATIONS[stationId][0],
-      y: STATIONS[stationId][1],
+      x: fromStation.location.x,
+      y: fromStation.location.y,
       yaw: 90,
     },
     station: {
