@@ -1,6 +1,6 @@
 import { SafeAreaView, ScrollView, StatusBar } from "react-native";
 import styles from '../../styles/app.style';
-import { LoginForm, BotLoginImage, Input, Loader } from "../../components";
+import { LoginForm, BotLoginImage, Loader } from "../../components";
 import { useState } from "react";
 
 const Login = () => {

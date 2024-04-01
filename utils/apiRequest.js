@@ -1,19 +1,18 @@
 import axios from 'axios';
 import { firebaseSetRequestStage } from '../hook/firebaseFetch';
-import { localStore, localRetrieve } from './asyncStorage';
 
 const postTours = async (reqBody, item, session) => {
   const options = {
     method: 'POST',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}tours`,
     headers: {
-      Authorization: `Bearer ${session.data.token.accessToken}`,
+      Authorization: `Bearer ${session.token.accessToken}`,
       'Content-Type': 'application/json',
     },
     data: JSON.stringify(reqBody),
   };
   try {
-    const response = await axios.request(options);
+    await axios.request(options);
     firebaseSetRequestStage(item, 1);
   } catch (error) {
     if (error.response) {
@@ -41,11 +40,10 @@ const normalLogin = async ({ email, password }, signIn) => {
   };
   try {
     const response = await axios.request(options);
-    const sessionData = {
-      data: response.data,
+    signIn({
+      ...response.data,
       lastLogin: Date.now().toString(),
-    }
-    signIn(sessionData);
+    });
     return true;
   } catch (error) {
     if (error.response) {

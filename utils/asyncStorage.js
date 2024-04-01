@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
 const localStore = async (key, token) => {
   try {
     // **WARNING:** Data is stored unencrypted! Consider encryption for sensitive tokens.
@@ -29,9 +30,8 @@ const localRemove = async (key) => {
 
 const checkLastLogin = (session) => {
   if (!session) return false;
-  const lastLogin = session.lastLogin;
-  if (!lastLogin) return false;
-  if (parseInt(lastLogin) < (Date.now() - (24 * 60 * 60 * 1000))) return false;
+  if (!session.lastLogin) return false;
+  if (parseInt(session.lastLogin, 10) < (Date.now() - (24 * 60 * 60 * 1000))) return false;
   return true;
 };
 
@@ -47,9 +47,8 @@ const useStorageState = () => {
   // }, []);
   // return { session, isLoading, setSession };
   return { session, setSession };
-}
-
+};
 
 export {
-  localStore, localRetrieve, localRemove, checkLastLogin, useStorageState
+  localStore, localRetrieve, localRemove, checkLastLogin, useStorageState,
 };
