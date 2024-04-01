@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import styles from "./requestbar.style";
 import { COLORS, SIZES, icons } from "../../../constants";
 import { Dropdown } from "react-native-element-dropdown"
-import {fetchState} from "../../../hook/firebaseFetch";
+import { fetchState } from "../../../hook/firebaseFetch";
 import { postTours } from "../../../utils/apiRequest";
+import { useAuth } from "../../../utils/ctx";
 
 const RequestBar = ({ item }) => {
+    const { session } = useAuth();
     const stationList = item.stationList;
     const { isFree } = fetchState();
     const [value, setValue] = useState(null);
@@ -23,7 +25,14 @@ const RequestBar = ({ item }) => {
                     {
                         text: 'Confirm', onPress: async () => {
                             try {
-                                const response = await postTours({ fromStation: parseInt(value), toStation: parseInt(item.stationId) }, item)
+                                const response = await postTours(
+                                    {
+                                        fromStation: parseInt(value),
+                                        toStation: parseInt(item.stationId)
+                                    },
+                                    item,
+                                    session
+                                )
                                 setRequestStatus([true, "success"]);
                             } catch (error) {
                                 setRequestStatus([true, error.message]);
@@ -45,12 +54,12 @@ const RequestBar = ({ item }) => {
                     style={styles.requestStatus(requestStatus[1])}
                     onPress={() => setRequestStatus(false, "")}
                 >
-                    <Text style={[styles.textStyle, {color : requestStatus[1] === "success" ? COLORS.green : COLORS.red}]}>
+                    <Text style={[styles.textStyle, { color: requestStatus[1] === "success" ? COLORS.green : COLORS.red }]}>
                         {requestStatus[1] === "success" ? "Request Successfully !" : requestStatus[1]}
                     </Text>
                 </TouchableOpacity>
             ) : null}
-            <View style={{ flexDirection: 'row' , alignItems:'flex-end'}}>
+            <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
                 <View style={{ flex: 1.5, marginEnd: SIZES.large }}>
                     <Text style={[styles.textStyle, { color: COLORS.secondary, marginBottom: 5 }]}>Pickup station: </Text>
                     <Dropdown
@@ -75,8 +84,8 @@ const RequestBar = ({ item }) => {
                         }}
                     />
                 </View>
-                <View style={{width:"40%"}}>
-                    <Text style={{alignSelf: 'center', color:COLORS.yellow}}>{!isFree ? "Robot is in service": ""} </Text>
+                <View style={{ width: "40%" }}>
+                    <Text style={{ alignSelf: 'center', color: COLORS.yellow }}>{!isFree ? "Robot is in service" : ""} </Text>
                     <TouchableOpacity
                         style={styles.button(isFree)}
                         onPress={() => handleRequestTour()}

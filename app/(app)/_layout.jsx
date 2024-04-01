@@ -1,4 +1,4 @@
-import { Stack, Redirect } from 'expo-router';
+import { Stack, Redirect, useRouter } from 'expo-router';
 import { useAuth } from '../../utils/ctx';
 import { Loader } from '../../components';
 import { checkLastLogin } from '../../utils/asyncStorage';
@@ -6,10 +6,9 @@ import { checkLastLogin } from '../../utils/asyncStorage';
 // SplashScreen.preventAutoHideAsync();
 
 function Layout() {
-  const { lastLogin, isLoading } = useAuth();
+  const { session, isLoading } = useAuth();
   if (isLoading) return <Loader visible={isLoading} />;
-  console.log('lastLogin', lastLogin);
-  if (!checkLastLogin(lastLogin)) {
+  if (!checkLastLogin(session)) {
     return <Redirect href="/(auth)/Login" />;
   }
   return (

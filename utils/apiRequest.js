@@ -2,13 +2,12 @@ import axios from 'axios';
 import { firebaseSetRequestStage } from '../hook/firebaseFetch';
 import { localStore, localRetrieve } from './asyncStorage';
 
-const postTours = async (reqBody, item) => {
-  const token = JSON.parse(await localRetrieve('ACCESS_KEY'));
+const postTours = async (reqBody, item, session) => {
   const options = {
     method: 'POST',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}tours`,
     headers: {
-      Authorization: `Bearer ${token.accessToken}`,
+      Authorization: `Bearer ${session.data.token.accessToken}`,
       'Content-Type': 'application/json',
     },
     data: JSON.stringify(reqBody),
@@ -31,7 +30,7 @@ const postTours = async (reqBody, item) => {
   }
 };
 
-const normalLogin = async ({ email, password }) => {
+const normalLogin = async ({ email, password }, signIn) => {
   const options = {
     method: 'POST',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}auth/login`,
@@ -42,11 +41,11 @@ const normalLogin = async ({ email, password }) => {
   };
   try {
     const response = await axios.request(options);
-    Promise.all([
-      localStore('ACCESS_KEY', JSON.stringify(response.data.token)),
-      localStore('USER', JSON.stringify(response.data.user)),
-      localStore('LAST_LOGIN', Date.now().toString()),
-    ]);
+    const sessionData = {
+      data: response.data,
+      lastLogin: Date.now().toString(),
+    }
+    signIn(sessionData);
     return true;
   } catch (error) {
     if (error.response) {

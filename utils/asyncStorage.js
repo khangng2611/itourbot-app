@@ -27,40 +27,29 @@ const localRemove = async (key) => {
   }
 };
 
-const checkLastLogin = (lastLogin) => {
+const checkLastLogin = (session) => {
+  if (!session) return false;
+  const lastLogin = session.lastLogin;
   if (!lastLogin) return false;
   if (parseInt(lastLogin) < (Date.now() - (24 * 60 * 60 * 1000))) return false;
   return true;
 };
 
 const useStorageState = () => {
-  const [isLoading, setLoading] = useState(false);
-  const [{ accessKey, userData, lastLogin }, setSession] = useState({});
-  useEffect(() => {
-    const fetchSession = async () => {
-      setLoading(true);
-      const [accessKey, userData, lastLogin] = await Promise.all([
-        localRetrieve('ACCESS_KEY'),
-        localRetrieve('USER'),
-        localRetrieve('LAST_LOGIN')
-      ]);
-      setSession({ accessKey, userData, lastLogin });
-      setLoading(false);
-    };
-    fetchSession();
-  }, []);
-  // return [[isLoading, session], setSession];
-  return { accessKey, userData, lastLogin, isLoading };
+  const [session, setSession] = useState();
+  // const [isLoading, setLoading] = useState(false);
+  // useEffect(() => {
+  //   const fetchSession = async () => {
+  //     setLoading(true);
+  //     setLoading(false);
+  //   };
+  //   fetchSession();
+  // }, []);
+  // return { session, isLoading, setSession };
+  return { session, setSession };
 }
 
-const removeSession = async () => {
-  await Promise.all([
-    localRemove('ACCESS_KEY'),
-    localRemove('USER'),
-    localRemove('LAST_LOGIN')
-  ]);
-}
 
 export {
-  localStore, localRetrieve, localRemove, checkLastLogin, useStorageState, removeSession
+  localStore, localRetrieve, localRemove, checkLastLogin, useStorageState
 };

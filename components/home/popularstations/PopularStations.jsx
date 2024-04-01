@@ -12,7 +12,6 @@ const PopularStations = () => {
   const stationList = data.map((item) => ({ label: `(${item.stationId}) ${item.name}`, value: item.stationId }));
   const handleCardPress = (item) => {
     const stationObject = {...item, stationList};
-    // console.log(JSON.stringify(stationObject));
     router.push({ pathname: `/station-details/${item._id}`, params: {data: JSON.stringify(stationObject)}});
   };
 
