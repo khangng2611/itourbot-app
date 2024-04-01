@@ -1,14 +1,16 @@
-import { View, Text, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Keyboard, Alert } from 'react-native';
 import { useState } from 'react';
 import Input from '../common/input/Input';
 import styles from './auth.style';
-import { validateEmail } from '../../utils/index';
+import { validateEmail } from '../../utils/checkFormat';
 import { normalLogin } from '../../utils/apiRequest';
 import { useRouter } from 'expo-router';
+import { useAuth } from '../../utils/ctx';
 
-const LoginForm = ({setLoading}) => {
+const LoginForm = ({ setLoading }) => {
     const [inputs, setInputs] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({});
+    const { signIn } = useAuth();
     const router = useRouter();
 
     const validate = async () => {
@@ -26,19 +28,19 @@ const LoginForm = ({setLoading}) => {
             isValid = false;
         }
         if (isValid) {
-            login(inputs);
+            await login(inputs);
         }
     };
 
     const login = async (inputs) => {
         try {
             setLoading(true);
-            const response = await normalLogin(inputs);
-            console.log("login OK");
-            router.push("/Home");
+            const response = await normalLogin(inputs, signIn);
+            router.push("/(app)");
         } catch (error) {
-
-            console.log("login FAIL");
+            Alert.alert('Login fail', error.message ? `${error.message}` : "Invalid Information", [
+                { text: 'Cancel' },
+            ]);
         } finally {
             setLoading(false);
         }
