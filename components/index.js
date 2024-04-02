@@ -5,8 +5,9 @@ import Welcome from './home/welcome/Welcome';
 import PopularStations from './home/popularstations/PopularStations';
 
 // auth screen
-import BotLoginImage from './auth/BotLoginImage';
+import LoginImage from './auth/LoginImage';
 import LoginForm from './auth/LoginForm';
+import OAuthLogin from './auth/OAuthLogin';
 
 // common
 import TabNavigator from './common/navigation/TabNavigator';
@@ -34,8 +35,9 @@ export {
   About,
   Poster,
   RequestBar,
-  BotLoginImage,
+  LoginImage,
   LoginForm,
   Input,
   Loader,
+  OAuthLogin,
 };

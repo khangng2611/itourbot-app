@@ -7,6 +7,7 @@
 //   return (
 //     <Stack screenOptions={{ animation: 'none', headerShown: false }}>
 //       <Stack.Screen name="Login" />
+//       {/* <Stack.Screen name="Signup" /> */}
 //     </Stack>
 //   );
 // }

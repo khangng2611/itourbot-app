@@ -1,6 +1,6 @@
 import { SafeAreaView, ScrollView, StatusBar } from "react-native";
 import styles from '../../styles/app.style';
-import { LoginForm, BotLoginImage, Loader } from "../../components";
+import { LoginForm, LoginImage, Loader, OAuthLogin } from "../../components";
 import { useState } from "react";
 
 const Login = () => {
@@ -11,8 +11,9 @@ const Login = () => {
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ flexGrow: 1 }}
             >
-                <BotLoginImage />
+                <LoginImage />
                 <LoginForm setLoading={setLoading} />
+                {/* <OAuthLogin /> */}
                 <Loader visible={isLoading} />
             </ScrollView>
             <StatusBar barStyle='dark-content' />

@@ -1,5 +1,5 @@
-import { View, Text, TextInput, TouchableOpacity, Keyboard, Alert } from 'react-native';
-import { useState } from 'react';
+import { View, Text, TouchableOpacity, Keyboard, Alert } from 'react-native';
+import { useState, useEffect } from 'react';
 import Input from '../common/input/Input';
 import styles from './auth.style';
 import { validateEmail } from '../../utils/checkFormat';
@@ -76,6 +76,8 @@ const LoginForm = ({ setLoading }) => {
             >
                 <Text style={styles.loginBtnText}>Sign In</Text>
             </TouchableOpacity>
+            <Text onPress={() => validate()} style={styles.forgotText}>Forgot Password ?</Text>
+            <Text onPress={() => router.replace()} style={styles.forgotText}>Don't have account ? Sign Up</Text>
         </View>
     );
 };

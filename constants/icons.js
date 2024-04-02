@@ -1,7 +1,6 @@
 import heart from '../assets/icons/heart.png';
 import menu from '../assets/icons/menu.png';
 import search from '../assets/icons/search.png';
-import filter from '../assets/icons/filter.png';
 import left from '../assets/icons/left.png';
 import heartOutline from '../assets/icons/heart-ol.png';
 import share from '../assets/icons/share.png';
@@ -11,6 +10,8 @@ import chevronRight from '../assets/icons/chevron-right.png';
 import locationIcon from '../assets/icons/location-ol.png';
 import send from '../assets/icons/send.png';
 import hidePassword from '../assets/icons/hide-password.png';
+import google from '../assets/icons/company/google.png';
+import facebook from '../assets/icons/company/facebook.png';
 
 // navigator
 import home from '../assets/icons/tab-navigator/home.png';
@@ -22,7 +23,6 @@ export default {
   heart,
   menu,
   search,
-  filter,
   left,
   heartOutline,
   share,
@@ -36,4 +36,6 @@ export default {
   locationIcon,
   send,
   hidePassword,
+  google,
+  facebook,
 };

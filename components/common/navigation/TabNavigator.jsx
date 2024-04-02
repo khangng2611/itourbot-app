@@ -1,41 +1,40 @@
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-import {icons} from '../../../constants'
-import { removeSession } from "../../../utils/asyncStorage";
+import { icons } from '../../../constants'
 
-export default function TabNavigator({chosenTab}) {
+export default function TabNavigator({ chosenTab }) {
     const router = useRouter()
     return (
         <View style={styles.tabNavigator}>
             <TouchableOpacity onPress={() => router.replace(`/Home`)}>
                 <Image
-                    style={[styles.logo, {opacity: (chosenTab == "home") ? 1 : 0.5}]}
+                    style={[styles.logo, { opacity: (chosenTab == "home") ? 1 : 0.5 }]}
                     source={icons.home}
                     resizeMode='contain'
-                />     
-            </TouchableOpacity> 
+                />
+            </TouchableOpacity>
             {/* <TouchableOpacity onPress={() => router.replace(`Map`)}> */}
-            <TouchableOpacity onPress={() => removeSession()}>
+            <TouchableOpacity onPress={() => router.replace(`/Home`)}>
                 <Image
-                    style={[styles.logo, {opacity: (chosenTab == "history") ? 1 : 0.5}]}
+                    style={[styles.logo, { opacity: (chosenTab == "history") ? 1 : 0.5 }]}
                     source={icons.history}
                     resizeMode='contain'
-                /> 
+                />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => router.replace(`/Map`)}>     
+            <TouchableOpacity onPress={() => router.replace(`/Map`)}>
                 <Image
-                    style={[styles.logo, {opacity: (chosenTab == "map") ? 1 : 0.5}]}
+                    style={[styles.logo, { opacity: (chosenTab == "map") ? 1 : 0.5 }]}
                     source={icons.map}
                     resizeMode='contain'
-                /> 
+                />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => router.replace({pathname: `/(auth)/Login`})}>     
+            <TouchableOpacity onPress={() => router.replace(`/Map`)}>
                 <Image
-                    style={[styles.logo, {opacity: (chosenTab == "profile") ? 1 : 0.5}]}
+                    style={[styles.logo, { opacity: (chosenTab == "profile") ? 1 : 0.5 }]}
                     source={icons.profile}
                     resizeMode='contain'
-                />    
-            </TouchableOpacity>   
+                />
+            </TouchableOpacity>
         </View>
     );
 }

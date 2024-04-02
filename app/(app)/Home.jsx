@@ -4,9 +4,11 @@ import { Stack, useRouter } from "expo-router";
 import styles from '../../styles/app.style';
 import { COLORS, icons, images, SIZES } from "../../constants";
 import { PopularStations, ScreenHeaderBtn, Welcome, TabNavigator } from "../../components";
+import { useAuth } from "../../utils/ctx";
 
 const Home = () => {
   const chosenTab = "home";
+  const { session } = useAuth();
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   return (
@@ -34,6 +36,7 @@ const Home = () => {
           }}
         >
           <Welcome
+            user={session.user}
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
             handleClick={() => {

@@ -2,7 +2,7 @@ import { images } from "../../constants";
 import { Image } from "react-native";
 import styles from "./auth.style";
 
-const BotLoginImage = () => {
+const LoginImage = () => {
     return (
         <Image
             source={images.botLogin}
@@ -12,4 +12,4 @@ const BotLoginImage = () => {
     )
 }; 
 
-export default BotLoginImage;
+export default LoginImage;
