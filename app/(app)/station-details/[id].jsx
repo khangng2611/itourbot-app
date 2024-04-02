@@ -1,8 +1,8 @@
 import { Stack, useRouter, useLocalSearchParams } from "expo-router";
 import { useCallback, useState } from "react";
-import styles from '../../styles/app.style';
+import styles from '../../../styles/app.style';
 import { View, Text, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, } from "react-native";
-import { Poster, RequestBar, About } from "../../components";
+import { Poster, RequestBar, About } from '../../../components';
 
 // import {
 //   Company,
@@ -18,7 +18,6 @@ const tabs = ["About", "Qualifications", "Responsibilities"];
 const StationDetails = () => {
   const data = useLocalSearchParams();
   const item = JSON.parse(data.data);
-  const router = useRouter();
 
   // const { data, isLoading, error, refetch } = useFetch("station-details", {
   //   job_id: item._id,

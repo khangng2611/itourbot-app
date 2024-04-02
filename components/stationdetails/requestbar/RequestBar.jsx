@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "./requestbar.style";
 import { COLORS, SIZES, icons } from "../../../constants";
 import { Dropdown } from "react-native-element-dropdown"
-import { fetchState } from "../../../hook/firebaseFetch";
+import { fetchState, isReachStation, firebaseSetRequestStage } from "../../../hook/firebaseFetch";
 import { postTours } from "../../../utils/apiRequest";
 import { useAuth } from "../../../utils/ctx";
 
@@ -14,7 +14,17 @@ const RequestBar = ({ item }) => {
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const [requestStatus, setRequestStatus] = useState([false, ""]);
-
+    const isReach = isReachStation();
+    useEffect(() => {
+        if (isReach) {
+            Alert.alert('Notification', 'Robot has reached your destination',
+                [{
+                    text: 'Confirm', onPress: async () => {
+                        firebaseSetRequestStage(item, 2);
+                    }
+                }])
+        };
+    }, [isReach]);
     const handleRequestTour = () => {
         if (value) {
             if (value == item.stationId) {

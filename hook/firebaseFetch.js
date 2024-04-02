@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
 import {
-  getDatabase, ref, set, onValue,
+  getDatabase, ref, set, onValue, off
 } from 'firebase/database';
+import stations from '../constants/stations';
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_APIKEY,
@@ -42,21 +43,42 @@ export const fetchState = () => {
   };
 };
 
-export const firebaseSetRequestStage = (fromStation, stage) => {
-  const stationId = parseInt(fromStation.stationId, 10);
+export const firebaseSetRequestStage = (toStation, stage, fromStation=0) => {
+  const stationId = parseInt(toStation.stationId, 10);
+  const location = (stage == 2) ? toStation.location : stations[fromStation];
   set(ref(database, '/request'), {
     id: stage,
     param: {
-      x: fromStation.location.x,
-      y: fromStation.location.y,
+      // x: toStation.location.x,
+      // y: toStation.location.y,
+      x: location.x,
+      y: location.y,
       yaw: 90,
     },
     station: {
-      desc: fromStation.description,
+      desc: toStation.description,
       id: stationId,
-      name: fromStation.name,
+      name: toStation.name,
     },
   });
+};
+
+export const isReachStation = () => {
+  const [isReach, setIsReach] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = onValue(
+      ref(database, '/turtlebot_state/isReachStation'),
+      (snapshot) => {
+        const isReachValue = snapshot.val();
+        setIsReach(isReachValue);
+      },
+    );
+    return () => {
+      off(unsubscribe);
+    };
+  }, []);
+  return isReach;
 };
 
 // const qrCodeReference = firebase.database().ref('qrcodes/' + codeId+ '/gotScanned');

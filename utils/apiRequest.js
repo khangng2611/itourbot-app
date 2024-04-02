@@ -13,7 +13,7 @@ const postTours = async (reqBody, item, session) => {
   };
   try {
     await axios.request(options);
-    firebaseSetRequestStage(item, 1);
+    firebaseSetRequestStage(item, 1, reqBody.fromStation);
   } catch (error) {
     if (error.response) {
       throw error.response.data;
