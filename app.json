@@ -2,13 +2,15 @@
   "expo": {
     "orientation": "default",
     "icon": "./assets/icon.png",
-    "scheme": "acme",
+    "scheme": "itourbot",
     "web": {
       "bundler": "metro"
     },
     "plugins": [
       "expo-router",
-      "@react-native-firebase/app"
+      "@react-native-firebase/app",
+      "expo-font",
+      "expo-secure-store"
     ],
     "name": "itourbot",
     "slug": "itourbot",
@@ -26,7 +28,16 @@
     },
     "ios": {
       "bundleIdentifier": "com.khangng2611.itourbot",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "infoPlist": {
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": [
+              "com.googleusercontent.apps.419978511119-vqrmck18o9dte3cjl6f1ll72c9jna3h3"
+            ]
+          }
+        ]
+      }
     }
   }
 }

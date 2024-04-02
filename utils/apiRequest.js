@@ -61,4 +61,31 @@ const normalLogin = async ({ email, password }, signIn) => {
   return false;
 };
 
-export { postTours, normalLogin };
+const oauthLogin = async (platform) => {
+  const options = {
+    method: 'GET',
+    url: `${process.env.EXPO_PUBLIC_BASE_API_URL}auth/${platform}`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  try {
+    const response = await axios.request(options);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      throw error.response.data;
+    } else if (error.request) {
+      console.log('error.request');
+      console.log(error.request);
+      throw error.request;
+    } else if (error.message) {
+      console.log('error.message');
+      console.log(error.message);
+      throw error.message;
+    }
+  }
+};
+
+export { postTours, normalLogin, oauthLogin };
