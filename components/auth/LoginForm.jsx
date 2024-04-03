@@ -5,10 +5,10 @@ import styles from './auth.style';
 import { validateEmail } from '../../utils/checkFormat';
 import { normalLogin } from '../../utils/apiRequest';
 import { useRouter } from 'expo-router';
-import { useAuth } from '../../utils/ctx';
+import { useAuth } from '../../components/context/AuthContext';
 
 const LoginForm = ({ setLoading }) => {
-    const [inputs, setInputs] = useState({ email: '', password: '' });
+    const [inputs, setInputs] = useState({ email: 'khang@gmail.com', password: '123456' });
     const [errors, setErrors] = useState({});
     const { signIn } = useAuth();
     const router = useRouter();

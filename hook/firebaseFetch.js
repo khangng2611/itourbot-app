@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
-import {
-  getDatabase, ref, set, onValue, off
-} from 'firebase/database';
+import * as database from 'firebase/database';
 import stations from '../constants/stations';
 
 const firebaseConfig = {
@@ -18,7 +16,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+export const db = database.getDatabase(app);
 // const auth = getAuth(app);
 
 export const fetchState = () => {
@@ -26,9 +24,10 @@ export const fetchState = () => {
   const [y, setY] = useState();
   const [battery, setBattery] = useState();
   const [isFree, setIsFree] = useState();
+  const stateRef = database.ref(db, '/turtlebot_state');
 
-  useEffect(() => onValue(
-    ref(database, '/turtlebot_state'),
+  useEffect(() => database.onValue(
+    stateRef,
     (snapshot) => {
       const data = snapshot.val();
       // const values = Object.values(snapshot.val());
@@ -38,15 +37,14 @@ export const fetchState = () => {
       setIsFree(data.isFree);
     },
   ));
-  return {
-    x, y, battery, isFree,
-  };
+  return {x, y, battery, isFree};
 };
 
-export const firebaseSetRequestStage = (toStation, stage, fromStation=0) => {
+export const firebaseSetRequestStage = (toStation, stage, fromStation = 0) => {
   const stationId = parseInt(toStation.stationId, 10);
   const location = (stage == 2) ? toStation.location : stations[fromStation];
-  set(ref(database, '/request'), {
+  const requestRef = database.ref(db, '/request');
+  database.set(requestRef, {
     id: stage,
     param: {
       // x: toStation.location.x,
@@ -63,23 +61,23 @@ export const firebaseSetRequestStage = (toStation, stage, fromStation=0) => {
   });
 };
 
-export const isReachStation = () => {
-  const [isReach, setIsReach] = useState(false);
+// export const isReachStation = () => {
+//   const [isReach, setIsReach] = useState(false);
 
-  useEffect(() => {
-    const unsubscribe = onValue(
-      ref(database, '/turtlebot_state/isReachStation'),
-      (snapshot) => {
-        const isReachValue = snapshot.val();
-        setIsReach(isReachValue);
-      },
-    );
-    return () => {
-      off(unsubscribe);
-    };
-  }, []);
-  return isReach;
-};
+//   useEffect(() => {
+//     const unsubscribe = onValue(
+//       ref(database, '/turtlebot_state/isReachStation'),
+//       (snapshot) => {
+//         const isReachValue = snapshot.val();
+//         setIsReach(isReachValue);
+//       },
+//     );
+//     return () => {
+//       off(unsubscribe);
+//     };
+//   }, []);
+//   return isReach;
+// };
 
 // const qrCodeReference = firebase.database().ref('qrcodes/' + codeId+ '/gotScanned');
 // qrCodeReference.on('value', function(snapshot) {

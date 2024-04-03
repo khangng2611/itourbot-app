@@ -3,8 +3,10 @@ import { useFonts } from 'expo-font';
 import DMBold from '../assets/fonts/DMSans-Bold.ttf';
 import DMMedium from '../assets/fonts/DMSans-Medium.ttf';
 import DMRegular from '../assets/fonts/DMSans-Regular.ttf';
-import { AuthProvider } from '../utils/ctx';
-import { useState, useEffect } from 'react';
+import { AuthProvider } from '../components/context/AuthContext';
+import { useEffect } from 'react';
+import {ReachStationProvider} from '../components/context/ReachStationContext';
+
 // import * as SplashScreen from "expo-splash-screen";
 
 // SplashScreen.preventAutoHideAsync();
@@ -26,7 +28,9 @@ function RootLayout() {
   // Set up the auth context and render our layout inside of it.
   return (
     <AuthProvider>
-      <Slot />
+      <ReachStationProvider>
+        <Slot />
+      </ReachStationProvider>
     </AuthProvider>
   );
 }

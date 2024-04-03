@@ -1,22 +1,12 @@
 import { Stack, Redirect, useRouter } from 'expo-router';
-import { useAuth } from '../../utils/ctx';
+import { useAuth } from '../../components/context/AuthContext';
 import { Loader } from '../../components';
 import { checkLastLogin } from '../../utils/asyncStorage';
-import { isReachStation } from '../../hook/firebaseFetch';
-import { useEffect } from 'react';
 // import * as SplashScreen from "expo-splash-screen";
 // SplashScreen.preventAutoHideAsync();
 
 function Layout() {
-  // console.log("load Layout");
   const { session, isLoading } = useAuth();
-  // const  [listening] = isReachStation();
-  // console.log("listening: ", listening);
-  // useEffect(() => {
-  //     if (listening) {
-  //       Alert.alert('Robot has reached your destination');
-  //     }
-  // }, [listening]);
   
   if (isLoading) return <Loader visible={isLoading} />;
   if (!checkLastLogin(session)) {

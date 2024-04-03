@@ -4,7 +4,7 @@ import { Stack, useRouter } from "expo-router";
 import styles from '../../styles/app.style';
 import { COLORS, icons, images, SIZES } from "../../constants";
 import { PopularStations, ScreenHeaderBtn, Welcome, TabNavigator } from "../../components";
-import { useAuth } from "../../utils/ctx";
+import { useAuth } from "../../components/context/AuthContext";
 
 const Home = () => {
   const chosenTab = "home";

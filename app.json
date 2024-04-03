@@ -7,8 +7,7 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router",
-      "@react-native-firebase/app"
+      "expo-router"
     ],
     "name": "itourbot",
     "slug": "itourbot",

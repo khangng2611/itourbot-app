@@ -1,11 +1,12 @@
 import { Text, View, TouchableOpacity, Image, Alert } from "react-native";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./requestbar.style";
 import { COLORS, SIZES, icons } from "../../../constants";
 import { Dropdown } from "react-native-element-dropdown"
-import { fetchState, isReachStation, firebaseSetRequestStage } from "../../../hook/firebaseFetch";
+import { fetchState, firebaseSetRequestStage } from "../../../hook/firebaseFetch";
 import { postTours } from "../../../utils/apiRequest";
-import { useAuth } from "../../../utils/ctx";
+import { useAuth } from "../../context/AuthContext";
+import { ReachStationContext } from "../../context/ReachStationContext";
 
 const RequestBar = ({ item }) => {
     const { session } = useAuth();
@@ -14,17 +15,18 @@ const RequestBar = ({ item }) => {
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const [requestStatus, setRequestStatus] = useState([false, ""]);
-    const isReach = isReachStation();
-    useEffect(() => {
-        if (isReach) {
-            Alert.alert('Notification', 'Robot has reached your destination',
-                [{
-                    text: 'Confirm', onPress: async () => {
-                        firebaseSetRequestStage(item, 2);
-                    }
-                }])
-        };
-    }, [isReach]);
+    const { setState } = useContext(ReachStationContext)
+    // const isReach = isReachStation();
+    // useEffect(() => {
+    //     if (isReach) {
+    //         Alert.alert('Notification', 'Robot has reached your destination',
+    //             [{
+    //                 text: 'Confirm', onPress: async () => {
+    //                     firebaseSetRequestStage(item, 2);
+    //                 }
+    //             }])
+    //     };
+    // }, [isReach]);
     const handleRequestTour = () => {
         if (value) {
             if (value == item.stationId) {
@@ -43,6 +45,7 @@ const RequestBar = ({ item }) => {
                                     item,
                                     session
                                 )
+                                setState(true);
                                 setRequestStatus([true, "success"]);
                             } catch (error) {
                                 setRequestStatus([true, error.message]);
