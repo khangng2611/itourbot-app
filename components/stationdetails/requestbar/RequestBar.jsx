@@ -1,9 +1,9 @@
 import { Text, View, TouchableOpacity, Image, Alert } from "react-native";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./requestbar.style";
 import { COLORS, SIZES, icons } from "../../../constants";
 import { Dropdown } from "react-native-element-dropdown"
-import { fetchState, firebaseSetRequestStage } from "../../../hook/firebaseFetch";
+import { fetchState } from "../../../hook/firebaseFetch";
 import { postTours } from "../../../utils/apiRequest";
 import { useAuth } from "../../context/AuthContext";
 import { ReachStationContext } from "../../context/ReachStationContext";
@@ -16,17 +16,6 @@ const RequestBar = ({ item }) => {
     const [isFocus, setIsFocus] = useState(false);
     const [requestStatus, setRequestStatus] = useState([false, ""]);
     const { setState } = useContext(ReachStationContext)
-    // const isReach = isReachStation();
-    // useEffect(() => {
-    //     if (isReach) {
-    //         Alert.alert('Notification', 'Robot has reached your destination',
-    //             [{
-    //                 text: 'Confirm', onPress: async () => {
-    //                     firebaseSetRequestStage(item, 2);
-    //                 }
-    //             }])
-    //     };
-    // }, [isReach]);
     const handleRequestTour = () => {
         if (value) {
             if (value == item.stationId) {

@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { SafeAreaView, ScrollView, View, StatusBar } from "react-native";
-import { Stack, useRouter } from "expo-router";
-import styles from '../../styles/app.style';
-import { COLORS, icons, images, SIZES } from "../../constants";
-import { PopularStations, ScreenHeaderBtn, Welcome, TabNavigator } from "../../components";
-import { useAuth } from "../../components/context/AuthContext";
+import { Stack, Tabs, useRouter } from "expo-router";
+import styles from '../../../styles/app.style';
+import { COLORS, icons, images, SIZES } from "../../../constants";
+import { PopularStations, ScreenHeaderBtn, Welcome, TabNavigator } from "../../../components";
+import { useAuth } from "../../../components/context/AuthContext";
 
 const Home = () => {
-  const chosenTab = "home";
   const { session } = useAuth();
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <Stack.Screen
+      {/* <Tabs.Screen
         options={{
           headerShown: false,
           gestureEnabled: false, // Prevent swipe left
@@ -27,7 +26,7 @@ const Home = () => {
           // ),
           // headerTitle: "",
         }}
-      />
+      /> */}
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }} >
         <View
           style={{
@@ -48,7 +47,6 @@ const Home = () => {
           <PopularStations />
         </View>
       </ScrollView>
-      <TabNavigator chosenTab={chosenTab} />
       <StatusBar barStyle='dark-content' />
     </SafeAreaView>
   );

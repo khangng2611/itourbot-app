@@ -1,4 +1,4 @@
-import { Stack, Redirect, useRouter } from 'expo-router';
+import { Stack, Redirect, useRouter, Tabs } from 'expo-router';
 import { useAuth } from '../../components/context/AuthContext';
 import { Loader } from '../../components';
 import { checkLastLogin } from '../../utils/asyncStorage';
@@ -7,17 +7,15 @@ import { checkLastLogin } from '../../utils/asyncStorage';
 
 function Layout() {
   const { session, isLoading } = useAuth();
-  
+
   if (isLoading) return <Loader visible={isLoading} />;
   if (!checkLastLogin(session)) {
     return <Redirect href="/(auth)/Login" />;
   }
   return (
-    <Stack initialRouteName="Home" screenOptions={{ animation: 'none', headerShown: false }}>
-      <Stack.Screen name="Home" />
-      <Stack.Screen name="Map" />
+    <Stack initialRouteName="(tabs)" screenOptions={{ animation: 'none', headerShown: false }}>
+      <Stack.Screen name="(tabs)" />
     </Stack>
   );
 }
-
 export default Layout;
