@@ -5,7 +5,7 @@ import DMMedium from '../assets/fonts/DMSans-Medium.ttf';
 import DMRegular from '../assets/fonts/DMSans-Regular.ttf';
 import { AuthProvider } from '../components/context/AuthContext';
 import { useEffect } from 'react';
-import {ReachStationProvider} from '../components/context/ReachStationContext';
+import { TourProvider } from '../components/context/TourContext';
 
 // import * as SplashScreen from "expo-splash-screen";
 
@@ -28,9 +28,9 @@ function RootLayout() {
   // Set up the auth context and render our layout inside of it.
   return (
     <AuthProvider>
-      <ReachStationProvider>
-        <Slot />
-      </ReachStationProvider>
+        <TourProvider>
+          <Slot />
+        </TourProvider>
     </AuthProvider>
   );
 }

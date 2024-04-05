@@ -20,7 +20,7 @@ export function useAuth() {
 }
 
 export function AuthProvider(props) {
-  const { session, isLoading, setSession } = useStorageState();
+  const { session, setSession } = useStorageState();
 
   return (
     <AuthContext.Provider value={{
@@ -31,7 +31,6 @@ export function AuthProvider(props) {
         setSession(null);
       },
       session,
-      isLoading,
     }}
     >
       {props.children}

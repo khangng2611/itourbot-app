@@ -6,14 +6,14 @@ import { checkLastLogin } from '../../utils/asyncStorage';
 // SplashScreen.preventAutoHideAsync();
 
 function Layout() {
-  const { session, isLoading } = useAuth();
+  const { session } = useAuth();
 
-  if (isLoading) return <Loader visible={isLoading} />;
+  // if (isLoading) return <Loader visible={isLoading} />;
   if (!checkLastLogin(session)) {
     return <Redirect href="/(auth)/Login" />;
   }
   return (
-    <Stack initialRouteName="(tabs)" screenOptions={{ animation: 'none', headerShown: false }}>
+    <Stack initialRouteName="(tabs)" screenOptions={{ animation: 'default', headerShown: false }}>
       <Stack.Screen name="(tabs)" />
     </Stack>
   );

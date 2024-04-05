@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { firebaseSetRequestStage } from '../hook/firebaseFetch';
 
-const postTours = async (reqBody, item, session) => {
+const addTour = async (fromStation, toStation, session) => {
   const options = {
     method: 'POST',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}tours`,
@@ -9,11 +8,13 @@ const postTours = async (reqBody, item, session) => {
       Authorization: `Bearer ${session.token.accessToken}`,
       'Content-Type': 'application/json',
     },
-    data: JSON.stringify(reqBody),
+    data: JSON.stringify({
+      fromStation,
+      toStation
+    }),
   };
   try {
     await axios.request(options);
-    firebaseSetRequestStage(item, 1, reqBody.fromStation);
   } catch (error) {
     if (error.response) {
       throw error.response.data;
@@ -88,4 +89,4 @@ const oauthLogin = async (platform) => {
   }
 };
 
-export { postTours, normalLogin, oauthLogin };
+export { addTour, normalLogin, oauthLogin };

@@ -5,6 +5,7 @@ import { SIZES } from "../../../constants";
 import LoveWrapper from "./LoveWrapper";
 
 const StationCard = ({ item, handleCardPress }) => {
+  
   return (
     <TouchableOpacity
       style={styles.container}

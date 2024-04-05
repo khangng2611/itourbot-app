@@ -41,5 +41,4 @@ export {
   LoginForm,
   Input,
   Loader,
-  OAuthLogin,
 };

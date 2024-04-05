@@ -3,54 +3,57 @@ import { useContext, useState } from "react";
 import styles from "./requestbar.style";
 import { COLORS, SIZES, icons } from "../../../constants";
 import { Dropdown } from "react-native-element-dropdown"
-import { fetchState } from "../../../hook/firebaseFetch";
-import { postTours } from "../../../utils/apiRequest";
+import { fetchState, setRequestStage } from "../../../utils/firebase";
+import { addTour } from "../../../utils/apiRequest";
 import { useAuth } from "../../context/AuthContext";
-import { ReachStationContext } from "../../context/ReachStationContext";
+import { TourContext } from "../../context/TourContext";
 
 const RequestBar = ({ item }) => {
     const { session } = useAuth();
-    const stationList = item.stationList;
+    const { setAllowListen, setDesStation, setPickupStation } = useContext(TourContext)
     const { isFree } = fetchState();
-    const [value, setValue] = useState(null);
+    const [chosenStation, setChosenStation] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const [requestStatus, setRequestStatus] = useState([false, ""]);
-    const { setState } = useContext(ReachStationContext)
+    const stationList = (item.stations).map((station) => ({ label: `(${station.stationId}) ${station.name}`, value: station.stationId }));
+
     const handleRequestTour = () => {
-        if (value) {
-            if (value == item.stationId) {
-                Alert.alert('Invalid station', `Pickup station must be different from ${item.name}`, []);
-            } else {
-                Alert.alert('Confirm Request', `Are you sure to request a tour guide to ${item.name} ?`, [
-                    { text: 'Cancel' },
-                    {
-                        text: 'Confirm', onPress: async () => {
-                            try {
-                                const response = await postTours(
-                                    {
-                                        fromStation: parseInt(value),
-                                        toStation: parseInt(item.stationId)
-                                    },
-                                    item,
-                                    session
-                                )
-                                setState(true);
-                                setRequestStatus([true, "success"]);
-                            } catch (error) {
-                                setRequestStatus([true, error.message]);
-                                console.log(error);
-                            }
-                        }
-                    }
-                ]);
-            }
-        } else {
+        if (!chosenStation) {
             Alert.alert('Select a station', 'Please select a station to continue', []);
+            return;
+        }
+        if (chosenStation == item.stationId) {
+            Alert.alert('Invalid station', `Pickup station must be different from ${item.name}`, []);
+            return;
+        }
+        Alert.alert('Confirm Request', `Are you sure to request a tour guide to ${item.name} ?`, [
+            { text: 'Cancel' },
+            { text: 'Confirm', onPress: () => requestTour() }
+        ]);
+    }
+
+    const requestTour = async () => {
+        try {
+            const response = await addTour(
+                fromStation = parseInt(chosenStation),
+                toStation = parseInt(item.stationId),
+                session
+            );
+            const pickupStation = item.stations.find(station => station.stationId === parseInt(chosenStation));
+            setRequestStage(pickupStation, 1);
+            setPickupStation(pickupStation);
+            setDesStation({...item, stations: []});
+            setAllowListen(true);
+            setRequestStatus([true, "success"]);
+        } catch (error) {
+            setRequestStatus([true, error.message]);
+            console.log(error);
         }
     }
 
     return (
         <View style={styles.container}>
+            {/* Show the request status */}
             {requestStatus[0] ? (
                 <TouchableOpacity
                     style={styles.requestStatus(requestStatus[1])}
@@ -61,6 +64,7 @@ const RequestBar = ({ item }) => {
                     </Text>
                 </TouchableOpacity>
             ) : null}
+
             <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
                 <View style={{ flex: 1.5, marginEnd: SIZES.large }}>
                     <Text style={[styles.textStyle, { color: COLORS.secondary, marginBottom: 5 }]}>Pickup station: </Text>
@@ -77,11 +81,11 @@ const RequestBar = ({ item }) => {
                         valueField="value"
                         placeholder={!isFocus ? 'Select item' : '...'}
                         searchPlaceholder="Search station"
-                        value={value}
+                        value={chosenStation}
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
                         onChange={seletedItem => {
-                            setValue(seletedItem.value);
+                            setChosenStation(seletedItem.value);
                             setIsFocus(false);
                         }}
                     />

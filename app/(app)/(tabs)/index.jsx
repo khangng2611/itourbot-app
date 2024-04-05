@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { SafeAreaView, ScrollView, View, StatusBar } from "react-native";
-import { Stack, Tabs, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import styles from '../../../styles/app.style';
-import { COLORS, icons, images, SIZES } from "../../../constants";
-import { PopularStations, ScreenHeaderBtn, Welcome, TabNavigator } from "../../../components";
+import { SIZES } from "../../../constants";
+import { PopularStations, Welcome } from "../../../components";
 import { useAuth } from "../../../components/context/AuthContext";
 
 const Home = () => {

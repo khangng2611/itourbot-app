@@ -5,7 +5,7 @@ import { Image, StyleSheet } from 'react-native';
 
 export default function TabLayout() {
     return (
-        <Tabs screenOptions={{ tabBarActiveTintColor: COLORS.tertiary, headerShown: false }}>
+        <Tabs screenOptions={{ tabBarStyle: { backgroundColor: COLORS.lightWhite }, tabBarActiveTintColor: COLORS.tertiary, headerShown: false }}>
             <Tabs.Screen
                 name="index"
                 options={{

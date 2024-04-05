@@ -53,6 +53,7 @@ const Welcome = ({ user, searchTerm, setSearchTerm, handleClick }) => {
                 setActiveJobType(item);
                 router.push(`/search/${item}`);
               }}
+              disabled
             >
               <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
             </TouchableOpacity>
