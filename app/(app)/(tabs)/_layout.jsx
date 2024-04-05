@@ -70,12 +70,6 @@ export default function TabLayout() {
 }
 
 const styles = StyleSheet.create({
-    tabNavigator: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        height: 50,
-        marginHorizontal: 10,
-    },
     logo: (color) => ({
         width: 25,
         tintColor: color

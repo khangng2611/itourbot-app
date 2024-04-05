@@ -4,16 +4,17 @@ import {
 } from '../../constants';
 
 const styles = StyleSheet.create({
-  botImage: {
+  botImage: (windowHeight) => ({
     width: '100%',
-    height: '50%',
-    objectFit: 'cover',
-  },
+    height: 0.5*windowHeight,
+    objectFit: 'contain',
+  }),
   formContainer: {
     paddingHorizontal: SIZES.xLarge,
   },
   loginBtn: {
-    marginVertical: SIZES.large,
+    marginTop: SIZES.large,
+    marginBottom: SIZES.medium,
     height: 50,
     backgroundColor: COLORS.tertiary,
     justifyContent: 'center',
@@ -30,7 +31,14 @@ const styles = StyleSheet.create({
   forgotText: {
     fontSize: SIZES.medium,
     fontStyle: 'italic',
-    color: COLORS.tertiary,
+    color: COLORS.secondary,
+    alignSelf: 'center'
+  },
+  signupText: {
+    marginTop: SIZES.medium,
+    fontSize: SIZES.medium,
+    // fontStyle: 'italic',
+    color: COLORS.secondary,
     alignSelf: 'center'
   },
   oauthContainer: {

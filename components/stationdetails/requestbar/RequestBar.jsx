@@ -10,7 +10,7 @@ import { TourContext } from "../../context/TourContext";
 
 const RequestBar = ({ item }) => {
     const { session } = useAuth();
-    const { setAllowListen, setDesStation, setPickupStation } = useContext(TourContext)
+    const { setAllowListen, setTourInfo} = useContext(TourContext)
     const { isFree } = fetchState();
     const [chosenStation, setChosenStation] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
@@ -34,15 +34,18 @@ const RequestBar = ({ item }) => {
 
     const requestTour = async () => {
         try {
-            const response = await addTour(
+            const tour = await addTour(
                 fromStation = parseInt(chosenStation),
                 toStation = parseInt(item.stationId),
                 session
             );
             const pickupStation = item.stations.find(station => station.stationId === parseInt(chosenStation));
             setRequestStage(pickupStation, 1);
-            setPickupStation(pickupStation);
-            setDesStation({...item, stations: []});
+            setTourInfo({
+                id: tour._id,
+                pickupStation: pickupStation,
+                desStation: {...item, stations: []}
+            });
             setAllowListen(true);
             setRequestStatus([true, "success"]);
         } catch (error) {

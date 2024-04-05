@@ -48,14 +48,9 @@ export const setRequestStage = (station, stage) => {
       yaw: station.location.yaw,
     },
     station: {
-      desc: station.description,
+      description: station.description,
       id: stationId,
       name: station.name,
     },
   });
 };
-
-// const qrCodeReference = firebase.database().ref('qrcodes/' + codeId+ '/gotScanned');
-// qrCodeReference.on('value', function(snapshot) {
-//     // get the gotScanned value with snapshot.val();
-// });

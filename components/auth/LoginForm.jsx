@@ -77,7 +77,7 @@ const LoginForm = ({ setLoading }) => {
                 <Text style={styles.loginBtnText}>Sign In</Text>
             </TouchableOpacity>
             <Text onPress={() => validate()} style={styles.forgotText}>Forgot Password ?</Text>
-            <Text onPress={() => router.replace()} style={styles.forgotText}>Don't have account ? Sign Up</Text>
+            <Text onPress={() => router.push("/(auth)/Signup")} style={styles.signupText}>Don't have account? Sign Up</Text>
         </View>
     );
 };

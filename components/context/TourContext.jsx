@@ -3,19 +3,23 @@ import { Alert } from "react-native";
 import { useEffect } from "react";
 import * as database from 'firebase/database';
 import { db, setRequestStage } from '../../utils/firebase';
+import { updateTourStatus } from "../../utils/apiRequest";
+import { useAuth } from "./AuthContext";
 
 const TourContext = createContext({
     isAllowListen: 0,
-    desStation: {},
-    pickupStaiton: {},
     setAllowListen: () => null,
-    setDesStation: () => null,
-    setPickupStation: () => null,
+    tourInfor: {
+        id: null,
+        pickupStation: {},
+        desStation: {},
+    },
+    setTourInfo: () => null,
 });
 
 const TourProvider = ({ children }) => {
-    const [pickupStation, setPickupStation] = useState({});
-    const [desStation, setDesStation] = useState({});
+    const { session } = useAuth();
+    const [tourInfor, setTourInfo] = useState({});
     const [isAllowListen, setAllowListen] = useState(false);
     useEffect(() => {
         if (!isAllowListen) return;
@@ -25,35 +29,52 @@ const TourProvider = ({ children }) => {
             (snapshot) => {
                 const reachStation = snapshot.val();
                 if (reachStation == 1) {
-                    Alert.alert('Reached your pickup station!', 'Please confirm to allow Tourtlebot to start the tourguide.',
+                    Alert.alert('Reached your pickup station!', 'Please confirm to allow Turtlebot to start the tourguide.',
                         [
                             {
                                 text: 'Cancel Tour',
                                 onPress: async () => {
-                                    setPickupStation(null);
-                                    setDesStation(null);
-                                    setAllowListen(false);
-                                    database.off(reachStationRef);
+                                    try {
+                                        setTourInfo(null)
+                                        setAllowListen(false);
+                                        database.off(reachStationRef);
+                                        updateTourStatus(tourInfor.id, 'canceled', session);
+                                    } catch (error) {
+                                        console.log("error");
+                                        console.log(error);
+                                    }
                                 }
                             },
                             {
                                 text: 'Confirm',
                                 onPress: async () => {
-                                    setRequestStage(desStation, 2);
+                                    try {
+                                        setRequestStage(tourInfor.desStation, 2);
+                                        updateTourStatus(tourInfor.id, 'leading', session);
+                                    } catch (error) {
+                                        console.log(error);
+                                    }
                                 }
                             }
                         ]
                     )
+                    setTimeout(() => {
+                        setShowAlert(false);
+                    }, 3000);
                 } else if (reachStation == 2) {
                     Alert.alert('Reached your destination!', 'Thank you for your experience.',
                         [
                             {
                                 text: 'OK',
                                 onPress: async () => {
-                                    setPickupStation(null);
-                                    setDesStation(null);
-                                    setAllowListen(false);
-                                    database.off(reachStationRef);
+                                    try {
+                                        setTourInfo(null)
+                                        setAllowListen(false);
+                                        database.off(reachStationRef);
+                                        updateTourStatus(tourInfor.id, 'done', session);
+                                    } catch (error) {
+                                        console.log(error);
+                                    }
                                     // return () => {
                                     //     console.log("Off db")
                                     //     database.off(reachStationRef);
@@ -73,14 +94,10 @@ const TourProvider = ({ children }) => {
                 setAllowListen: (state) => {
                     setAllowListen(state);
                 },
-                pickupStaiton: pickupStation,
-                setPickupStation: (station) => {
-                    setPickupStation(station);
-                },
-                desStation: desStation,
-                setDesStation: (station) => {
-                    setDesStation(station);
-                },
+                tourInfor: tourInfor,
+                setTourInfo: (tourInfo) => {
+                    setTourInfo(tourInfo);
+                }
             }}
         >
             {children}
