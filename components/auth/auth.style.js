@@ -6,7 +6,7 @@ import {
 const styles = StyleSheet.create({
   botImage: (windowHeight) => ({
     width: '100%',
-    height: 0.5*windowHeight,
+    height: 0.5 * windowHeight,
     objectFit: 'contain',
   }),
   formContainer: {
@@ -32,19 +32,19 @@ const styles = StyleSheet.create({
     fontSize: SIZES.medium,
     fontStyle: 'italic',
     color: COLORS.secondary,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   signupText: {
     marginTop: SIZES.medium,
     fontSize: SIZES.medium,
     // fontStyle: 'italic',
     color: COLORS.secondary,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   oauthContainer: {
     paddingHorizontal: SIZES.xLarge,
-    flexDirection: 'row', 
-    justifyContent: 'space-around' 
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   oauthBtn: {
     marginVertical: SIZES.medium,
@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
   oauthLogo: {
     resizeMode: 'contain',
     width: 30,
-    marginRight: 10
-  }
+    marginRight: 10,
+  },
 });
 
 export default styles;

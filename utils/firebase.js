@@ -19,7 +19,9 @@ export const db = database.getDatabase(app);
 // const auth = getAuth(app);
 
 export const fetchState = () => {
-  const [{x,y,battery, isFree}, setState] = useState({});
+  const [{
+    x, y, battery, isFree,
+  }, setState] = useState({});
   const stateRef = database.ref(db, '/turtlebot_state');
 
   useEffect(() => database.onValue(
@@ -30,11 +32,13 @@ export const fetchState = () => {
         x: data.position.x,
         y: data.position.y,
         battery: data.battery,
-        isFree: data.isFree
-      })
+        isFree: data.isFree,
+      });
     },
   ), []);
-  return {x, y, battery, isFree};
+  return {
+    x, y, battery, isFree,
+  };
 };
 
 export const setRequestStage = (station, stage) => {

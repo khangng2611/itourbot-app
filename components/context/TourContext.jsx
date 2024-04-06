@@ -58,9 +58,6 @@ const TourProvider = ({ children }) => {
                             }
                         ]
                     )
-                    setTimeout(() => {
-                        setShowAlert(false);
-                    }, 3000);
                 } else if (reachStation == 2) {
                     Alert.alert('Reached your destination!', 'Thank you for your experience.',
                         [

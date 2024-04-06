@@ -7,7 +7,6 @@ import PopularStations from './home/popularstations/PopularStations';
 // auth screen
 import LoginImage from './auth/LoginImage';
 import LoginForm from './auth/LoginForm';
-import OAuthLogin from './auth/OAuthLogin';
 
 // common
 import TabNavigator from './common/navigation/TabNavigator';
@@ -24,7 +23,10 @@ import About from './stationdetails/about/About';
 import Poster from './stationdetails/poster/Poster';
 import RequestBar from './stationdetails/requestbar/RequestBar';
 
-// context
+// history screen
+import SwitchBar from './history/SwitchBar'
+import HistoryList from './history/HistoryList';
+import OngoingTour from './history/OngoingTour';
 
 export {
   ScreenHeaderBtn,
@@ -41,4 +43,7 @@ export {
   LoginForm,
   Input,
   Loader,
+  SwitchBar,
+  HistoryList,
+  OngoingTour
 };

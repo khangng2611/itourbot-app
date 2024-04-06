@@ -1,23 +1,26 @@
 import axios from 'axios';
 
-const register = async ({name, email, password}) => {
+const register = async ({ name, email, password }) => {
   const options = {
     method: 'POST',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}auth/register`,
     headers: {
       'Content-Type': 'application/json',
     },
-    data: JSON.stringify({name, email, password}),
+    data: JSON.stringify({ name, email, password }),
   };
   try {
     const response = await axios.request(options);
     return response.data;
   } catch (error) {
     if (error.response) {
-      const err_data = error.response.data; 
-      if (err_data.code === 409)
-        err_data.message = err_data.errors[0].messages[0]
-      throw err_data;
+      const errData = error.response.data;
+      if (errData.code === 409) {
+        const [errors] = errData.errors;
+        const [message] = errors.messages;
+        errData.message = message;
+      }
+      throw errData;
     } else if (error.request) {
       console.log('error.request');
       console.log(error.request);
@@ -28,8 +31,8 @@ const register = async ({name, email, password}) => {
       throw error.message;
     }
   }
-
-}
+  return false;
+};
 
 const normalLogin = async ({ email, password }, signIn) => {
   const options = {
@@ -73,7 +76,7 @@ const addTour = async (fromStation, toStation, session) => {
     },
     data: JSON.stringify({
       fromStation,
-      toStation
+      toStation,
     }),
   };
   try {
@@ -92,6 +95,7 @@ const addTour = async (fromStation, toStation, session) => {
       throw error.message;
     }
   }
+  return false;
 };
 
 const updateTourStatus = async (tourId, status, session) => {
@@ -104,7 +108,7 @@ const updateTourStatus = async (tourId, status, session) => {
     },
     data: JSON.stringify({
       id: tourId,
-      status
+      status,
     }),
   };
   try {
@@ -124,4 +128,6 @@ const updateTourStatus = async (tourId, status, session) => {
   }
 };
 
-export { register, normalLogin, addTour, updateTourStatus };
+export {
+  register, normalLogin, addTour, updateTourStatus,
+};

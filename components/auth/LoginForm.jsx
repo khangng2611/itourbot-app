@@ -36,7 +36,7 @@ const LoginForm = ({ setLoading }) => {
         try {
             setLoading(true);
             const response = await normalLogin(inputs, signIn);
-            router.push("/(app)");
+            router.push("/(app)/(tabs)");
         } catch (error) {
             Alert.alert('Login fail', error.message ? `${error.message}` : "Invalid Information", [
                 { text: 'Cancel' },
@@ -76,7 +76,7 @@ const LoginForm = ({ setLoading }) => {
             >
                 <Text style={styles.loginBtnText}>Sign In</Text>
             </TouchableOpacity>
-            <Text onPress={() => validate()} style={styles.forgotText}>Forgot Password ?</Text>
+            <Text style={styles.forgotText}>Forgot Password ?</Text>
             <Text onPress={() => router.push("/(auth)/Signup")} style={styles.signupText}>Don't have account? Sign Up</Text>
         </View>
     );

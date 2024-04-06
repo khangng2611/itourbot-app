@@ -2,6 +2,7 @@ import { SafeAreaView, View, Text, ScrollView, StatusBar } from "react-native";
 import styles from '../../../styles/app.style';
 import { LocationSpot, MapImage, BotStateBox } from "../../../components";
 import { fetchState } from '../../../utils/firebase';
+import { icons } from "../../../constants";
 
 const Map = () => {
     const { x, y, battery, isFree } = fetchState();
@@ -12,7 +13,7 @@ const Map = () => {
             </View>
             <View style={{ flex: 2 }}>
                 <MapImage />
-                <LocationSpot x={x} y={y} />
+                <LocationSpot x={x} y={y} icon={icons.botLocation} />
             </View>
             <ScrollView style={[{ flex: 1 }, styles.container]}>
                 <BotStateBox x={x} y={y} battery={battery} isFree={isFree} />

@@ -5,11 +5,13 @@ import styles from './map.style';
 // original position from O(0,0)
 const originalPosition = [1, 2];
 const originalPosition1 = [1.43, 4.16];
+// const originalPosition1 = [0, 0];
 
-export default function LocationSpot({ x, y }) {
+export default function LocationSpot({ x, y , icon}) {
     const windowWidth = useWindowDimensions().width;
     const unitLength = windowWidth / 6;
     const spotWidth = unitLength;
+    const iconWidth = spotWidth*2/3;
     const mapPosition = (x, y, baseLocation, unitLength) => {
         const [roundedX, roundedY] = [parseFloat(x).toFixed(2), parseFloat(y).toFixed(2)];
         return [
@@ -18,7 +20,7 @@ export default function LocationSpot({ x, y }) {
         ];
     }
     // O(0,0) on screen
-    const zeroPositionOnScreen = [0 - spotWidth / 2, 0];
+    const zeroPositionOnScreen = [0 - iconWidth/2, 0];
     // original position on screen
     const originalPositionOnScreen = [
         zeroPositionOnScreen[0] + unitLength * originalPosition1[0], 
@@ -30,8 +32,8 @@ export default function LocationSpot({ x, y }) {
     return (
         <View style={styles.locationSpot(positionOnScreen[0], positionOnScreen[1])}>
             <Image
-                style={{ width: spotWidth }}
-                source={icons.location}
+                style={{ width: iconWidth}}
+                source={icon}
                 resizeMode='contain'
             />
         </View>

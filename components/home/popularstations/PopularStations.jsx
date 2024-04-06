@@ -8,7 +8,7 @@ import useFetch from "../../../hook/useFetch";
 
 const PopularStations = () => {
   const router = useRouter();
-  const { data, isLoading, error } = useFetch("stations", {});
+  const { data, isLoading, error } = useFetch("stations");
   const handleCardPress = (item) => {
     const stationObject = { ...item, stations: data };
     router.push({ pathname: `/station-details/${item._id}`, params: { data: JSON.stringify(stationObject) } });

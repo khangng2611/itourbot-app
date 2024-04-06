@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   content: {
     marginTop: SIZES.small,
-    fontFamily: FONT.medium,
+    fontFamily: FONT.regular,
     fontSize: SIZES.medium,
     color: COLORS.secondary,
     paddingBottom: SIZES.xxLarge,

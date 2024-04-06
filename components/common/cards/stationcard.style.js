@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     margin: SIZES.large,
     borderRadius: SIZES.medium,
     backgroundColor: 'black',
-    opacity: 0.5,
+    opacity: 0.6,
   }),
   zoneName: (size) => ({
     fontSize: size - 1,
