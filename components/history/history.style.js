@@ -8,11 +8,11 @@ const styles = StyleSheet.create({
     switchBarTextStyle: {
         fontSize: SIZES.medium,
         fontFamily: FONT.medium,
-    }, 
+    },
     container: {
         marginVertical: SIZES.medium,
         paddingHorizontal: SIZES.small,
-        flex:1
+        flex: 1
     },
     itemWrapper: {
         marginVertical: SIZES.small,
@@ -24,59 +24,91 @@ const styles = StyleSheet.create({
         ...SHADOWS.small
     },
     headerWrapper: {
-        flexDirection: 'row' , 
-        justifyContent: 'space-between', 
-        alignItems:'baseline',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'baseline',
         marginBottom: 5
-    }, 
+    },
     statusText: (color, size) => ({
         fontFamily: FONT.medium,
         color: color,
         fontSize: size
-    }),  
+    }),
     statusWrapper: (background) => ({
         backgroundColor: background,
         borderRadius: SIZES.xSmall,
         padding: 5
     }),
     contentWrapper: {
-        flexDirection: 'row', 
-        justifyContent: 'space-between', 
-        alignItems:'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         borderBottomWidth: 1,
         borderTopWidth: 1,
         borderBlockColor: "#D9D9D9",
         padding: SIZES.medium,
     },
-    leftContentWrapper: {
-        flex:1,
+    sideContentWrapper: {
+        flex: 1,
         alignItems: 'center',
     },
-    rightContentWrapper: {
-        flex:1,
-        alignItems: 'center',
-    },
-    stationIdText: {
+    stationIdText: (size) => ({
         fontFamily: FONT.medium,
         color: COLORS.primary,
-        fontSize: SIZES.small
-    },
-    stationNameText: {
+        fontSize: size
+    }),
+    stationNameText: (size) => ({
         fontFamily: FONT.medium,
         color: COLORS.secondary,
-        fontSize: SIZES.small
-    },
+        fontSize: size
+    }),
     forwardIcon: {
         tintColor: COLORS.secondary,
         resizeMode: 'contain',
         width: 20,
         height: 20,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     footer: {
         flexDirection: 'row',
         marginTop: 5
     },
+    ongoingContentWrapper: {
+        marginTop: 5,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderTopWidth: 1,
+        borderBlockColor: "#D9D9D9",
+        paddingVertical: SIZES.medium,
+    },
+    ongoingSideContentWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    ongoingIcon: {
+        resizeMode: 'contain',
+        width: 30,
+        height: 30,
+        marginRight: 5
+    },
+    stopBtn: {
+        marginTop: SIZES.small,
+        paddingVertical: SIZES.medium,
+        paddingHorizontal: SIZES.xLarge,
+        backgroundColor: COLORS.red,
+        borderRadius: SIZES.medium,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        ...SHADOWS.small
+    },
+    stopBtnText: {
+        color: COLORS.lightWhite,
+        fontFamily: FONT.bold,
+        fontSize: SIZES.medium
+    }
 });
 
 export default styles;

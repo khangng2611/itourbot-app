@@ -15,6 +15,8 @@ import facebook from '../assets/icons/company/facebook.png';
 import fastForward from '../assets/icons/fast-forward.png';
 import botLocation from '../assets/icons/bot-location.png'
 import pickupLocation from '../assets/icons/pickup-location.png'
+import stop from '../assets/icons/stop-button.png';
+
 // navigator
 import home from '../assets/icons/tab-navigator/home.png';
 import history from '../assets/icons/tab-navigator/history.png';
@@ -42,5 +44,6 @@ export default {
   facebook,
   fastForward,
   botLocation,
-  pickupLocation
+  pickupLocation,
+  stop
 };

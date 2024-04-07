@@ -42,8 +42,14 @@ export const fetchState = () => {
 };
 
 export const setRequestStage = (station, stage) => {
-  const stationId = parseInt(station.stationId, 10);
   const requestRef = database.ref(db, '/request');
+  if (stage == 0) {
+    database.set(requestRef, {
+      id: 0,
+    });
+    return;
+  }
+  const stationId = parseInt(station.stationId, 10);
   database.set(requestRef, {
     id: stage,
     param: {

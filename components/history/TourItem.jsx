@@ -13,23 +13,23 @@ const TourItem = ({ item }) => {
                 <View style={styles.statusWrapper(tourStatus.background)}>
                     <Text style={styles.statusText(tourStatus.color, SIZES.small)}> {tourStatus.text} </Text>
                 </View>
-                <Text style={styles.statusText(COLORS.secondary)}>No. {tourId}</Text>
+                <Text style={styles.statusText(COLORS.secondary, SIZES.small)}>No. {tourId}</Text>
             </View>
             <View style={styles.contentWrapper}>
-                <View style={styles.leftContentWrapper}>
-                    <Text style={styles.stationIdText}>Station {item.fromStation.stationId}</Text>
-                    <Text style={styles.stationNameText}>{item.fromStation.stationName}</Text>
+                <View style={styles.sideContentWrapper}>
+                    <Text style={styles.stationIdText(SIZES.small)}>Station {item.fromStation.stationId}</Text>
+                    <Text style={styles.stationNameText(SIZES.small)}>{item.fromStation.name}</Text>
                 </View>
                 <View>
                     <Image source={icons.fastForward} style={styles.forwardIcon}/>
                 </View>
-                <View style={styles.rightContentWrapper}>
-                    <Text style={styles.stationIdText}>Station {item.toStation.stationId}</Text>
-                    <Text style={styles.stationNameText}>{item.toStation.stationName}</Text>
+                <View style={styles.sideContentWrapper}>
+                    <Text style={styles.stationIdText(SIZES.small)}>Station {item.toStation.stationId}</Text>
+                    <Text style={styles.stationNameText(SIZES.small)}>{item.toStation.name}</Text>
                 </View>
             </View>
             <View style={styles.footer}>
-                <Text style={styles.statusText(COLORS.secondary)}>Time: {formattedTime}</Text>
+                <Text style={styles.statusText(COLORS.secondary, SIZES.small)}>Time: {formattedTime}</Text>
             </View>
         </View>
     )

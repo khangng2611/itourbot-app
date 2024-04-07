@@ -10,16 +10,22 @@ const TourContext = createContext({
     isAllowListen: 0,
     setAllowListen: () => null,
     tourInfor: {
-        id: null,
-        pickupStation: {},
-        desStation: {},
+        _id: null,
+        status: null,
+        fromStation: {},
+        toStation: {},
     },
     setTourInfo: () => null,
 });
 
 const TourProvider = ({ children }) => {
     const { session } = useAuth();
-    const [tourInfor, setTourInfo] = useState({});
+    const [tourInfor, setTourInfo] = useState({
+        _id: null,
+        status: null,
+        fromStation: {},
+        toStation: {},
+    });
     const [isAllowListen, setAllowListen] = useState(false);
     useEffect(() => {
         if (!isAllowListen) return;
@@ -35,10 +41,11 @@ const TourProvider = ({ children }) => {
                                 text: 'Cancel Tour',
                                 onPress: async () => {
                                     try {
-                                        setTourInfo(null)
-                                        setAllowListen(false);
-                                        database.off(reachStationRef);
                                         updateTourStatus(tourInfor.id, 'canceled', session);
+                                        setTourInfo({})
+                                        setAllowListen(false);
+                                        setRequestStage(null, 0);
+                                        database.off(reachStationRef);
                                     } catch (error) {
                                         console.log("error");
                                         console.log(error);
@@ -50,6 +57,10 @@ const TourProvider = ({ children }) => {
                                 onPress: async () => {
                                     try {
                                         setRequestStage(tourInfor.desStation, 2);
+                                        setTourInfo({
+                                            ...tourInfor,
+                                            status: 'leading',
+                                        });
                                         updateTourStatus(tourInfor.id, 'leading', session);
                                     } catch (error) {
                                         console.log(error);
@@ -65,7 +76,7 @@ const TourProvider = ({ children }) => {
                                 text: 'OK',
                                 onPress: async () => {
                                     try {
-                                        setTourInfo(null)
+                                        setTourInfo({});
                                         setAllowListen(false);
                                         database.off(reachStationRef);
                                         updateTourStatus(tourInfor.id, 'done', session);

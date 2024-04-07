@@ -42,9 +42,10 @@ const RequestBar = ({ item }) => {
             const pickupStation = item.stations.find(station => station.stationId === parseInt(chosenStation));
             setRequestStage(pickupStation, 1);
             setTourInfo({
-                id: tour._id,
-                pickupStation: pickupStation,
-                desStation: {...item, stations: []}
+                _id: tour._id,
+                status: 'picking',
+                fromStation: pickupStation,
+                toStation: {...item, stations: []}
             });
             setAllowListen(true);
             setRequestStatus([true, "success"]);
