@@ -15,11 +15,14 @@ function Layout() {
   if (!checkLastLogin(session)) {
     return <Redirect href="/(auth)/Login" />;
   }
-  const { setTourInfo } = useContext(TourContext);
+  const { setTourInfo, setAllowListen } = useContext(TourContext);
   const { data } = useFetch('tours/current', {}, session);
   useEffect(() => {
     console.log('setTourInfo in Layout');
-    setTourInfo(data);
+    if (data._id) {
+      setTourInfo(data);
+      setAllowListen(true);
+    };
   }, [data]);
   return (
     <Stack initialRouteName="(tabs)" screenOptions={{ animation: 'default', headerShown: false }}>

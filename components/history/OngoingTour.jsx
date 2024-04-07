@@ -10,15 +10,16 @@ import { FONT, SIZES, icons, tourStatuses } from "../../constants";
 import { updateTourStatus } from "../../utils/apiRequest";
 import { setRequestStage } from "../../utils/firebase";
 
-const OnGoingTour = ({ isVisible }) => {
+const OnGoingTour = ({ isVisible, tourContext, session }) => {
+    // const { tourInfor, setTourInfo, setAllowListen } = useContext(TourContext);
+    // const { session } = useAuth();
+    const { tourInfor, setTourInfo, setAllowListen } = tourContext;
     if (!isVisible) return null;
-    const { tourInfor, setTourInfo, setAllowListen } = useContext(TourContext);
     if (!tourInfor._id) return (
         <View style={{ padding: SIZES.medium, alignItems: 'center' , marginVertical: SIZES.medium}}>
             <Text style={{ fontFamily: FONT.regular }}>You haven't request a tourguide yet.</Text>
         </View>
     );
-    const { session } = useAuth();
     const toStation = tourInfor.toStation;
     const fromStation = tourInfor.fromStation;
     const { x, y } = fetchState();
