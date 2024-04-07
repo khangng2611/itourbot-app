@@ -9,7 +9,6 @@ import { useContext, useEffect } from 'react';
 // SplashScreen.preventAutoHideAsync();
 
 function Layout() {
-  console.log('App Layout');
   const { session } = useAuth();
   // if (isLoading) return <Loader visible={isLoading} />;
   if (!checkLastLogin(session)) {
@@ -18,7 +17,6 @@ function Layout() {
   const { setTourInfo, setAllowListen } = useContext(TourContext);
   const { data } = useFetch('tours/current', {}, session);
   useEffect(() => {
-    console.log('setTourInfo in Layout');
     if (data._id) {
       setTourInfo(data);
       setAllowListen(true);

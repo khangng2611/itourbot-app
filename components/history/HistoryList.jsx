@@ -12,7 +12,7 @@ const HistoryList = ({ isVisible, fetchData }) => {
         setRefreshing(true);
         refetch();
         setRefreshing(false);
-    });
+    },[]);
     return (
         <View style={styles.container}>
             {isLoading ? (

@@ -1,5 +1,4 @@
-import { Stack, useRouter, useLocalSearchParams } from "expo-router";
-import { useCallback, useState } from "react";
+import { Stack, useLocalSearchParams } from "expo-router";
 import styles from '../../../styles/app.style';
 import { View, Text, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, } from "react-native";
 import { Poster, RequestBar, About } from '../../../components';

@@ -41,7 +41,7 @@ const TourProvider = ({ children }) => {
                                 text: 'Cancel Tour',
                                 onPress: async () => {
                                     try {
-                                        updateTourStatus(tourInfor.id, 'canceled', session);
+                                        updateTourStatus(tourInfor._id, 'canceled', session);
                                         setTourInfo({})
                                         setAllowListen(false);
                                         setRequestStage(null, 0);
@@ -56,12 +56,13 @@ const TourProvider = ({ children }) => {
                                 text: 'Confirm',
                                 onPress: async () => {
                                     try {
-                                        setRequestStage(tourInfor.desStation, 2);
+                                        setRequestStage(tourInfor.toStation, 2);
                                         setTourInfo({
                                             ...tourInfor,
                                             status: 'leading',
                                         });
-                                        updateTourStatus(tourInfor.id, 'leading', session);
+                                        console.log("Context after confirm: ", tourInfor);
+                                        updateTourStatus(tourInfor._id, 'leading', session);
                                     } catch (error) {
                                         console.log(error);
                                     }
@@ -79,7 +80,7 @@ const TourProvider = ({ children }) => {
                                         setTourInfo({});
                                         setAllowListen(false);
                                         database.off(reachStationRef);
-                                        updateTourStatus(tourInfor.id, 'done', session);
+                                        updateTourStatus(tourInfor._id, 'done', session);
                                     } catch (error) {
                                         console.log(error);
                                     }
