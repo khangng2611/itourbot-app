@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         ...SHADOWS.medium,
         elevation: 5,
     },
-    headerText:{
+    headerText: {
         fontFamily: FONT.bold,
         fontSize: SIZES.medium,
         color: COLORS.green,
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
         height: 40,
         minWidth: 100,
         marginHorizontal: SIZES.medium,
+        ...SHADOWS.small
     },
     cancelBtn: {
         backgroundColor: COLORS.red,
@@ -46,11 +47,25 @@ const styles = StyleSheet.create({
     confirmBtn: {
         backgroundColor: COLORS.blue,
     },
+    infoBtn: {
+        backgroundColor: COLORS.primary,
+    },
     btnText: {
         color: COLORS.white,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
+        fontFamily: FONT.medium,
         textAlign: 'center',
     },
+    inforText: {
+        fontFamily: FONT.regular,
+        fontSize: SIZES.small,
+        color: COLORS.primary,
+        alignSelf: 'flex-start',
+    },
+    stationText: {
+        color: COLORS.green,
+        fontFamily: FONT.bold
+    }
 });
 
 export default styles;

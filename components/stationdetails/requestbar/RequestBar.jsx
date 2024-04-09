@@ -7,29 +7,47 @@ import { fetchState, setRequestStage } from "../../../utils/firebase";
 import { addTour } from "../../../utils/apiRequest";
 import { useAuth } from "../../context/AuthContext";
 import { TourContext } from "../../context/TourContext";
+import InavlidRequestModal from "../../common/modal/InvalidModal";
+import RequestModal from "../../common/modal/RequestModal";
 
 const RequestBar = ({ item }) => {
     const { session } = useAuth();
-    const { setAllowListen, setTourInfo} = useContext(TourContext)
+    const { setAllowListen, setTourInfo } = useContext(TourContext)
     const { isFree } = fetchState();
     const [chosenStation, setChosenStation] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const [requestStatus, setRequestStatus] = useState([false, ""]);
     const stationList = (item.stations).map((station) => ({ label: `(${station.stationId}) ${station.name}`, value: station.stationId }));
+    const [invalidModal, setInvalidModal] = useState({
+        isVisible: false,
+        headerText: "",
+        contentText: ""
+    });
+    const [requestModal, setRequestModal] = useState(false);
 
     const handleRequestTour = () => {
         if (!chosenStation) {
-            Alert.alert('Select a station', 'Please select a station to continue', []);
+            setInvalidModal({
+                isVisible: true,
+                headerText: "Select a station",
+                contentText: "Please select a station to continue"
+            })
             return;
         }
         if (chosenStation == item.stationId) {
-            Alert.alert('Invalid station', `Pickup station must be different from ${item.name}`, []);
+            setInvalidModal({
+                isVisible: true,
+                headerText: "Invalid station",
+                contentText: `Pickup station must be different from ${item.name}`
+            })
             return;
         }
-        Alert.alert('Confirm Request', `Are you sure to request a tour guide to ${item.name} ?`, [
-            { text: 'Cancel' },
-            { text: 'Confirm', onPress: () => requestTour() }
-        ]);
+        console.log("chosenStation: ", chosenStation);
+        setRequestModal(true);
+        // Alert.alert('Confirm Request', `Are you sure to request a tour guide to ${item.name} ?`, [
+        //     { text: 'Cancel' },
+        //     { text: 'Confirm', onPress: () => requestTour() }
+        // ]);
     }
 
     const requestTour = async () => {
@@ -45,7 +63,7 @@ const RequestBar = ({ item }) => {
                 _id: tour._id,
                 status: 'picking',
                 fromStation: pickupStation,
-                toStation: {...item, stations: []}
+                toStation: { ...item, stations: [] }
             });
             setAllowListen(true);
             setRequestStatus([true, "success"]);
@@ -106,6 +124,13 @@ const RequestBar = ({ item }) => {
                     </TouchableOpacity>
                 </View>
             </View>
+            <InavlidRequestModal
+                isVisible={invalidModal.isVisible}
+                setInvalidModal={setInvalidModal}
+                headerText={invalidModal.headerText}
+                contentText={invalidModal.contentText}
+            />
+            <RequestModal isVisible={requestModal} setVisible={setRequestModal} requestTour={requestTour} tourData={{...item, chosenStation}}  />
         </View>
     )
 }

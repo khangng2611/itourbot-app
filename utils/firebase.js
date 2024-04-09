@@ -46,6 +46,16 @@ export const setRequestStage = (station, stage) => {
   if (stage == 0) {
     database.set(requestRef, {
       id: 0,
+      param: {
+        x: 0,
+        y: 0,
+        yaw: 0,
+      },
+      station: {
+        description: "",
+        id: 0,
+        name: "",
+      },
     });
     return;
   }
