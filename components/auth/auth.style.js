@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     marginTop: SIZES.large,
     marginBottom: SIZES.medium,
     height: 50,
-    backgroundColor: COLORS.tertiary,
+    backgroundColor: COLORS.primary,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   oauthText: {
     fontSize: SIZES.medium,
     fontFamily: FONT.regular,
-    color: COLORS.tertiary,
+    color: COLORS.primary,
   },
   oauthLogo: {
     resizeMode: 'contain',

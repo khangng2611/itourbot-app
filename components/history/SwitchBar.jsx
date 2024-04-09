@@ -7,13 +7,13 @@ const SwitchBar = ({setTab}) => {
         <SwitchSelector
             initial={0}
             onPress={value => setTab(value)}
-            textColor={COLORS.tertiary} 
+            textColor={COLORS.primary} 
             textStyle={styles.switchBarTextStyle}t
             selectedTextStyle={styles.switchBarTextStyle}
             selectedColor={COLORS.white}
             borderRadius={SIZES.medium}
             height={45}
-            buttonColor={COLORS.tertiary}
+            buttonColor={COLORS.primary}
             hasPadding
             animationDuration={100}
             options={[

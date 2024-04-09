@@ -12,6 +12,7 @@ import LoginForm from './auth/LoginForm';
 import TabNavigator from './common/navigation/TabNavigator';
 import Input from './common/input/Input';
 import Loader from './common/loader/Loader';
+import GetPickupModal from './common/modal/GetPickupModal';
 
 // map screen
 import LocationSpot from './map/LocationSpot';
@@ -45,5 +46,6 @@ export {
   Loader,
   SwitchBar,
   HistoryList,
-  OngoingTour
+  OngoingTour,
+  GetPickupModal
 };

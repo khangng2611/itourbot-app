@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: SIZES.medium,
     alignSelf: 'flex-end',
     borderRadius: SIZES.large,
-    backgroundColor: isFree ? COLORS.tertiary : COLORS.gray2,
+    backgroundColor: isFree ? COLORS.primary : COLORS.gray2,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',

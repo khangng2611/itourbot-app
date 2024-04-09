@@ -5,6 +5,8 @@ import * as database from 'firebase/database';
 import { db, setRequestStage } from '../../utils/firebase';
 import { updateTourStatus } from "../../utils/apiRequest";
 import { useAuth } from "./AuthContext";
+import GetPickupModal from "../common/modal/GetPickupModal";
+import GetDestinationModal from  "../common/modal/GetDestinationModal";
 
 const TourContext = createContext({
     isAllowListen: 0,
@@ -27,6 +29,8 @@ const TourProvider = ({ children }) => {
         toStation: {},
     });
     const [isAllowListen, setAllowListen] = useState(false);
+    const [isPickupModalShown, setPickupModalShown] = useState(false);
+    const [isDestinationModalShown, setDestinationModalShown] = useState(false);
     useEffect(() => {
         if (!isAllowListen) return;
         const reachStationRef = database.ref(db, '/turtlebot_state/isReachStation');
@@ -35,63 +39,64 @@ const TourProvider = ({ children }) => {
             (snapshot) => {
                 const reachStation = snapshot.val();
                 if (reachStation == 1) {
-                    Alert.alert('Reached your pickup station!', 'Please confirm to allow Turtlebot to start the tourguide.',
-                        [
-                            {
-                                text: 'Cancel Tour',
-                                onPress: async () => {
-                                    try {
-                                        updateTourStatus(tourInfor._id, 'canceled', session);
-                                        setTourInfo({})
-                                        setAllowListen(false);
-                                        setRequestStage(null, 0);
-                                        database.off(reachStationRef);
-                                    } catch (error) {
-                                        console.log("error");
-                                        console.log(error);
-                                    }
-                                }
-                            },
-                            {
-                                text: 'Confirm',
-                                onPress: async () => {
-                                    try {
-                                        setRequestStage(tourInfor.toStation, 2);
-                                        setTourInfo({
-                                            ...tourInfor,
-                                            status: 'leading',
-                                        });
-                                        console.log("Context after confirm: ", tourInfor);
-                                        updateTourStatus(tourInfor._id, 'leading', session);
-                                    } catch (error) {
-                                        console.log(error);
-                                    }
-                                }
-                            }
-                        ]
-                    )
+                    setPickupModalShown(true);
+                    // Alert.alert('Reached your pickup station!', 'Please confirm to allow Turtlebot to start the tourguide.',
+                    //     [
+                    //         {
+                    //             text: 'Cancel Tour',
+                    //             onPress: async () => {
+                    //                 try {
+                    //                     updateTourStatus(tourInfor._id, 'canceled', session);
+                    //                     setTourInfo({})
+                    //                     setAllowListen(false);
+                    //                     setRequestStage(null, 0);
+                    //                     database.off(reachStationRef);
+                    //                 } catch (error) {
+                    //                     console.log("error");
+                    //                     console.log(error);
+                    //                 }
+                    //             }
+                    //         },
+                    //         {
+                    //             text: 'Confirm',
+                    //             onPress: async () => {
+                    //                 try {
+                    //                     setRequestStage(tourInfor.toStation, 2);
+                    //                     setTourInfo({
+                    //                         ...tourInfor,
+                    //                         status: 'leading',
+                    //                     });
+                    //                     updateTourStatus(tourInfor._id, 'leading', session);
+                    //                 } catch (error) {
+                    //                     console.log(error);
+                    //                 }
+                    //             }
+                    //         }
+                    //     ]
+                    // );
                 } else if (reachStation == 2) {
-                    Alert.alert('Reached your destination!', 'Thank you for your experience.',
-                        [
-                            {
-                                text: 'OK',
-                                onPress: async () => {
-                                    try {
-                                        setTourInfo({});
-                                        setAllowListen(false);
-                                        database.off(reachStationRef);
-                                        updateTourStatus(tourInfor._id, 'done', session);
-                                    } catch (error) {
-                                        console.log(error);
-                                    }
-                                    // return () => {
-                                    //     console.log("Off db")
-                                    //     database.off(reachStationRef);
-                                    // };
-                                }
-                            },
-                        ]
-                    )
+                    setDestinationModalShown(true);
+                    // Alert.alert('Reached your destination!', 'Thank you for your experience.',
+                    //     [
+                    //         {
+                    //             text: 'OK',
+                    //             onPress: async () => {
+                    //                 try {
+                    //                     setTourInfo({});
+                    //                     setAllowListen(false);
+                    //                     database.off(reachStationRef);
+                    //                     updateTourStatus(tourInfor._id, 'done', session);
+                    //                 } catch (error) {
+                    //                     console.log(error);
+                    //                 }
+                    //                 // return () => {
+                    //                 //     console.log("Off db")
+                    //                 //     database.off(reachStationRef);
+                    //                 // };
+                    //             }
+                    //         },
+                    //     ]
+                    // )
                 }
             });
     }, [isAllowListen]);
@@ -109,6 +114,22 @@ const TourProvider = ({ children }) => {
                 }
             }}
         >
+            <GetPickupModal 
+                isVisible={isPickupModalShown} 
+                setVisible={setPickupModalShown} 
+                setAllowListen={setAllowListen} 
+                tourInfor={tourInfor} 
+                setTourInfo={setTourInfo} 
+                session={session}
+            />
+            <GetDestinationModal 
+                isVisible={isDestinationModalShown} 
+                setVisible={setDestinationModalShown} 
+                setAllowListen={setAllowListen} 
+                tourInfor={tourInfor} 
+                setTourInfo={setTourInfo} 
+                session={session}
+            />
             {children}
         </TourContext.Provider>
     );

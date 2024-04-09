@@ -1,6 +1,5 @@
 import { useRouter } from "expo-router";
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, } from "react-native";
-import { useContext, useEffect } from "react";
 import styles from "./popularstations.style";
 import { COLORS, SIZES } from "../../../constants";
 import StationCard from "../../common/cards/StationCard";
