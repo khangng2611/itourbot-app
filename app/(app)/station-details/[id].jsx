@@ -1,7 +1,7 @@
 import { Stack, useLocalSearchParams } from "expo-router";
 import styles from '../../../styles/app.style';
 import { View, Text, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, } from "react-native";
-import { Poster, RequestBar, About } from '../../../components';
+import { Poster, RequestBar, About, BackWrapper } from '../../../components';
 
 // import {
 //   Company,
@@ -116,6 +116,7 @@ const StationDetails = () => {
         <Poster item={item} />
         <About item={item} />
       </ScrollView>
+      <BackWrapper />
       <RequestBar item={item} />
     </SafeAreaView>
   );

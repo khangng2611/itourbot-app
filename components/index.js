@@ -23,6 +23,7 @@ import BotStateBox from './map/BotStateBox';
 import About from './stationdetails/about/About';
 import Poster from './stationdetails/poster/Poster';
 import RequestBar from './stationdetails/requestbar/RequestBar';
+import BackWrapper from './common/cards/BackWrapper'
 
 // history screen
 import SwitchBar from './history/SwitchBar'
@@ -47,5 +48,6 @@ export {
   SwitchBar,
   HistoryList,
   OngoingTour,
-  GetPickupModal
+  GetPickupModal,
+  BackWrapper
 };

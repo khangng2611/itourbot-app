@@ -1,6 +1,6 @@
 import { SafeAreaView, ScrollView, StatusBar } from "react-native";
 import styles from '../../styles/app.style';
-import { LoginForm, LoginImage, Loader, OAuthLogin } from "../../components";
+import { LoginForm, LoginImage, Loader, BackWrapper } from "../../components";
 import { useState } from "react";
 import SignupForm from "../../components/auth/SignupForm";
 
@@ -16,6 +16,7 @@ const Login = () => {
                 <SignupForm setLoading={setLoading} />
                 <Loader visible={isLoading} />
             </ScrollView>
+            <BackWrapper /> 
             <StatusBar barStyle='dark-content' />
         </SafeAreaView>
     );

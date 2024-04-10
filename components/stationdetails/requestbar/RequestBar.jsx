@@ -42,12 +42,7 @@ const RequestBar = ({ item }) => {
             })
             return;
         }
-        console.log("chosenStation: ", chosenStation);
         setRequestModal(true);
-        // Alert.alert('Confirm Request', `Are you sure to request a tour guide to ${item.name} ?`, [
-        //     { text: 'Cancel' },
-        //     { text: 'Confirm', onPress: () => requestTour() }
-        // ]);
     }
 
     const requestTour = async () => {

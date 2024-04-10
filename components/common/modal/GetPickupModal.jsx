@@ -7,7 +7,7 @@ import { updateTourStatus } from "../../../utils/apiRequest";
 import { COLORS } from '../../../constants';
 
 const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, session }) => {
-    const [remainingTime, setRemainingTime] = useState(10);
+    const [remainingTime, setRemainingTime] = useState(30);
     const handleCancel = async () => {
         try {
             setVisible(!isVisible);
@@ -42,6 +42,7 @@ const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setT
                     setRemainingTime(remainingTime - 1);
                 } else {
                     setVisible(false);
+                    setRemainingTime(30);
                     handleCancel();
                 }
             }, 1000);

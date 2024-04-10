@@ -16,7 +16,6 @@ const Poster = ({ item }) => {
             />
             <InfoWrapper size={SIZES.large} item={item} />
             <LoveWrapper size={SIZES.large} />
-            <BackWrapper />
         </View>
     );
 }
