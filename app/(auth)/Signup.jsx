@@ -1,4 +1,4 @@
-import { SafeAreaView, ScrollView, StatusBar } from "react-native";
+import { SafeAreaView, ScrollView, StatusBar, KeyboardAvoidingView } from "react-native";
 import styles from '../../styles/app.style';
 import { LoginForm, LoginImage, Loader, BackWrapper } from "../../components";
 import { useState } from "react";
@@ -8,15 +8,20 @@ const Login = () => {
     const [isLoading, setLoading] = useState(false);
     return (
         <SafeAreaView style={styles.safeAreaView}>
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{ flexGrow: 1 }}
+            <KeyboardAvoidingView
+                style={{ flex: 1 }}
+                behavior={"position"}
             >
-                <LoginImage />
-                <SignupForm setLoading={setLoading} />
-                <Loader visible={isLoading} />
-            </ScrollView>
-            <BackWrapper /> 
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ flexGrow: 1 }}
+                >
+                    <LoginImage />
+                    <SignupForm setLoading={setLoading} />
+                    <Loader visible={isLoading} />
+                </ScrollView>
+            </KeyboardAvoidingView>
+            <BackWrapper />
             <StatusBar barStyle='dark-content' />
         </SafeAreaView>
     );

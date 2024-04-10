@@ -36,13 +36,6 @@ const Input = ({ label, error, password, onFocus = () => { }, ...props }) => {
                     >
                         <Image source={icons.hidePassword} resizeMode='contain' style={styles.hidePassword} />
                     </TouchableOpacity>
-                    // && (
-                    //     <Icon
-                    //         onPress={() => setHidePassword(!hidePassword)}
-                    //         name={hidePassword ? 'eye-outline' : 'eye-off-outline'}
-                    //         style={{ color: COLORS.darkBlue, fontSize: 22 }}
-                    //     />
-                    // )
                 }
             </View>
             {

@@ -17,7 +17,7 @@ import GetPickupModal from './common/modal/GetPickupModal';
 // map screen
 import LocationSpot from './map/LocationSpot';
 import MapImage from './map/MapImage';
-import BotStateBox from './map/BotStateBox';
+import StateInfo from './map/StateInfo';
 
 // station details
 import About from './stationdetails/about/About';
@@ -37,7 +37,7 @@ export {
   TabNavigator,
   LocationSpot,
   MapImage,
-  BotStateBox,
+  StateInfo,
   About,
   Poster,
   RequestBar,

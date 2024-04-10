@@ -6,6 +6,7 @@ import { validateEmail } from '../../utils/checkFormat';
 import { normalLogin } from '../../utils/apiRequest';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../../components/context/AuthContext';
+import { COLORS, FONT } from '../../constants';
 
 const LoginForm = ({ setLoading }) => {
     const [inputs, setInputs] = useState({ email: 'khang@gmail.com', password: '123456' });
@@ -77,7 +78,9 @@ const LoginForm = ({ setLoading }) => {
                 <Text style={styles.loginBtnText}>Sign In</Text>
             </TouchableOpacity>
             <Text style={styles.forgotText}>Forgot Password ?</Text>
-            <Text onPress={() => router.push("/(auth)/Signup")} style={styles.signupText}>Don't have account? Sign Up</Text>
+            <Text style={styles.signupText}>Don't have account?
+                <Text onPress={() => router.push("/(auth)/Signup")} style={{color:COLORS.primary, fontFamily:FONT.bold}}> Sign Up</Text>
+            </Text>
         </View>
     );
 };
