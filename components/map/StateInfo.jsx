@@ -29,14 +29,6 @@ export default function StateInfo({ x, y, battery, isFree }) {
                     <Text style={styles.isFreeText}>{location}</Text>
                 </View>
             </View>
-            {/* <View style={styles.botStateRow}>
-                <Text style={styles.botStateTitle}>Turtlebot's location:</Text>
-                <Text style={styles.botStateValue}>{location}</Text>
-            </View>
-            <View style={styles.botStateRow}>
-                <Text style={styles.botStateTitle}>Turtlebot's state: </Text>
-                <Text style={styles.botStateValue}>{state}</Text>
-            </View> */}
         </View>
     )
 }

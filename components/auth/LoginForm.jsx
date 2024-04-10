@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Keyboard, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Keyboard } from 'react-native';
 import { useState, useEffect } from 'react';
 import Input from '../common/input/Input';
 import styles from './auth.style';
@@ -7,10 +7,16 @@ import { normalLogin } from '../../utils/apiRequest';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../../components/context/AuthContext';
 import { COLORS, FONT } from '../../constants';
+import InavlidRequestModal from '../common/modal/InvalidModal';
 
 const LoginForm = ({ setLoading }) => {
     const [inputs, setInputs] = useState({ email: 'khang@gmail.com', password: '123456' });
     const [errors, setErrors] = useState({});
+    const [invalidModal, setInvalidModal] = useState({
+        isVisible: false,
+        headerText: "",
+        contentText: ""
+    });
     const { signIn } = useAuth();
     const router = useRouter();
 
@@ -39,9 +45,11 @@ const LoginForm = ({ setLoading }) => {
             const response = await normalLogin(inputs, signIn);
             router.push("/(app)/(tabs)");
         } catch (error) {
-            Alert.alert('Login fail', error.message ? `${error.message}` : "Invalid Information", [
-                { text: 'Cancel' },
-            ]);
+            setInvalidModal({
+                isVisible: true,
+                headerText: "Login fail",
+                contentText: error.message ? `${error.message}` : "Invalid Information"
+            });
         } finally {
             setLoading(false);
         }
@@ -81,6 +89,12 @@ const LoginForm = ({ setLoading }) => {
             <Text style={styles.signupText}>Don't have account?
                 <Text onPress={() => router.push("/(auth)/Signup")} style={{color:COLORS.primary, fontFamily:FONT.bold}}> Sign Up</Text>
             </Text>
+            <InavlidRequestModal
+                isVisible={invalidModal.isVisible}
+                setInvalidModal={setInvalidModal}
+                headerText={invalidModal.headerText}
+                contentText={invalidModal.contentText}
+            />
         </View>
     );
 };

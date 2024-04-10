@@ -1,5 +1,5 @@
 
-import { Alert, Modal, Text, Pressable, View } from 'react-native';
+import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
 import { addTour } from "../../../utils/apiRequest";
 import { COLORS, FONT, SIZES } from '../../../constants';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native';
+import { Modal, StyleSheet, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
 import { updateTourStatus } from "../../../utils/apiRequest";
 
@@ -21,7 +21,6 @@ const GetDestinationModal = ({ isVisible, setVisible, setAllowListen, tourInfor,
             transparent={true}
             visible={isVisible}
             onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
                 handleClick();
             }}>
             <View style={styles.centeredView}>

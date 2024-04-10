@@ -14,6 +14,16 @@ const styles = StyleSheet.create({
   container: {
     padding: SIZES.medium,
   },
+  tabBarStyle: {
+    paddingTop: 5,
+    backgroundColor: COLORS.lightWhite,
+    // borderRadius: SIZES.xLarge,
+    // marginHorizontal: 5
+  },
+  tabBarLogo: (color) => ({
+    width: 25,
+    tintColor: color
+  }),
 });
 
 export default styles;

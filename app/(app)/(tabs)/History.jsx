@@ -11,14 +11,24 @@ const History = () => {
     const { data, isLoading, error, refetch } = useFetch("tours", null, session);
     const { tourInfor, setTourInfo, setAllowListen } = useContext(TourContext);
     const [isTab, setTab] = useState(0);
+    const [isStopModal, setStopModal] = useState(false);
     return (
         <SafeAreaView style={styles.safeAreaView}>
             <View style={styles.container}>
                 <Text style={styles.title}>Requests</Text>
             </View>
             <SwitchBar setTab={setTab} />
-            <HistoryList isVisible={isTab == 0} fetchData={{ data, isLoading, error, refetch }} />
-            <OngoingTour isVisible={isTab == 1} tourContext={{ tourInfor, setTourInfo, setAllowListen }} session={session} />
+            <HistoryList 
+                isVisible={isTab == 0} 
+                fetchData={{ data, isLoading, error, refetch }} 
+            />
+            <OngoingTour 
+                isVisible={isTab == 1} 
+                tourContext={{ tourInfor, setTourInfo, setAllowListen }} 
+                session={session} 
+                isStopModal={isStopModal}
+                setStopModal={setStopModal}
+            />
         </SafeAreaView>
     )
 }

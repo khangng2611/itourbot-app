@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, Image, Alert } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import { useContext, useState } from "react";
 import styles from "./requestbar.style";
 import { COLORS, SIZES, icons } from "../../../constants";

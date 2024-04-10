@@ -1,11 +1,16 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
+import styles from '../../../styles/app.style';
 import { COLORS, icons } from '../../../constants';
-import { Image, StyleSheet } from 'react-native';
+import { Image } from 'react-native';
 
 export default function TabLayout() {
     return (
-        <Tabs screenOptions={{ tabBarStyle: { backgroundColor: COLORS.lightWhite }, tabBarActiveTintColor: COLORS.primary, headerShown: false }}>
+        <Tabs screenOptions={{
+            tabBarStyle: styles.tabBarStyle,
+            tabBarActiveTintColor: COLORS.primary,
+            headerShown: false
+        }}>
             <Tabs.Screen
                 name="index"
                 options={{
@@ -13,7 +18,7 @@ export default function TabLayout() {
                     tabBarIcon: ({ color }) => {
                         return (
                             <Image
-                                style={styles.logo(color)}
+                                style={styles.tabBarLogo(color)}
                                 source={icons.home}
                                 resizeMode='contain' />
                         );
@@ -27,7 +32,7 @@ export default function TabLayout() {
                     tabBarIcon: ({ color }) => {
                         return (
                             <Image
-                                style={styles.logo(color)}
+                                style={styles.tabBarLogo(color)}
                                 source={icons.map}
                                 resizeMode='contain'
                             />
@@ -42,7 +47,7 @@ export default function TabLayout() {
                     tabBarIcon: ({ color }) => {
                         return (
                             <Image
-                                style={styles.logo(color)}
+                                style={styles.tabBarLogo(color)}
                                 source={icons.history}
                                 resizeMode='contain'
                             />
@@ -57,7 +62,7 @@ export default function TabLayout() {
                     tabBarIcon: ({ color }) => {
                         return (
                             <Image
-                                style={styles.logo(color)}
+                                style={styles.tabBarLogo(color)}
                                 source={icons.profile}
                                 resizeMode='contain'
                             />
@@ -68,10 +73,3 @@ export default function TabLayout() {
         </Tabs>
     );
 }
-
-const styles = StyleSheet.create({
-    logo: (color) => ({
-        width: 25,
-        tintColor: color
-    }),
-});

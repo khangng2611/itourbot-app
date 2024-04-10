@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Alert, Modal, Text, Pressable, View, TouchableOpacity } from 'react-native';
+import { Modal, Text, Pressable, View, TouchableOpacity } from 'react-native';
 import styles from './modal.style';
 import * as database from 'firebase/database';
 import { db, setRequestStage } from '../../../utils/firebase';
@@ -55,7 +55,6 @@ const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setT
             transparent={true}
             visible={isVisible}
             onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
                 handleCancel();
             }}>
             <View style={styles.centeredView}>

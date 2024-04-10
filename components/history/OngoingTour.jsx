@@ -1,18 +1,15 @@
-import { View, Text, Alert, Image, ScrollView, TouchableOpacity } from "react-native";
+import { Alert, View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import MapImage from "../../components/map/MapImage";
 import LocationSpot from "../map/LocationSpot";
 import { fetchState } from "../../utils/firebase";
 import styles from "./history.style";
-import { TourContext } from "../context/TourContext";
-import { useAuth } from "../context/AuthContext";
-import { useContext } from "react";
 import { FONT, SIZES, icons, tourStatuses } from "../../constants";
 import { updateTourStatus } from "../../utils/apiRequest";
 import { setRequestStage } from "../../utils/firebase";
+import { useState } from "react";
+import StopTourModal from "../common/modal/StopTourModal";
 
-const OnGoingTour = ({ isVisible, tourContext, session }) => {
-    // const { tourInfor, setTourInfo, setAllowListen } = useContext(TourContext);
-    // const { session } = useAuth();
+const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModal }) => {
     const { tourInfor, setTourInfo, setAllowListen } = tourContext;
     if (!isVisible) return null;
     if (!tourInfor._id) return (
@@ -24,13 +21,8 @@ const OnGoingTour = ({ isVisible, tourContext, session }) => {
     const fromStation = tourInfor.fromStation;
     const { x, y } = fetchState();
     const tourStatus = tourStatuses[tourInfor.status];
-    const handleStopTour = () => {
-        Alert.alert('Confirm Stop', `Are you sure to stop a tour guide to ${toStation.stationName} ?`, [
-            { text: 'Cancel' },
-            { text: 'Confirm', onPress: () => cancelTour() }
-        ]);
-    }
     const cancelTour = () => {
+        setStopModal(false);
         updateTourStatus(tourInfor._id, 'canceled', session);
         setAllowListen(false);
         setRequestStage(null, 0);
@@ -71,12 +63,12 @@ const OnGoingTour = ({ isVisible, tourContext, session }) => {
                 </View>
                 <TouchableOpacity
                     style={styles.stopBtn}
-                    onPress={() => handleStopTour()}
+                    onPress={() => setStopModal(true)}
                 >
-                    <Image source={icons.stop} style={styles.ongoingIcon} />
-                    <Text style={styles.stopBtnText}>STOP</Text>
+                    <Text style={styles.stopBtnText}>STOP THE TOUR</Text>
                 </TouchableOpacity>
             </ScrollView>
+            <StopTourModal isVisible={isStopModal} setVisble={setStopModal} handleConfirm={cancelTour}/>
         </View>
     );
 }

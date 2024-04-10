@@ -1,14 +1,20 @@
-import { View, Text, TouchableOpacity, Keyboard, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Keyboard } from 'react-native';
 import { useState } from 'react';
 import Input from '../common/input/Input';
 import styles from './auth.style';
 import { validateEmail } from '../../utils/checkFormat';
 import { register } from '../../utils/apiRequest';
 import { useRouter } from 'expo-router';
+import InavlidRequestModal from '../common/modal/InvalidModal';
 
 const SignupForm = ({ setLoading }) => {
     const [inputs, setInputs] = useState({ name: '', email: '', password: '', retypePassword: '' });
     const [errors, setErrors] = useState({});
+    const [invalidModal, setInvalidModal] = useState({
+        isVisible: false,
+        headerText: "",
+        contentText: ""
+    });
     const router = useRouter();
 
     const validate = async () => {
@@ -50,9 +56,11 @@ const SignupForm = ({ setLoading }) => {
             const response = await register(inputs);
             router.push("/(auth)/Login");
         } catch (error) {
-            Alert.alert('Signup fail', error.message ? `${error.message}` : "Invalid Information", [
-                { text: 'Cancel' },
-            ]);
+            setInvalidModal({
+                isVisible: true,
+                headerText: 'Signup fail',
+                contentText: error.message ? `${error.message}` : "Invalid Information"
+            });
         } finally {
             setLoading(false);
         }
@@ -103,6 +111,12 @@ const SignupForm = ({ setLoading }) => {
             >
                 <Text style={styles.loginBtnText}>Sign Up</Text>
             </TouchableOpacity>
+            <InavlidRequestModal
+                isVisible={invalidModal.isVisible}
+                setInvalidModal={setInvalidModal}
+                headerText={invalidModal.headerText}
+                contentText={invalidModal.contentText}
+            />
         </View>
     );
 };

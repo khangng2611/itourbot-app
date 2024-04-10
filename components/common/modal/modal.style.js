@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         ...SHADOWS.medium,
         elevation: 5,
+        minWidth: "70%",
     },
     headerText: {
         fontFamily: FONT.bold,

@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   locationWrapper: {
     marginTop: SIZES.small,
     height: '40%',
-    backgroundColor: COLORS.blue,
+    backgroundColor: COLORS.white,
     borderRadius: SIZES.small,
     justifyContent: 'center',
     padding: SIZES.xSmall
@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
     fontFamily: FONT.bold,
     fontSize: SIZES.large,
     alignSelf: 'center',
-    color: COLORS.white
+    color: COLORS.primary,
   },
   infoTitle: {
     fontFamily: FONT.medium,
     fontSize: SIZES.small,
-    color: COLORS.white
+    color: COLORS.primary
   }
 });
 

@@ -28,7 +28,7 @@ const InavlidModal = ({isVisible, setInvalidModal, headerText, contentText}) => 
                             style={[styles.button, styles.infoBtn]}
                             onPress={handleCancel}
                         >
-                            <Text style={styles.btnText}>Back to request</Text>
+                            <Text style={styles.btnText}>Back</Text>
                         </Pressable>
                     </View>
                 </View>

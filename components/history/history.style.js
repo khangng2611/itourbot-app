@@ -94,18 +94,21 @@ const styles = StyleSheet.create({
         marginRight: 5
     },
     stopBtn: {
+        width: '60%',
+        justifyContent: 'center',
         marginTop: SIZES.small,
         paddingVertical: SIZES.medium,
         paddingHorizontal: SIZES.xLarge,
-        backgroundColor: COLORS.red,
+        // backgroundColor: COLORS.lightred,
         borderRadius: SIZES.medium,
+        borderWidth: 1,
+        borderColor: COLORS.red,
         alignSelf: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        ...SHADOWS.small
     },
     stopBtnText: {
-        color: COLORS.lightWhite,
+        color: COLORS.red,
         fontFamily: FONT.bold,
         fontSize: SIZES.medium
     }
