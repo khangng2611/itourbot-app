@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, Keyboard } from 'react-native';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Input from '../common/input/Input';
 import styles from './auth.style';
 import { validateEmail } from '../../utils/checkFormat';
 import { normalLogin } from '../../utils/apiRequest';
 import { useRouter } from 'expo-router';
-import { useAuth } from '../../components/context/AuthContext';
+import { useAuth } from '../../components/context';
 import { COLORS, FONT } from '../../constants';
 import InavlidRequestModal from '../common/modal/InvalidModal';
 

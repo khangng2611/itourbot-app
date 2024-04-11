@@ -1,7 +1,5 @@
 import { Stack, Redirect, useRouter, Tabs } from 'expo-router';
-import { useAuth } from '../../components/context/AuthContext';
-import { TourContext } from '../../components/context/TourContext';
-import { Loader } from '../../components';
+import { useAuth, TourContext } from '../../components/context';
 import { checkLastLogin } from '../../utils/asyncStorage';
 import useFetch from '../../hook/useFetch';
 import { useContext, useEffect } from 'react';
@@ -10,7 +8,6 @@ import { useContext, useEffect } from 'react';
 
 function Layout() {
   const { session } = useAuth();
-  // if (isLoading) return <Loader visible={isLoading} />;
   if (!checkLastLogin(session)) {
     return <Redirect href="/(auth)/Login" />;
   }

@@ -1,5 +1,4 @@
 import { View, Image, useWindowDimensions } from 'react-native';
-import { icons } from '../../constants'
 import styles from './map.style';
 
 // original position from O(0,0)

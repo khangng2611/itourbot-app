@@ -1,4 +1,4 @@
-import { Alert, View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import MapImage from "../../components/map/MapImage";
 import LocationSpot from "../map/LocationSpot";
 import { fetchState } from "../../utils/firebase";
@@ -6,7 +6,6 @@ import styles from "./history.style";
 import { FONT, SIZES, icons, tourStatuses } from "../../constants";
 import { updateTourStatus } from "../../utils/apiRequest";
 import { setRequestStage } from "../../utils/firebase";
-import { useState } from "react";
 import StopTourModal from "../common/modal/StopTourModal";
 
 const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModal }) => {

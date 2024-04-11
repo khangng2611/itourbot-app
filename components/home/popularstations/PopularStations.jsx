@@ -4,13 +4,21 @@ import styles from "./popularstations.style";
 import { COLORS, SIZES } from "../../../constants";
 import StationCard from "../../common/cards/StationCard";
 import useFetch from "../../../hook/useFetch";
+import { useContext, useEffect } from "react";
+import { DataContext } from "../../context";
 
 const PopularStations = () => {
   const router = useRouter();
+  const { setStationsList } = useContext(DataContext);
   const { data, isLoading, error } = useFetch("stations");
+  useEffect(() => {
+    if (data.length > 0) {
+      setStationsList(data);
+    }
+  }, [data]);
+
   const handleCardPress = (item) => {
-    const stationObject = { ...item, stations: data };
-    router.push({ pathname: `/station-details/${item._id}`, params: { data: JSON.stringify(stationObject) } });
+    router.push({ pathname: `/station-details/${item._id}`, params: { data: JSON.stringify(item) } });
   };
 
   return (

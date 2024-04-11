@@ -43,7 +43,7 @@ export const fetchState = () => {
 
 export const setRequestStage = (station, stage) => {
   const requestRef = database.ref(db, '/request');
-  if (stage == 0) {
+  if (stage === 0) {
     database.set(requestRef, {
       id: 0,
       param: {
@@ -52,9 +52,9 @@ export const setRequestStage = (station, stage) => {
         yaw: 0,
       },
       station: {
-        description: "",
+        description: '',
         id: 0,
-        name: "",
+        name: '',
       },
     });
     return;

@@ -1,6 +1,6 @@
-import { SafeAreaView, ScrollView, StatusBar, KeyboardAvoidingView, Keyboard } from "react-native";
+import { SafeAreaView, ScrollView, StatusBar, KeyboardAvoidingView } from "react-native";
 import styles from '../../styles/app.style';
-import { LoginForm, LoginImage, Loader, OAuthLogin } from "../../components";
+import { LoginForm, LoginImage, Loader } from "../../components";
 import { useState } from "react";
 
 const Login = () => {

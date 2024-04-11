@@ -1,29 +1,29 @@
 import { Text, View, TouchableOpacity, Image } from "react-native";
 import { useContext, useState } from "react";
-import styles from "./requestbar.style";
-import { COLORS, SIZES, icons } from "../../../constants";
+import styles from "./stationsdetails.style";
+import { COLORS, SIZES, icons } from "../../constants";
 import { Dropdown } from "react-native-element-dropdown"
-import { fetchState, setRequestStage } from "../../../utils/firebase";
-import { addTour } from "../../../utils/apiRequest";
-import { useAuth } from "../../context/AuthContext";
-import { TourContext } from "../../context/TourContext";
-import InavlidRequestModal from "../../common/modal/InvalidModal";
-import RequestModal from "../../common/modal/RequestModal";
+import { fetchState, setRequestStage } from "../../utils/firebase";
+import { addTour } from "../../utils/apiRequest";
+import { useAuth, TourContext, DataContext } from "../context";
+import InavlidRequestModal from "../common/modal/InvalidModal";
+import RequestModal from "../common/modal/RequestModal";
 
 const RequestBar = ({ item }) => {
     const { session } = useAuth();
-    const { setAllowListen, setTourInfo } = useContext(TourContext)
+    const { setAllowListen, setTourInfo } = useContext(TourContext);
+    const { stationsList } = useContext(DataContext);
     const { isFree } = fetchState();
     const [chosenStation, setChosenStation] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const [requestStatus, setRequestStatus] = useState([false, ""]);
-    const stationList = (item.stations).map((station) => ({ label: `(${station.stationId}) ${station.name}`, value: station.stationId }));
     const [invalidModal, setInvalidModal] = useState({
         isVisible: false,
         headerText: "",
         contentText: ""
     });
     const [requestModal, setRequestModal] = useState(false);
+    const dropdownList = stationsList.map((station) => ({ label: `(${station.stationId}) ${station.name}`, value: station.stationId }));
 
     const handleRequestTour = () => {
         if (!chosenStation) {
@@ -49,10 +49,10 @@ const RequestBar = ({ item }) => {
         try {
             const tour = await addTour(
                 fromStation = parseInt(chosenStation),
-                toStation = parseInt(item.stationId),
+                toStation = [parseInt(item.stationId)],
                 session
             );
-            const pickupStation = item.stations.find(station => station.stationId === parseInt(chosenStation));
+            const pickupStation = stationsList.find(station => station.stationId === parseInt(chosenStation));
             setRequestStage(pickupStation, 1);
             setTourInfo({
                 _id: tour._id,
@@ -91,7 +91,7 @@ const RequestBar = ({ item }) => {
                         selectedTextStyle={styles.textStyle}
                         inputSearchStyle={styles.textStyle}
                         iconStyle={styles.iconStyle}
-                        data={stationList}
+                        data={dropdownList}
                         search
                         maxHeight={300}
                         labelField="label"
@@ -125,7 +125,7 @@ const RequestBar = ({ item }) => {
                 headerText={invalidModal.headerText}
                 contentText={invalidModal.contentText}
             />
-            <RequestModal isVisible={requestModal} setVisible={setRequestModal} requestTour={requestTour} tourData={{...item, chosenStation}}  />
+            <RequestModal isVisible={requestModal} setVisible={setRequestModal} requestTour={requestTour} tourData={{...item, chosenStation}} stationsList={stationsList}  />
         </View>
     )
 }

@@ -2,7 +2,6 @@ import { createContext, useState } from "react";
 import { useEffect } from "react";
 import * as database from 'firebase/database';
 import { db, setRequestStage } from '../../utils/firebase';
-import { updateTourStatus } from "../../utils/apiRequest";
 import { useAuth } from "./AuthContext";
 import GetPickupModal from "../common/modal/GetPickupModal";
 import GetDestinationModal from  "../common/modal/GetDestinationModal";

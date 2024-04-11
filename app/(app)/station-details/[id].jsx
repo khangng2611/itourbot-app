@@ -1,16 +1,7 @@
 import { Stack, useLocalSearchParams } from "expo-router";
 import styles from '../../../styles/app.style';
-import { View, Text, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 import { Poster, RequestBar, About, BackWrapper } from '../../../components';
-
-// import {
-//   Company,
-//   JobAbout,
-//   JobFooter,
-//   JobTabs,
-//   ScreenHeaderBtn,
-//   Specifics,
-// } from "../../components";
 
 const tabs = ["About", "Qualifications", "Responsibilities"];
 

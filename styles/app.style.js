@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   tabBarLogo: (color) => ({
     width: 25,
-    tintColor: color
+    tintColor: color,
   }),
 });
 

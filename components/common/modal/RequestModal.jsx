@@ -1,13 +1,10 @@
 
 import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
-import { addTour } from "../../../utils/apiRequest";
-import { COLORS, FONT, SIZES } from '../../../constants';
+import { SIZES } from '../../../constants';
 
-const RequestModal = ({ isVisible, setVisible, requestTour, tourData }) => {
-    const pickupStation = tourData.stations.find(station => station.stationId === parseInt(tourData.chosenStation));
-    // console.log(pickupStation);
-    // console.log(tourData);
+const RequestModal = ({ isVisible, setVisible, requestTour, tourData, stationsList }) => {
+    const pickupStation = stationsList.find(station => station.stationId === parseInt(tourData.chosenStation));
     const handleCancel = async () => {
         try {
             setVisible(!isVisible);

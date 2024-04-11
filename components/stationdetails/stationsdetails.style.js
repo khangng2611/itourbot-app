@@ -1,7 +1,23 @@
 import { StyleSheet } from 'react-native';
-import { COLORS, FONT, SIZES } from '../../../constants';
+import { COLORS, FONT, SIZES } from '../../constants';
 
 const styles = StyleSheet.create({
+  aboutContainer: {
+    marginTop: SIZES.large,
+  },
+  aboutTitle: {
+    fontFamily: FONT.bold,
+    fontSize: SIZES.xLarge,
+    color: COLORS.primary,
+  },
+  aboutContent: {
+    marginTop: SIZES.small,
+    fontFamily: FONT.regular,
+    fontSize: SIZES.medium,
+    color: COLORS.secondary,
+    paddingBottom: SIZES.xxLarge,
+    textAlign: 'justify',
+  },
   container: {
     paddingHorizontal: SIZES.medium,
     marginBottom: SIZES.xSmall,
@@ -11,7 +27,7 @@ const styles = StyleSheet.create({
   button: (isFree) => ({
     paddingHorizontal: SIZES.medium,
     alignSelf: 'flex-end',
-    borderRadius: SIZES.large,
+    borderRadius: SIZES.xLarge,
     backgroundColor: isFree ? COLORS.primary : COLORS.gray2,
     flexDirection: 'row',
     alignItems: 'center',

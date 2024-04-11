@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import styles from '../../../styles/app.style';
 import { SIZES } from "../../../constants";
 import { PopularStations, Welcome } from "../../../components";
-import { useAuth } from "../../../components/context/AuthContext";
+import { useAuth } from "../../../components/context";
 
 const Home = () => {
   const { session } = useAuth();

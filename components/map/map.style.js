@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
   },
   isFreeWrapper: (state) => ({
     height: '40%',
-    backgroundColor: state == 'READY' ? COLORS.green : COLORS.yellow,
+    backgroundColor: state === 'READY' ? COLORS.green : COLORS.yellow,
     borderRadius: SIZES.small,
     justifyContent: 'center',
-    padding: SIZES.xSmall
+    padding: SIZES.xSmall,
   }),
   locationWrapper: {
     marginTop: SIZES.small,
@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderRadius: SIZES.small,
     justifyContent: 'center',
-    padding: SIZES.xSmall
+    padding: SIZES.xSmall,
   },
   isFreeText: {
-    flex:1,
+    flex: 1,
     fontFamily: FONT.bold,
     fontSize: SIZES.large,
     alignSelf: 'center',
@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
   infoTitle: {
     fontFamily: FONT.medium,
     fontSize: SIZES.small,
-    color: COLORS.primary
-  }
+    color: COLORS.primary,
+  },
 });
 
 export default styles;

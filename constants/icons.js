@@ -13,8 +13,8 @@ import hidePassword from '../assets/icons/hide-password.png';
 import google from '../assets/icons/company/google.png';
 import facebook from '../assets/icons/company/facebook.png';
 import fastForward from '../assets/icons/fast-forward.png';
-import botLocation from '../assets/icons/bot-location.png'
-import pickupLocation from '../assets/icons/pickup-location.png'
+import botLocation from '../assets/icons/bot-location.png';
+import pickupLocation from '../assets/icons/pickup-location.png';
 import stop from '../assets/icons/stop-button.png';
 
 // navigator
@@ -45,5 +45,5 @@ export default {
   fastForward,
   botLocation,
   pickupLocation,
-  stop
+  stop,
 };

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Modal, Text, Pressable, View, TouchableOpacity } from 'react-native';
+import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
-import * as database from 'firebase/database';
 import { db, setRequestStage } from '../../../utils/firebase';
 import { updateTourStatus } from "../../../utils/apiRequest";
 import { COLORS } from '../../../constants';

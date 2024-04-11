@@ -1,8 +1,7 @@
 import { SafeAreaView, ScrollView, StatusBar, KeyboardAvoidingView } from "react-native";
 import styles from '../../styles/app.style';
-import { LoginForm, LoginImage, Loader, BackWrapper } from "../../components";
+import {LoginImage, Loader, BackWrapper, SignupForm } from "../../components";
 import { useState } from "react";
-import SignupForm from "../../components/auth/SignupForm";
 
 const Login = () => {
     const [isLoading, setLoading] = useState(false);

@@ -6,10 +6,10 @@ const useFetch = (endpoint, query, session) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const params = query ? { ...query } : {};
-  const headers = session ?
-    {
+  const headers = session
+    ? {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${session.token.accessToken}`,
+      Authorization: `Bearer ${session.token.accessToken}`,
     } : {
       'Content-Type': 'application/json',
     };
@@ -17,7 +17,7 @@ const useFetch = (endpoint, query, session) => {
     method: 'GET',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}${endpoint}`,
     headers,
-    params
+    params,
   };
   const fetchData = async () => {
     setIsLoading(true);

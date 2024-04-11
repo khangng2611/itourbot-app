@@ -3,8 +3,7 @@ import styles from '../../../styles/app.style';
 import { SwitchBar, HistoryList, OngoingTour } from "../../../components";
 import { useState, useContext } from "react";
 import useFetch from "../../../hook/useFetch";
-import { useAuth } from "../../../components/context/AuthContext";
-import { TourContext } from "../../../components/context/TourContext";
+import { useAuth, TourContext } from "../../../components/context";
 
 const History = () => {
     const { session } = useAuth();

@@ -1,4 +1,4 @@
-import { Modal, StyleSheet, Text, Pressable, View } from 'react-native';
+import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
 
 const StopTourModal = ({ isVisible, setVisble, handleConfirm }) => {

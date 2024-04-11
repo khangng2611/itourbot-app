@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Modal, StyleSheet, Text, Pressable, View } from 'react-native';
+import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
 import { updateTourStatus } from "../../../utils/apiRequest";
 
