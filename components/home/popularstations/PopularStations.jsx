@@ -12,8 +12,8 @@ const PopularStations = () => {
   const { setStationsList } = useContext(DataContext);
   const { data, isLoading, error } = useFetch("stations");
   useEffect(() => {
-    if (data.length > 0) {
-      setStationsList(data);
+    if (data && data.length > 0) {
+      setStationsList(data.sort((a, b) => a.stationId - b.stationId));
     }
   }, [data]);
 

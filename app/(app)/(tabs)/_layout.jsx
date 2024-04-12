@@ -43,7 +43,7 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="History"
                 options={{
-                    title: 'Your tours',
+                    title: 'Your Tours',
                     tabBarIcon: ({ color }) => {
                         return (
                             <Image

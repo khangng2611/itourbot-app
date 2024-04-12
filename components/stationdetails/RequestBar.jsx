@@ -14,7 +14,7 @@ const RequestBar = ({ item }) => {
     const { setAllowListen, setTourInfo } = useContext(TourContext);
     const { stationsList } = useContext(DataContext);
     const { isFree } = fetchState();
-    const [chosenStation, setChosenStation] = useState(null);
+    const [fromStation, setChosenStation] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const [requestStatus, setRequestStatus] = useState([false, ""]);
     const [invalidModal, setInvalidModal] = useState({
@@ -26,7 +26,7 @@ const RequestBar = ({ item }) => {
     const dropdownList = stationsList.map((station) => ({ label: `(${station.stationId}) ${station.name}`, value: station.stationId }));
 
     const handleRequestTour = () => {
-        if (!chosenStation) {
+        if (!fromStation) {
             setInvalidModal({
                 isVisible: true,
                 headerText: "Select a station",
@@ -34,7 +34,7 @@ const RequestBar = ({ item }) => {
             })
             return;
         }
-        if (chosenStation == item.stationId) {
+        if (fromStation == item.stationId) {
             setInvalidModal({
                 isVisible: true,
                 headerText: "Invalid station",
@@ -48,17 +48,17 @@ const RequestBar = ({ item }) => {
     const requestTour = async () => {
         try {
             const tour = await addTour(
-                fromStation = parseInt(chosenStation),
+                fromStation = parseInt(fromStation),
                 toStation = [parseInt(item.stationId)],
                 session
             );
-            const pickupStation = stationsList.find(station => station.stationId === parseInt(chosenStation));
+            const pickupStation = stationsList[parseInt(fromStation)-1];
             setRequestStage(pickupStation, 1);
             setTourInfo({
                 _id: tour._id,
                 status: 'picking',
-                fromStation: pickupStation,
-                toStation: { ...item, stations: [] }
+                fromStation: parseInt(fromStation),
+                toStation: [parseInt(item.stationId)],
             });
             setAllowListen(true);
             setRequestStatus([true, "success"]);
@@ -98,7 +98,7 @@ const RequestBar = ({ item }) => {
                         valueField="value"
                         placeholder={!isFocus ? 'Select item' : '...'}
                         searchPlaceholder="Search station"
-                        value={chosenStation}
+                        value={fromStation}
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
                         onChange={seletedItem => {
@@ -125,7 +125,7 @@ const RequestBar = ({ item }) => {
                 headerText={invalidModal.headerText}
                 contentText={invalidModal.contentText}
             />
-            <RequestModal isVisible={requestModal} setVisible={setRequestModal} requestTour={requestTour} tourData={{...item, chosenStation}} stationsList={stationsList}  />
+            <RequestModal isVisible={requestModal} setVisible={setRequestModal} requestTour={requestTour} tourData={{...item, fromStation}} stationsList={stationsList}  />
         </View>
     )
 }

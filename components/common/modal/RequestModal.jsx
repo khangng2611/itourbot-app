@@ -17,12 +17,6 @@ const RequestModal = ({ isVisible, setVisible, requestTour, tourData, stationsLi
         try {
             setVisible(!isVisible);
             await requestTour();
-            // updateTourStatus(tourInfor._id, 'leading', session);
-            // setRequestStage(tourInfor.toStation, 2);
-            // setTourInfo({
-            //     ...tourInfor,
-            //     status: 'leading',
-            // });
         } catch (error) {
             console.log(error);
         }

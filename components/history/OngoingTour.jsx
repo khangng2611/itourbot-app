@@ -8,7 +8,7 @@ import { updateTourStatus } from "../../utils/apiRequest";
 import { setRequestStage } from "../../utils/firebase";
 import StopTourModal from "../common/modal/StopTourModal";
 
-const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModal }) => {
+const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModal, stationsList }) => {
     const { tourInfor, setTourInfo, setAllowListen } = tourContext;
     if (!isVisible) return null;
     if (!tourInfor._id) return (
@@ -16,8 +16,8 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
             <Text style={{ fontFamily: FONT.regular }}>You haven't request a tourguide yet.</Text>
         </View>
     );
-    const toStation = tourInfor.toStation;
-    const fromStation = tourInfor.fromStation;
+    const fromStation = stationsList[tourInfor.fromStation-1];
+    const toStation =  toStation.map(station => stationsList[station-1]);
     const { x, y } = fetchState();
     const tourStatus = tourStatuses[tourInfor.status];
     const cancelTour = () => {

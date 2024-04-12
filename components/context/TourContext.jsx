@@ -12,8 +12,8 @@ const TourContext = createContext({
     tourInfor: {
         _id: null,
         status: null,
-        fromStation: {},
-        toStation: {},
+        fromStation: null,
+        toStation: [],
     },
     setTourInfo: () => null,
 });
@@ -23,8 +23,8 @@ const TourProvider = ({ children }) => {
     const [tourInfor, setTourInfo] = useState({
         _id: null,
         status: null,
-        fromStation: {},
-        toStation: {},
+        fromStation: null,
+        toStation: [],
     });
     const [isAllowListen, setAllowListen] = useState(false);
     const [isPickupModalShown, setPickupModalShown] = useState(false);
