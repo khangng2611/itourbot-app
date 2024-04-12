@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-
 import { COLORS, FONT, SIZES } from '../../../constants';
 
 const styles = StyleSheet.create({
@@ -21,8 +20,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    marginTop: SIZES.large,
-    height: 50,
+    height: 40,
   },
   searchWrapper: {
     flex: 1,
@@ -54,7 +52,7 @@ const styles = StyleSheet.create({
   },
   tabsContainer: {
     width: '100%',
-    marginTop: SIZES.medium,
+    marginTop: SIZES.small,
   },
   tab: (activeJobType, item) => ({
     paddingVertical: SIZES.small / 2,
@@ -67,6 +65,26 @@ const styles = StyleSheet.create({
     fontFamily: FONT.medium,
     color: activeJobType === item ? COLORS.secondary : COLORS.gray2,
   }),
+  btnWrapper: {
+    flexDirection: 'row',
+    marginVertical: SIZES.xSmall,
+    justifyContent: 'space-between',
+  },
+  mainFeatBtn: (screenHeight) => ({
+    height: screenHeight / 10,
+    width: '48%',
+    backgroundColor: COLORS.green,
+    padding: SIZES.medium,
+    borderRadius: SIZES.large,
+    // flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }),
+  mainFeatText: {
+    fontFamily: FONT.medium,
+    color: COLORS.white,
+    fontSize: SIZES.medium,
+  },
 });
 
 export default styles;

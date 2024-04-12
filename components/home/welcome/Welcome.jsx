@@ -1,20 +1,32 @@
-import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image, FlatList } from "react-native";
+import { useState, useContext } from "react";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
-
 import styles from "./welcome.style";
-import { icons, SIZES } from "../../../constants";
+import { icons } from "../../../constants";
+import { DataContext } from "../../context";
 
-const jobTypes = ["All", "Most visited", "Nearby"];
-
+// const jobTypes = ["All", "Most visited", "Nearby"];
 const Welcome = ({ user, searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
-  const [activeJobType, setActiveJobType] = useState("Full-time");
+  // const [activeJobType, setActiveJobType] = useState("Full-time");
+  const { screenHeight } = useContext(DataContext);
   return (
     <View>
       <View style={styles.container}>
         <Text style={styles.userName}>Hi, {user.name} 👋</Text>
         <Text style={styles.welcomeMessage}>Explore our world !</Text>
+      </View>
+
+      <View style={styles.btnWrapper}>
+        <TouchableOpacity 
+          onPress={() => router.push("/tours-request")}
+          style={styles.mainFeatBtn(screenHeight)}
+        >
+          <Text style={styles.mainFeatText}>Request tourguide</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.mainFeatBtn(screenHeight)}>
+          <Text style={styles.mainFeatText}>Check your tour</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.searchContainer}>
@@ -36,7 +48,7 @@ const Welcome = ({ user, searchTerm, setSearchTerm, handleClick }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.tabsContainer}>
+      {/* <View style={styles.tabsContainer}>
         <FlatList
           data={jobTypes}
           renderItem={({ item }) => (
@@ -55,7 +67,7 @@ const Welcome = ({ user, searchTerm, setSearchTerm, handleClick }) => {
           contentContainerStyle={{ columnGap: SIZES.small }}
           horizontal
         />
-      </View>
+      </View> */}
     </View>
   );
 };

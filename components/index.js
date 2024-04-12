@@ -31,6 +31,10 @@ import SwitchBar from './history/SwitchBar';
 import HistoryList from './history/HistoryList';
 import OngoingTour from './history/OngoingTour';
 
+// tours-request screen
+import RequestHeader from './toursrequest/RequestHeader';
+import RequestContent from './toursrequest/RequestContent';
+
 export {
   ScreenHeaderBtn,
   Welcome,
@@ -52,4 +56,6 @@ export {
   OngoingTour,
   GetPickupModal,
   BackWrapper,
+  RequestHeader,
+  RequestContent,
 };
