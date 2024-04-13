@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
 import { db, setRequestStage } from '../../../utils/firebase';
 import { updateTourStatus } from "../../../utils/apiRequest";
-import { COLORS } from '../../../constants';
+import { COLORS, TOUR_STAGE } from '../../../constants';
 
-const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, session }) => {
+const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, session, stationsList }) => {
     const [remainingTime, setRemainingTime] = useState(30);
     const handleCancel = async () => {
         try {
             setVisible(!isVisible);
             updateTourStatus(tourInfor._id, 'canceled', session);
-            setRequestStage(null, 0);
+            setRequestStage([], TOUR_STAGE.cancel);
             setTourInfo({})
             setAllowListen(false);
             // database.off(reachStationRef);
@@ -24,7 +24,8 @@ const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setT
         try {
             setVisible(!isVisible);
             updateTourStatus(tourInfor._id, 'leading', session);
-            setRequestStage(tourInfor.toStation, 2);
+            const toStationArr = tourInfor.toStation.map(stationId => stationsList[stationId-1]);
+            setRequestStage(toStationArr, TOUR_STAGE.destination);
             setTourInfo({
                 ...tourInfor,
                 status: 'leading',
@@ -60,8 +61,8 @@ const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setT
                 <View style={styles.modalView}>
                     <Text style={styles.headerText}>Tour Notification</Text>
                     <Text style={styles.contentText}>
-                        Turtlebot has just reached your pickup station! Please confirm in 
-                        <Text style={{color:COLORS.red}}> {remainingTime}s </Text> 
+                        Turtlebot has just reached your pickup station! Please confirm in
+                        <Text style={{ color: COLORS.red }}> {remainingTime}s </Text>
                         to allow Turtlebot to start the tourguide. After this time, the tour request is automatically canceled.
                     </Text>
                     <View style={styles.btnWrapper}>

@@ -35,25 +35,27 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: stationsList.includes(stationId) ? COLORS.green : COLORS.secondary,
   }),
-  stationText: {
-    fontFamily: FONT.regular, 
-    fontSize: SIZES.medium
-  },
-  confirmBtn: {
+  stationText: (stationsList, stationId) => ({
+    fontFamily: FONT.medium, 
+    fontSize: SIZES.medium,
+    color: stationsList.includes(stationId) ? COLORS.green : COLORS.secondary,
+  }),
+  confirmBtn: (isFree) => ({
     padding: SIZES.medium,
-    backgroundColor: COLORS.primary,
+    backgroundColor: isFree ? COLORS.primary : COLORS.gray2,
     borderRadius: SIZES.medium,
     justifyContent: 'center',
     alignItems: 'center',
-  },
+  }),
   confirmText: { 
     color: COLORS.white, 
     fontFamily: FONT.medium, 
     fontSize: SIZES.medium
   }, 
   flatlistStyle: {
-    rowGap: 5,
+    rowGap: SIZES.xSmall,
     flex: 1,
+    marginHorizontal: SIZES.xSmall
   }
 });
 export default styles;

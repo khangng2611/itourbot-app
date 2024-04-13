@@ -41,36 +41,42 @@ export const fetchState = () => {
   };
 };
 
-export const setRequestStage = (station, stage) => {
+export const setRequestStage = (stationObjArr, stage) => {
   const requestRef = database.ref(db, '/request');
-  if (stage === 0) {
-    database.set(requestRef, {
-      id: 0,
-      param: {
-        x: 0,
-        y: 0,
-        yaw: 0,
+  let stations = {};
+  for (const idx in stationObjArr) {
+    const stationKey = `station${idx}`;
+    const stationObj = stationObjArr[idx];
+    stations = {
+      ...stations,
+      [stationKey]: {
+        id: parseInt(stationObj.stationId, 10),
+        name: stationObj.name,
+        description: stationObj.description,
+        x: stationObj.location.x,
+        y: stationObj.location.y,
+        yaw: stationObj.location.yaw
       },
-      station: {
-        description: '',
-        id: 0,
-        name: '',
-      },
-    });
-    return;
+    };
   }
-  const stationId = parseInt(station.stationId, 10);
   database.set(requestRef, {
     id: stage,
-    param: {
-      x: station.location.x,
-      y: station.location.y,
-      yaw: station.location.yaw,
-    },
-    station: {
-      description: station.description,
-      id: stationId,
-      name: station.name,
-    },
+    numStation: stationObjArr.length,
+    ...stations,
   });
+  return;
 };
+// const stationId = parseInt(stationObj.stationId, 10);
+// database.set(requestRef, {
+//   id: stage,
+//   param: {
+//     x: stationObj.location.x,
+//     y: stationObj.location.y,
+//     yaw: stationObj.location.yaw,
+//   },
+//   station: {
+//     description: stationObj.description,
+//     id: stationId,
+//     name: stationObj.name,
+//   },
+// });

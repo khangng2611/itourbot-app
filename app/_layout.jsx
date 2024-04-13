@@ -27,11 +27,11 @@ function RootLayout() {
   // Set up the auth context and render our layout inside of it.
   return (
     <AuthProvider>
-      <TourProvider>
-        <DataProvider>
+      <DataProvider>
+        <TourProvider>
           <Slot />
-        </DataProvider>
-      </TourProvider>
+        </TourProvider>
+      </DataProvider>
     </AuthProvider>
   );
 }

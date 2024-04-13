@@ -1,12 +1,15 @@
 import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
 import { updateTourStatus } from "../../../utils/apiRequest";
+import { setRequestStage } from '../../../utils/firebase';
+import { TOUR_STAGE } from '../../../constants';
 
 const GetDestinationModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, session }) => {
     const handleClick = async () => {
         try {
             setVisible(false);
             updateTourStatus(tourInfor._id, 'done', session);
+            setRequestStage([], TOUR_STAGE.idle);
             setTourInfo({});
             setAllowListen(false);
             // database.off(reachStationRef);

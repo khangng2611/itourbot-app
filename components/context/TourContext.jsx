@@ -1,10 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useEffect } from "react";
 import * as database from 'firebase/database';
-import { db, setRequestStage } from '../../utils/firebase';
+import { db } from '../../utils/firebase';
 import { useAuth } from "./AuthContext";
+import { DataContext } from "./DataContex";
 import GetPickupModal from "../common/modal/GetPickupModal";
-import GetDestinationModal from  "../common/modal/GetDestinationModal";
+import GetDestinationModal from "../common/modal/GetDestinationModal";
 
 const TourContext = createContext({
     isAllowListen: 0,
@@ -20,6 +21,7 @@ const TourContext = createContext({
 
 const TourProvider = ({ children }) => {
     const { session } = useAuth();
+    const { stationsList } = useContext(DataContext);
     const [tourInfor, setTourInfo] = useState({
         _id: null,
         status: null,
@@ -112,20 +114,21 @@ const TourProvider = ({ children }) => {
                 }
             }}
         >
-            <GetPickupModal 
-                isVisible={isPickupModalShown} 
-                setVisible={setPickupModalShown} 
-                setAllowListen={setAllowListen} 
-                tourInfor={tourInfor} 
-                setTourInfo={setTourInfo} 
+            <GetPickupModal
+                isVisible={isPickupModalShown}
+                setVisible={setPickupModalShown}
+                setAllowListen={setAllowListen}
+                tourInfor={tourInfor}
+                setTourInfo={setTourInfo}
                 session={session}
+                stationsList = {stationsList}
             />
-            <GetDestinationModal 
-                isVisible={isDestinationModalShown} 
-                setVisible={setDestinationModalShown} 
-                setAllowListen={setAllowListen} 
-                tourInfor={tourInfor} 
-                setTourInfo={setTourInfo} 
+            <GetDestinationModal
+                isVisible={isDestinationModalShown}
+                setVisible={setDestinationModalShown}
+                setAllowListen={setAllowListen}
+                tourInfor={tourInfor}
+                setTourInfo={setTourInfo}
                 session={session}
             />
             {children}

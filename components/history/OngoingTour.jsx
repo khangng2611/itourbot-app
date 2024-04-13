@@ -3,7 +3,7 @@ import MapImage from "../../components/map/MapImage";
 import LocationSpot from "../map/LocationSpot";
 import { fetchState } from "../../utils/firebase";
 import styles from "./history.style";
-import { FONT, SIZES, icons, tourStatuses } from "../../constants";
+import { FONT, SIZES, icons, TOUR_STATUSES, TOUR_STAGE } from "../../constants";
 import { updateTourStatus } from "../../utils/apiRequest";
 import { setRequestStage } from "../../utils/firebase";
 import StopTourModal from "../common/modal/StopTourModal";
@@ -19,12 +19,12 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
     const fromStation = stationsList[tourInfor.fromStation-1];
     const toStation =  toStation.map(station => stationsList[station-1]);
     const { x, y } = fetchState();
-    const tourStatus = tourStatuses[tourInfor.status];
+    const tourStatus = TOUR_STATUSES[tourInfor.status];
     const cancelTour = () => {
         setStopModal(false);
         updateTourStatus(tourInfor._id, 'canceled', session);
         setAllowListen(false);
-        setRequestStage(null, 0);
+        setRequestStage([], TOUR_STAGE.cancel);
         setTourInfo({});
     }
     return (
@@ -44,10 +44,10 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
                 <View style={{ paddingHorizontal: SIZES.medium }}>
                     <View style={styles.ongoingContentWrapper}>
                         <View style={styles.ongoingSideContentWrapper}>
-                            <Image source={icons.pickupLocation} style={styles.ongoingIcon} />
+                            <Image source={icons.pickupLocation} style={styles.icon(SIZES.xxLarge)} />
                             <View>
-                                <Text style={styles.stationIdText(SIZES.medium)}>Station {fromStation.stationId}</Text>
-                                <Text style={styles.stationNameText(SIZES.medium)}>{fromStation.name}</Text>
+                                <Text style={styles.stationText(SIZES.medium)}>Station {fromStation.stationId}</Text>
+                                <Text style={styles.stationText(SIZES.medium)}>{fromStation.name}</Text>
                             </View>
                         </View>
                         <Image source={icons.fastForward} style={styles.forwardIcon} />
