@@ -18,10 +18,8 @@ const styles = StyleSheet.create({
     paddingBottom: SIZES.xxLarge,
     textAlign: 'justify',
   },
-  container: {
+  requestBarContainer: {
     paddingHorizontal: SIZES.medium,
-    marginBottom: SIZES.xSmall,
-    height: '10%',
     paddingTop: SIZES.xSmall,
   },
   button: (isFree) => ({
@@ -41,7 +39,7 @@ const styles = StyleSheet.create({
   dropdown: {
     borderColor: COLORS.gray,
     borderWidth: 0.5,
-    borderRadius: 8,
+    borderRadius: SIZES.xSmall,
     paddingHorizontal: SIZES.xSmall,
   },
   icon: {

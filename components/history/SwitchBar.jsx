@@ -15,7 +15,7 @@ const SwitchBar = ({setTab}) => {
             height={45}
             buttonColor={COLORS.primary}
             hasPadding
-            animationDuration={100}
+            animationDuration={1000}
             options={[
                 { label: "History", value: "0", }, 
                 { label: "Ongoing", value: "1",  }

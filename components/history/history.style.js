@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   itemWrapper: {
-    marginVertical: SIZES.small,
+    marginVertical: SIZES.xSmall,
     marginHorizontal: 5,
     padding: SIZES.small,
     borderBlockColor: COLORS.lightWhite,
@@ -42,26 +42,16 @@ const styles = StyleSheet.create({
     padding: 5,
   }),
   contentWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     borderBottomWidth: 1,
     borderTopWidth: 1,
     borderBlockColor: '#D9D9D9',
-    padding: SIZES.medium,
+    paddingVertical: SIZES.small,
+    marginLeft: 5,
+    alignItems: 'flex-start'
   },
-  sideContentWrapper: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  stationIdText: (size) => ({
+  stationText: (size) => ({
     fontFamily: FONT.medium,
     color: COLORS.primary,
-    fontSize: size,
-  }),
-  stationNameText: (size) => ({
-    fontFamily: FONT.medium,
-    color: COLORS.secondary,
     fontSize: size,
   }),
   forwardIcon: {
@@ -89,12 +79,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  ongoingIcon: {
+  icon: (size) => ({
     resizeMode: 'contain',
-    width: 30,
-    height: 30,
+    width: size,
+    height: size,
     marginRight: 5,
-  },
+  }),
   stopBtn: {
     width: '60%',
     justifyContent: 'center',

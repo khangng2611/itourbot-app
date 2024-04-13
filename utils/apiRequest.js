@@ -76,7 +76,7 @@ const addTour = async (fromStation, toStation, session) => {
     },
     data: JSON.stringify({
       fromStation,
-      toStation,
+      toStation: toStation.sort((a, b) => a - b),
     }),
   };
   try {
