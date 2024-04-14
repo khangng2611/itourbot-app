@@ -7,7 +7,7 @@ import { normalLogin } from '../../utils/apiRequest';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../../components/context';
 import { COLORS, FONT } from '../../constants';
-import InavlidRequestModal from '../common/modal/InvalidModal';
+import InforModal from '../common/modal/InforModal';
 
 const LoginForm = ({ setLoading }) => {
     const [inputs, setInputs] = useState({ email: 'khang@gmail.com', password: '123456' });
@@ -89,11 +89,12 @@ const LoginForm = ({ setLoading }) => {
             <Text style={styles.signupText}>Don't have account?
                 <Text onPress={() => router.push("/(auth)/Signup")} style={{color:COLORS.primary, fontFamily:FONT.bold}}> Sign Up</Text>
             </Text>
-            <InavlidRequestModal
+            <InforModal
                 isVisible={invalidModal.isVisible}
-                setInvalidModal={setInvalidModal}
+                setInforModal={setInvalidModal}
                 headerText={invalidModal.headerText}
                 contentText={invalidModal.contentText}
+                isInvalid={true}
             />
         </View>
     );

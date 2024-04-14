@@ -2,14 +2,17 @@
 import {Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
 import { COLORS } from '../../../constants';
+import { useRouter } from 'expo-router';
 
-const InavlidModal = ({isVisible, setInvalidModal, headerText, contentText}) => {
+const InforModal = ({isVisible, setInforModal, headerText, contentText, isInvalid}) => {
+    const router = useRouter();
     const handleCancel = async () => {
-        setInvalidModal({
+        setInforModal({
             isVisible: false,
             headerText: "",
             contentText: ""
         });
+        if (!isInvalid) router.back();
     }
     return (
         <Modal
@@ -21,7 +24,7 @@ const InavlidModal = ({isVisible, setInvalidModal, headerText, contentText}) => 
             }}>
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    <Text style={[styles.headerText, {color:COLORS.red}]}>{headerText}</Text>
+                    <Text style={[styles.headerText, {color: isInvalid ? COLORS.red : COLORS.green}]}>{headerText}</Text>
                     <Text style={styles.contentText}>{contentText}</Text>
                     <View style={styles.btnWrapper}>
                         <Pressable
@@ -37,4 +40,4 @@ const InavlidModal = ({isVisible, setInvalidModal, headerText, contentText}) => 
     );
 };
 
-export default InavlidModal;
+export default InforModal;

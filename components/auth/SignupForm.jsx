@@ -5,7 +5,7 @@ import styles from './auth.style';
 import { validateEmail } from '../../utils/checkFormat';
 import { register } from '../../utils/apiRequest';
 import { useRouter } from 'expo-router';
-import InavlidRequestModal from '../common/modal/InvalidModal';
+import InforModal from '../common/modal/InforModal';
 
 const SignupForm = ({ setLoading }) => {
     const [inputs, setInputs] = useState({ name: '', email: '', password: '', retypePassword: '' });
@@ -111,11 +111,12 @@ const SignupForm = ({ setLoading }) => {
             >
                 <Text style={styles.loginBtnText}>Sign Up</Text>
             </TouchableOpacity>
-            <InavlidRequestModal
+            <InforModal
                 isVisible={invalidModal.isVisible}
-                setInvalidModal={setInvalidModal}
+                setInForModal={setInvalidModal}
                 headerText={invalidModal.headerText}
                 contentText={invalidModal.contentText}
+                isInvalid={true}
             />
         </View>
     );

@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { SIZES, icons } from "../../constants";
+import { COLORS, FONT, SIZES, icons } from "../../constants";
 import styles from "./history.style";
 
 const HistoryHeader = () => {
@@ -12,8 +12,8 @@ const HistoryHeader = () => {
                 onPress={() => router.push("/(app)/tours-request")}
                 style={styles.headerBtn}
             >
-                <Image source={icons.plus} style={styles.icon(SIZES.xLarge)} />
-                <Text style={styles.stationText(SIZES.small)}>New Tour</Text>
+                <Image source={icons.plus} style={[styles.icon(SIZES.xLarge), {tintColor: COLORS.secondary}]} />
+                <Text style={[styles.stationText(SIZES.small), {fontFamily: FONT.regular, color: COLORS.secondary}]}>New Tour</Text>
             </TouchableOpacity>
         </View>
     )

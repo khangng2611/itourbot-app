@@ -6,7 +6,7 @@ import { Dropdown } from "react-native-element-dropdown"
 import { fetchState, setRequestStage } from "../../utils/firebase";
 import { addTour } from "../../utils/apiRequest";
 import { useAuth, TourContext, DataContext } from "../context";
-import InavlidRequestModal from "../common/modal/InvalidModal";
+import InforModal from "../common/modal/InforModal";
 import RequestModal from "../common/modal/RequestModal";
 
 const RequestBar = ({ item }) => {
@@ -118,11 +118,12 @@ const RequestBar = ({ item }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <InavlidRequestModal
+            <InforModal
                 isVisible={invalidModal.isVisible}
-                setInvalidModal={setInvalidModal}
+                setInforModal={setInvalidModal}
                 headerText={invalidModal.headerText}
                 contentText={invalidModal.contentText}
+                isInvalid={true}
             />
             <RequestModal
                 isVisible={requestModal}
