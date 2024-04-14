@@ -13,6 +13,13 @@ const styles = StyleSheet.create({
     left: leftPosition,
     bottom: bottomPosition,
   }),
+  locationCaption: {
+    fontFamily: FONT.regular,
+    fontSize: SIZES.xSmall,
+    alignSelf: 'center',
+    position: 'absolute',
+    bottom: 0
+  },  
   mapImage: {
     flex: 2,
     width: '100%',

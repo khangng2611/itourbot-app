@@ -21,7 +21,7 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
     const tourStatus = TOUR_STATUSES[tourInfor.status];
     const toStationList = tourInfor.toStation.map(stationId => stationsList[stationId - 1]);
     const toStationSpotsComponent = toStationList.map((station) => (
-        <LocationSpot x={station.location.x} y={station.location.y} icon={icons.desLocation} />
+        <LocationSpot key={station.stationId} x={station.location.x} y={station.location.y} icon={icons.desLocation} caption={`(${station.stationId})`} />
     ));
     const toStationListName = toStationList.map((station) => `Station ${station.stationId} - ${station.name}`);
     const cancelTour = () => {
@@ -38,7 +38,7 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
                 <LocationSpot x={x} y={y} icon={icons.botLocation} />
                 <LocationSpot x={fromStation.location.x} y={fromStation.location.y} icon={icons.pickupLocation} />
                 {/* <LocationSpot x={toStationList.location.x} y={toStationList.location.y} icon={icons.desLocation} /> */}
-                {/* {toStationSpotsComponent} */}
+                {toStationSpotsComponent}
             </View>
             <ScrollView style={{ flex: 1 }}>
                 <View style={{ alignSelf: 'center' }}>
@@ -49,7 +49,7 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
                 <View style={{ paddingHorizontal: SIZES.medium }}>
                     <View style={styles.ongoingContentWrapper}>
                         <View style={styles.ongoingSideContentWrapper}>
-                            <Image source={icons.pickupLocation} style={styles.icon(0.8*SIZES.xxLarge)} />
+                            <Image source={icons.pickupLocation} style={styles.icon(0.8 * SIZES.xxLarge)} />
                             <Text style={[styles.stationText(SIZES.small), { alignSelf: 'flex-start' }]}>Station {fromStation.stationId} {'\n'}{fromStation.name}</Text>
                         </View>
                         <View style={styles.ongoingSideContentWrapper}>
