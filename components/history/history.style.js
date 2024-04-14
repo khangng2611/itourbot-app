@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: 'row',
     marginTop: 5,
+    justifyContent: 'space-between',
   },
   ongoingContentWrapper: {
     marginTop: 5,

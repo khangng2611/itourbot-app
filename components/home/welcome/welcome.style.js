@@ -71,19 +71,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   mainFeatBtn: (screenHeight) => ({
-    height: screenHeight / 10,
-    width: '48%',
-    backgroundColor: COLORS.green,
-    padding: SIZES.medium,
-    borderRadius: SIZES.large,
-    // flex: 1,
+    height: screenHeight / 9,
+    borderRadius: SIZES.medium,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   }),
   mainFeatText: {
     fontFamily: FONT.medium,
-    color: COLORS.white,
-    fontSize: SIZES.medium,
+    color: COLORS.primary,
+    fontSize: SIZES.large,
+    position: 'absolute',
   },
 });
 

@@ -11,6 +11,7 @@ const TourItem = ({ item }) => {
     const tourStatus = TOUR_STATUSES[item.status];
     const tourId = item._id.slice(-10);
     const formattedTime = new Date(item.createdAt).toLocaleTimeString('vn-VN', { hour: 'numeric', minute: 'numeric', second: 'numeric', day: 'numeric', month: 'numeric', year: 'numeric' });
+    const duration = new Date(Date.parse(item.updatedAt) - Date.parse(item.createdAt)).toISOString().substr(11, 8);
     return (
         <View style={styles.itemWrapper}>
             <View style={styles.headerWrapper}>
@@ -30,7 +31,12 @@ const TourItem = ({ item }) => {
                 </View>
             </View>
             <View style={styles.footer}>
-                <Text style={styles.statusText(COLORS.secondary, SIZES.small)}>Time: {formattedTime}</Text>
+                <Text style={styles.statusText(COLORS.secondary, SIZES.small)}>
+                    { ['picking', 'leading'].includes(item.status) ? 
+                    "" : `Duration: ${duration}`
+                    }
+                </Text>
+                <Text style={styles.statusText(COLORS.secondary, SIZES.small)}>Date: {formattedTime}</Text>
             </View>
         </View>
     )
