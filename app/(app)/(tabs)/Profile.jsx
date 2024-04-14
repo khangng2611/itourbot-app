@@ -1,12 +1,18 @@
 import { View, Text, SafeAreaView } from "react-native";
 import styles from '../../../styles/app.style';
+import { useAuth } from "../../../components/context";
+import { Logout, UserInfor } from "../../../components";
 
 const Profile = () => {
+    const { session, signOut } = useAuth();
+    const userInfo = session.user;
     return (
         <SafeAreaView style={styles.safeAreaView}>
-            <View>
-                <Text>Profile</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>Profile</Text>
             </View>
+            <UserInfor user={userInfo}/>
+            <Logout signOut={signOut}/>
         </SafeAreaView>
     )
 }

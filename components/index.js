@@ -36,6 +36,10 @@ import HistoryHeader from './history/HistoryHeader';
 import RequestHeader from './toursrequest/RequestHeader';
 import RequestContent from './toursrequest/RequestContent';
 
+// profile
+import UserInfor from './profile/UserInfor';
+import Logout from './profile/Logout';
+
 export {
   ScreenHeaderBtn,
   Welcome,
@@ -60,4 +64,6 @@ export {
   RequestHeader,
   RequestContent,
   HistoryHeader,
+  UserInfor, 
+  Logout
 };

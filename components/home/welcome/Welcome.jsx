@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
 import styles from "./welcome.style";
-import { icons } from "../../../constants";
+import { SIZES, icons, images } from "../../../constants";
 import { DataContext } from "../../context";
 
 // const jobTypes = ["All", "Most visited", "Nearby"];
@@ -22,16 +22,16 @@ const Welcome = ({ user, searchTerm, setSearchTerm, handleClick }) => {
           onPress={() => router.push("/tours-request")}
           style={styles.mainFeatBtn(screenHeight)}
         >
-          <Text style={styles.mainFeatText}>Request tourguide</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => router.replace({
-            pathname: `/(app)/(tabs)/History`,
-            params: { initialTab: 1 }
-          })}
-          style={styles.mainFeatBtn(screenHeight)}
-        >
-          <Text style={styles.mainFeatText}>Check your tour</Text>
+          <Image 
+            source={images.requestBg} 
+            style={{
+              resizeMode: 'cover',
+              width: '100%',
+              height: '100%',
+              borderRadius: SIZES.medium
+            }}
+          />
+          <Text style={styles.mainFeatText}>Request multi-stations</Text>
         </TouchableOpacity>
       </View>
 
