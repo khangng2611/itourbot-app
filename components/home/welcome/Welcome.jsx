@@ -18,13 +18,19 @@ const Welcome = ({ user, searchTerm, setSearchTerm, handleClick }) => {
       </View>
 
       <View style={styles.btnWrapper}>
-        <TouchableOpacity 
+        <TouchableOpacity
           onPress={() => router.push("/tours-request")}
           style={styles.mainFeatBtn(screenHeight)}
         >
           <Text style={styles.mainFeatText}>Request tourguide</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.mainFeatBtn(screenHeight)}>
+        <TouchableOpacity
+          onPress={() => router.replace({
+            pathname: `/(app)/(tabs)/History`,
+            params: { initialTab: 1 }
+          })}
+          style={styles.mainFeatBtn(screenHeight)}
+        >
           <Text style={styles.mainFeatText}>Check your tour</Text>
         </TouchableOpacity>
       </View>

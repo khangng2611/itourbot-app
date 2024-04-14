@@ -16,6 +16,7 @@ import fastForward from '../assets/icons/fast-forward.png';
 import botLocation from '../assets/icons/bot-location.png';
 import pickupLocation from '../assets/icons/pickup-location.png';
 import stop from '../assets/icons/stop-button.png';
+import plus from '../assets/icons/plus.png'
 
 // navigator
 import home from '../assets/icons/tab-navigator/home.png';
@@ -46,4 +47,5 @@ export default {
   botLocation,
   pickupLocation,
   stop,
+  plus
 };

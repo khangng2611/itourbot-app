@@ -2,9 +2,8 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import styles from '../../../styles/app.style';
 import { SafeAreaView, ScrollView, View } from "react-native";
 import { Poster, RequestBar, About, BackWrapper } from '../../../components';
-import { COLORS } from "../../../constants";
 
-const tabs = ["About", "Qualifications", "Responsibilities"];
+// const tabs = ["About", "Qualifications", "Responsibilities"];
 
 const StationDetails = () => {
   const data = useLocalSearchParams();

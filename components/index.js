@@ -30,6 +30,7 @@ import BackWrapper from './common/cards/BackWrapper';
 import SwitchBar from './history/SwitchBar';
 import HistoryList from './history/HistoryList';
 import OngoingTour from './history/OngoingTour';
+import HistoryHeader from './history/HistoryHeader';
 
 // tours-request screen
 import RequestHeader from './toursrequest/RequestHeader';
@@ -58,4 +59,5 @@ export {
   BackWrapper,
   RequestHeader,
   RequestContent,
+  HistoryHeader,
 };

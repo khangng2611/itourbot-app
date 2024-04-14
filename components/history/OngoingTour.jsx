@@ -12,14 +12,18 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
     const { tourInfor, setTourInfo, setAllowListen } = tourContext;
     if (!isVisible) return null;
     if (!tourInfor._id) return (
-        <View style={{ padding: SIZES.medium, alignItems: 'center' , marginVertical: SIZES.medium}}>
+        <View style={{ padding: SIZES.medium, alignItems: 'center', marginVertical: SIZES.medium }}>
             <Text style={{ fontFamily: FONT.regular }}>You haven't request a tourguide yet.</Text>
         </View>
     );
-    const fromStation = stationsList[tourInfor.fromStation-1];
-    const toStation =  toStation.map(station => stationsList[station-1]);
+    const fromStation = stationsList[tourInfor.fromStation - 1];
     const { x, y } = fetchState();
     const tourStatus = TOUR_STATUSES[tourInfor.status];
+    const toStationList = tourInfor.toStation.map(stationId => stationsList[stationId - 1]);
+    const toStationSpotsComponent = toStationList.map((station) => (
+        <LocationSpot x={station.location.x} y={station.location.y} icon={icons.desLocation} />
+    ));
+    const toStationListName = toStationList.map((station) => `Station ${station.stationId} - ${station.name}`);
     const cancelTour = () => {
         setStopModal(false);
         updateTourStatus(tourInfor._id, 'canceled', session);
@@ -33,7 +37,8 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
                 <MapImage />
                 <LocationSpot x={x} y={y} icon={icons.botLocation} />
                 <LocationSpot x={fromStation.location.x} y={fromStation.location.y} icon={icons.pickupLocation} />
-                <LocationSpot x={toStation.location.x} y={toStation.location.y} icon={icons.desLocation} />
+                {/* <LocationSpot x={toStationList.location.x} y={toStationList.location.y} icon={icons.desLocation} /> */}
+                {/* {toStationSpotsComponent} */}
             </View>
             <ScrollView style={{ flex: 1 }}>
                 <View style={{ alignSelf: 'center' }}>
@@ -44,19 +49,12 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
                 <View style={{ paddingHorizontal: SIZES.medium }}>
                     <View style={styles.ongoingContentWrapper}>
                         <View style={styles.ongoingSideContentWrapper}>
-                            <Image source={icons.pickupLocation} style={styles.icon(SIZES.xxLarge)} />
-                            <View>
-                                <Text style={styles.stationText(SIZES.medium)}>Station {fromStation.stationId}</Text>
-                                <Text style={styles.stationText(SIZES.medium)}>{fromStation.name}</Text>
-                            </View>
+                            <Image source={icons.pickupLocation} style={styles.icon(0.8*SIZES.xxLarge)} />
+                            <Text style={[styles.stationText(SIZES.small), { alignSelf: 'flex-start' }]}>Station {fromStation.stationId} {'\n'}{fromStation.name}</Text>
                         </View>
-                        <Image source={icons.fastForward} style={styles.forwardIcon} />
                         <View style={styles.ongoingSideContentWrapper}>
-                            <Image source={icons.desLocation} style={styles.ongoingIcon} />
-                            <View>
-                                <Text style={styles.stationIdText(SIZES.medium)}>Station {toStation.stationId}</Text>
-                                <Text style={styles.stationNameText(SIZES.medium)}>{toStation.name}</Text>
-                            </View>
+                            <Image source={icons.desLocation} style={styles.icon(SIZES.xxLarge)} />
+                            <Text style={styles.stationText(SIZES.small)}>{toStationListName.join('\n')}</Text>
                         </View>
                     </View>
                 </View>
@@ -67,7 +65,7 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
                     <Text style={styles.stopBtnText}>STOP THE TOUR</Text>
                 </TouchableOpacity>
             </ScrollView>
-            <StopTourModal isVisible={isStopModal} setVisble={setStopModal} handleConfirm={cancelTour}/>
+            <StopTourModal isVisible={isStopModal} setVisble={setStopModal} handleConfirm={cancelTour} />
         </View>
     );
 }

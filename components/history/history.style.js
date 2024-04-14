@@ -4,6 +4,21 @@ import {
 } from '../../constants';
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    paddingHorizontal: SIZES.medium,
+    marginBottom: 5,
+    flexDirection: 'row', 
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontFamily: FONT.bold,
+    fontSize: SIZES.xLarge,
+    color: COLORS.primary,
+  },
+  headerBtn: {
+    alignItems: 'center',
+  },
   switchBar: {
     paddingHorizontal: SIZES.medium,
   },
@@ -11,8 +26,8 @@ const styles = StyleSheet.create({
     fontSize: SIZES.medium,
     fontFamily: FONT.medium,
   },
-  container: {
-    marginVertical: SIZES.medium,
+  listContainer: {
+    marginVertical: 5,
     paddingHorizontal: SIZES.small,
     flex: 1,
   },
@@ -53,14 +68,8 @@ const styles = StyleSheet.create({
     fontFamily: FONT.medium,
     color: COLORS.primary,
     fontSize: size,
-  }),
-  forwardIcon: {
-    tintColor: COLORS.secondary,
-    resizeMode: 'contain',
-    width: 20,
-    height: 20,
     alignSelf: 'center',
-  },
+  }),
   footer: {
     flexDirection: 'row',
     marginTop: 5,
@@ -100,7 +109,7 @@ const styles = StyleSheet.create({
   },
   stopBtnText: {
     color: COLORS.red,
-    fontFamily: FONT.bold,
+    fontFamily: FONT.medium,
     fontSize: SIZES.medium,
   },
 });

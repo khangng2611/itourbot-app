@@ -14,7 +14,7 @@ const HistoryList = ({ isVisible, fetchData }) => {
         setRefreshing(false);
     },[]);
     return (
-        <View style={styles.container}>
+        <View style={styles.listContainer}>
             {isLoading ? (
                 <ActivityIndicator size='large' color={COLORS.primary} />
             ) : error ? (
