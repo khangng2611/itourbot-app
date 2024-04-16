@@ -4,17 +4,20 @@ import styles from './modal.style';
 import { db, setRequestStage } from '../../../utils/firebase';
 import { updateTourStatus } from "../../../utils/apiRequest";
 import { COLORS, TOUR_STAGE } from '../../../constants';
+import * as database from 'firebase/database';
 
 const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, session, stationsList }) => {
     const [remainingTime, setRemainingTime] = useState(30);
     const handleCancel = async () => {
         try {
-            setVisible(!isVisible);
+            setVisible(false);
             updateTourStatus(tourInfor._id, 'canceled', session);
             setRequestStage([], TOUR_STAGE.cancel);
             setTourInfo({})
             setAllowListen(false);
-            // database.off(reachStationRef);
+            const reachStationRef = database.ref(db, '/turtlebot_state/isReachStation');
+            database.off(reachStationRef);
+            setRemainingTime(30);
         } catch (error) {
             console.log("error");
             console.log(error);
@@ -22,7 +25,7 @@ const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setT
     }
     const handleConfirm = async () => {
         try {
-            setVisible(!isVisible);
+            setVisible(false);
             updateTourStatus(tourInfor._id, 'leading', session);
             const toStationArr = tourInfor.toStation.map(stationId => stationsList[stationId-1]);
             setRequestStage(toStationArr, TOUR_STAGE.destination);
@@ -30,25 +33,24 @@ const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setT
                 ...tourInfor,
                 status: 'leading',
             });
+            setRemainingTime(30);
         } catch (error) {
             console.log(error);
         }
     }
     useEffect(() => {
-        let timeout;
         if (isVisible) {
-            timeout = setTimeout(() => {
+            const timeout = setTimeout(() => {
                 if (remainingTime > 0) {
                     setRemainingTime(remainingTime - 1);
                 } else {
-                    setVisible(false);
-                    setRemainingTime(30);
                     handleCancel();
+                    setRemainingTime(30);
                 }
             }, 1000);
+            return () => clearTimeout(timeout);
         }
-        return () => clearTimeout(timeout);
-    }, [isVisible, remainingTime]);
+    }, [remainingTime, isVisible]);
     return (
         <Modal
             animationType='fade'

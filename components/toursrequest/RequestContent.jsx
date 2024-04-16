@@ -1,4 +1,5 @@
 import { FlatList, TouchableOpacity, Text, View } from "react-native";
+import { useRouter } from 'expo-router'
 import styles from "./toursrequest.style";
 import { useContext, useState } from "react";
 import { DataContext, TourContext, useAuth } from "../context";
@@ -9,6 +10,7 @@ import InforModal from "../common/modal/InforModal";
 import RequestModal from "../common/modal/RequestModal";
 
 export default function RequestContent() {
+    const router = useRouter();
     const { isFree } = fetchState();
     const { session } = useAuth();
     const { setAllowListen, setTourInfo } = useContext(TourContext);
@@ -58,6 +60,7 @@ export default function RequestContent() {
         try {
             const tour = await addTour(parseInt(fromStation), toStationList, session);
             const pickupStation = stationsList[parseInt(fromStation) - 1];
+            setAllowListen(true)
             setRequestStage([pickupStation], TOUR_STAGE.pickup);
             setTourInfo({
                 _id: tour._id,
@@ -65,13 +68,13 @@ export default function RequestContent() {
                 fromStation: fromStation,
                 toStation: toStationList
             });
-            setAllowListen(true);
-            setInforModal({
-                isVisible: true,
-                headerText: "Request successfully",
-                contentText: "Your request has been successfully sent! Please wait for a minute to meet our Turltebot.",
-                isInvalid: false
-            });
+            router.back();
+            // setInforModal({
+            //     isVisible: true,
+            //     headerText: "Request successfully",
+            //     contentText: "Your request has been successfully sent! Please wait for a minute to meet our Turltebot.",
+            //     isInvalid: false
+            // });
         } catch (error) {
             setInforModal({
                 isVisible: true,
@@ -126,9 +129,9 @@ export default function RequestContent() {
                 onPress={() => validateRequest()}
                 disabled={!isFree}
             >
-                {isFree ? 
+                {isFree ?
                     <Text style={styles.confirmText}>Request Tourguide</Text> :
-                    <Text style={[styles.confirmText, {color: COLORS.white}]}>Turtlebot is in service</Text>
+                    <Text style={[styles.confirmText, { color: COLORS.white }]}>Turtlebot is in service</Text>
                 }
             </TouchableOpacity>
             <InforModal

@@ -12,7 +12,9 @@ const InforModal = ({isVisible, setInforModal, headerText, contentText, isInvali
             headerText: "",
             contentText: ""
         });
-        if (!isInvalid) router.back();
+        if (!isInvalid) {
+            router.back()
+        };
     }
     return (
         <Modal

@@ -1,8 +1,9 @@
 import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
 import { updateTourStatus } from "../../../utils/apiRequest";
-import { setRequestStage } from '../../../utils/firebase';
+import { db, setRequestStage } from '../../../utils/firebase';
 import { TOUR_STAGE } from '../../../constants';
+import * as database from 'firebase/database';
 
 const GetDestinationModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, session }) => {
     const handleClick = async () => {
@@ -12,7 +13,8 @@ const GetDestinationModal = ({ isVisible, setVisible, setAllowListen, tourInfor,
             setRequestStage([], TOUR_STAGE.idle);
             setTourInfo({});
             setAllowListen(false);
-            // database.off(reachStationRef);
+            const reachStationRef = database.ref(db, '/turtlebot_state/isReachStation');
+            database.off(reachStationRef);
         } catch (error) {
             console.log(error);
         }
