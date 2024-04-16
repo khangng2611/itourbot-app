@@ -2,7 +2,7 @@ import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
 import { updateTourStatus } from "../../../utils/apiRequest";
 import { db, setRequestStage } from '../../../utils/firebase';
-import { TOUR_STAGE } from '../../../constants';
+import { COLORS, TOUR_STAGE } from '../../../constants';
 import * as database from 'firebase/database';
 
 const GetDestinationModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, session }) => {
@@ -42,7 +42,7 @@ const GetDestinationModal = ({ isVisible, setVisible, setAllowListen, tourInfor,
                             style={[styles.button, styles.confirmBtn]}
                             onPress={handleClick}
                         >
-                            <Text style={styles.btnText}>OK</Text>
+                            <Text style={[styles.btnText, {color: COLORS.green}]}>OK</Text>
                         </Pressable>
                     </View>
                 </View>

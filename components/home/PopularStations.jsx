@@ -1,11 +1,11 @@
 import { useRouter } from "expo-router";
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, } from "react-native";
-import styles from "./popularstations.style";
-import { COLORS, SIZES } from "../../../constants";
-import StationCard from "../../common/cards/StationCard";
-import useFetch from "../../../hook/useFetch";
+import styles from "./home.style";
+import { COLORS, SIZES } from "../../constants";
+import StationCard from "../common/cards/StationCard";
+import useFetch from "../../hook/useFetch";
 import { useContext, useEffect } from "react";
-import { DataContext } from "../../context";
+import { DataContext } from "../context";
 
 const PopularStations = () => {
   const router = useRouter();
@@ -22,7 +22,7 @@ const PopularStations = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.popularStationContainer}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Popular destinations</Text>
         <TouchableOpacity>

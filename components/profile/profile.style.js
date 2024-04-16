@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     fontSize: SIZES.medium,
     color: COLORS.primary
   },
-  logoutBtn: {
+  signOutBtn: {
     width: '60%',
     alignItems: 'center',
     alignSelf: 'center',
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.small,
     marginTop: SIZES.large
   },
-  logoutText: {
+  signOutText: {
     fontFamily: FONT.medium,
     fontSize: SIZES.medium,
     color: COLORS.red

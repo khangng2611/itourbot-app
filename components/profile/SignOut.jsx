@@ -2,25 +2,23 @@ import { Text, TouchableOpacity, View } from "react-native";
 import styles from "./profile.style";
 import { useState } from "react";
 import { useRouter, Redirect } from "expo-router";
-import LogOutModal from "../common/modal/LogOutModal";
+import SignOutModal from "../common/modal/SignOutModal";
 
-const Logout = ({ signOut }) => {
-    const router = useRouter();
+const SignOut = ({ signOut }) => {
     const [isModalVisible, setModalVisible] = useState(false);
     const handleLogOut = () => {
         signOut();
-        // router.replace('/')
         return <Redirect href="/(app)" />;
     }
     return (
         <View>
             <TouchableOpacity
-                style={styles.logoutBtn}
+                style={styles.signOutBtn}
                 onPress={() => setModalVisible(true)}
             >
-                <Text style={styles.logoutText}>Logout</Text>
+                <Text style={styles.signOutText}>Sign out</Text>
             </TouchableOpacity>
-            <LogOutModal
+            <SignOutModal
                 isVisible={isModalVisible}
                 setVisible={setModalVisible}
                 handleConfirm={handleLogOut}
@@ -29,4 +27,4 @@ const Logout = ({ signOut }) => {
     )
 }
 
-export default Logout;
+export default SignOut;

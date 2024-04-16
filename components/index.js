@@ -1,8 +1,8 @@
 import ScreenHeaderBtn from './common/header/ScreenHeaderBtn';
 
 // home screen
-import Welcome from './home/welcome/Welcome';
-import PopularStations from './home/popularstations/PopularStations';
+import Welcome from './home/Welcome';
+import PopularStations from './home/PopularStations';
 
 // auth screen
 import LoginImage from './auth/LoginImage';
@@ -38,7 +38,7 @@ import RequestContent from './toursrequest/RequestContent';
 
 // profile
 import UserInfor from './profile/UserInfor';
-import Logout from './profile/Logout';
+import SignOut from './profile/SignOut';
 
 export {
   ScreenHeaderBtn,
@@ -65,5 +65,5 @@ export {
   RequestContent,
   HistoryHeader,
   UserInfor, 
-  Logout
+  SignOut
 };

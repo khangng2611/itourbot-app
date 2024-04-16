@@ -1,14 +1,12 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
-import styles from "./welcome.style";
-import { SIZES, icons, images } from "../../../constants";
-import { DataContext } from "../../context";
+import styles from "./home.style";
+import { SIZES, icons, images } from "../../constants";
+import { DataContext } from "../context";
 
-// const jobTypes = ["All", "Most visited", "Nearby"];
 const Welcome = ({ user, searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
-  // const [activeJobType, setActiveJobType] = useState("Full-time");
   const { screenHeight } = useContext(DataContext);
   return (
     <View>
@@ -22,8 +20,8 @@ const Welcome = ({ user, searchTerm, setSearchTerm, handleClick }) => {
           onPress={() => router.push("/tours-request")}
           style={styles.mainFeatBtn(screenHeight)}
         >
-          <Image 
-            source={images.requestBg} 
+          <Image
+            source={images.requestBg}
             style={{
               resizeMode: 'cover',
               width: '100%',
@@ -53,27 +51,6 @@ const Welcome = ({ user, searchTerm, setSearchTerm, handleClick }) => {
           />
         </TouchableOpacity>
       </View>
-
-      {/* <View style={styles.tabsContainer}>
-        <FlatList
-          data={jobTypes}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.tab(activeJobType, item)}
-              onPress={() => {
-                setActiveJobType(item);
-                router.push(`/search/${item}`);
-              }}
-              disabled
-            >
-              <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item}
-          contentContainerStyle={{ columnGap: SIZES.small }}
-          horizontal
-        />
-      </View> */}
     </View>
   );
 };

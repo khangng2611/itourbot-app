@@ -1,7 +1,7 @@
 
 import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
-import { SIZES } from '../../../constants';
+import { COLORS, SIZES } from '../../../constants';
 
 const RequestModal = ({ isVisible, setVisible, requestTour, requestStations, stationsList }) => {
     const fromStationName = requestStations.fromStation ?
@@ -45,13 +45,13 @@ const RequestModal = ({ isVisible, setVisible, requestTour, requestStations, sta
                                 style={[styles.button, styles.cancelBtn]}
                                 onPress={() => setVisible(!isVisible)}
                             >
-                                <Text style={styles.btnText}>Cancel Tour</Text>
+                                <Text style={[styles.btnText, {color: COLORS.red}]}>Cancel Tour</Text>
                             </Pressable>
                             <Pressable
                                 style={[styles.button, styles.confirmBtn]}
                                 onPress={handleConfirm}
                             >
-                                <Text style={styles.btnText}>Confirm Tour</Text>
+                                <Text style={[styles.btnText, {color: COLORS.green}]}>Confirm Tour</Text>
                             </Pressable>
                         </View>
                     </View>

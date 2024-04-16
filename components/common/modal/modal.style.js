@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: SIZES.small,
-    padding: SIZES.small,
+    padding: SIZES.xSmall,
     elevation: 2,
     height: 40,
     minWidth: 100,
@@ -45,17 +45,21 @@ const styles = StyleSheet.create({
     ...SHADOWS.small,
   },
   cancelBtn: {
-    backgroundColor: COLORS.red,
+    borderWidth: 1,
+    borderColor: COLORS.red,
+    backgroundColor: COLORS.lightWhite,
   },
   confirmBtn: {
-    backgroundColor: COLORS.green,
+    borderWidth: 1,
+    borderColor: COLORS.green,
+    backgroundColor: COLORS.lightWhite,
   },
   infoBtn: {
-    backgroundColor: COLORS.primary,
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+    backgroundColor: COLORS.lightWhite,
   },
   btnText: {
-    color: COLORS.white,
-    // fontWeight: 'bold',
     fontFamily: FONT.medium,
     textAlign: 'center',
   },
