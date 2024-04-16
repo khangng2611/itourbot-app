@@ -14,7 +14,7 @@ export default function RequestContent() {
     const { isFree } = fetchState();
     const { session } = useAuth();
     const { setAllowListen, setTourInfo } = useContext(TourContext);
-    const { stationsList } = useContext(DataContext);
+    const { stationsList, setLoaderVisible } = useContext(DataContext);
     const [toStationList, setToStationList] = useState([]);
     const [fromStation, setFromStation] = useState(null);
     const [inforModal, setInforModal] = useState({
@@ -58,6 +58,7 @@ export default function RequestContent() {
 
     const requestTour = async () => {
         try {
+            setLoaderVisible(true);
             const tour = await addTour(parseInt(fromStation), toStationList, session);
             const pickupStation = stationsList[parseInt(fromStation) - 1];
             setAllowListen(true)
@@ -69,6 +70,7 @@ export default function RequestContent() {
                 toStation: toStationList
             });
             router.back();
+            setLoaderVisible(false);
             // setInforModal({
             //     isVisible: true,
             //     headerText: "Request successfully",

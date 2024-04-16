@@ -12,7 +12,7 @@ import RequestModal from "../common/modal/RequestModal";
 const RequestBar = ({ item }) => {
     const { session } = useAuth();
     const { setAllowListen, setTourInfo } = useContext(TourContext);
-    const { stationsList } = useContext(DataContext);
+    const { stationsList, setLoaderVisible } = useContext(DataContext);
     const { isFree } = fetchState();
     const [fromStation, setFromStation] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
@@ -47,6 +47,7 @@ const RequestBar = ({ item }) => {
 
     const requestTour = async () => {
         try {
+            setLoaderVisible(true);
             const tour = await addTour(
                 parseInt(fromStation),
                 [parseInt(item.stationId)],
@@ -61,6 +62,7 @@ const RequestBar = ({ item }) => {
                 toStation: [parseInt(item.stationId)],
             });
             setAllowListen(true);
+            setLoaderVisible(false);
             setRequestStatus([true, "success"]);
         } catch (error) {
             setRequestStatus([true, error.message]);

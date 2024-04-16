@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     height: 70,
     width: '40%',
     alignSelf: 'center',
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.gray2,
     borderRadius: SIZES.small,
     flexDirection: 'row',
     alignItems: 'center',
@@ -21,9 +21,9 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     marginLeft: SIZES.small,
-    fontFamily: FONT.regular,
+    fontFamily: FONT.medium,
     fontSize: SIZES.medium,
-    color: COLORS.lightWhite,
+    color: COLORS.primary,
   },
 });
 

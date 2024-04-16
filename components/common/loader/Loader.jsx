@@ -8,8 +8,8 @@ const Loader = ({visible = false}) => {
     visible && (
       <View style={[styles.container, {width, height}]}>
         <View style={styles.loader}>
-          <ActivityIndicator size="large" color={COLORS.lightWhite} />
-          <Text style={styles.loadingText}>Loading...</Text>
+          <ActivityIndicator size="large" color={COLORS.primary} />
+          <Text style={styles.loadingText}>Loading ...</Text>
         </View>
       </View>
     )
