@@ -1,7 +1,6 @@
-import ScreenHeaderBtn from './common/header/ScreenHeaderBtn';
-
 // home screen
 import Welcome from './home/Welcome';
+import Search from './home/Search';
 import PopularStations from './home/PopularStations';
 
 // auth screen
@@ -41,8 +40,8 @@ import UserInfor from './profile/UserInfor';
 import SignOut from './profile/SignOut';
 
 export {
-  ScreenHeaderBtn,
   Welcome,
+  Search,
   PopularStations,
   TabNavigator,
   LocationSpot,

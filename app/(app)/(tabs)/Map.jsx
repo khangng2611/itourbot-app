@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Text, ScrollView, StatusBar } from "react-native";
+import { SafeAreaView, View, Text, StatusBar } from "react-native";
 import styles from '../../../styles/app.style';
 import { LocationSpot, MapImage, StateInfo } from "../../../components";
 import { fetchState } from '../../../utils/firebase';

@@ -128,6 +128,36 @@ const updateTourStatus = async (tourId, status, session) => {
   }
 };
 
+const searchStation = async (text, session) => {
+  const options = {
+    method: 'GET',
+    url: `${process.env.EXPO_PUBLIC_BASE_API_URL}stations/search`,
+    headers: {
+      Authorization: `Bearer ${session.token.accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    params: {
+      text,
+    },
+  };
+  try {
+    const response = await axios.request(options);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      throw error.response.data;
+    } else if (error.request) {
+      console.log('error.request');
+      console.log(error.request);
+      throw error.request;
+    } else if (error.message) {
+      console.log('error.message');
+      console.log(error.message);
+      throw error.message;
+    }
+  }
+}
+
 export {
-  register, normalLogin, addTour, updateTourStatus,
+  register, normalLogin, addTour, updateTourStatus, searchStation
 };

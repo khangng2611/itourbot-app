@@ -1,4 +1,3 @@
-import { useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native";
 import styles from '../../../styles/app.style';
 import { HistoryHeader, SwitchBar, HistoryList, OngoingTour } from "../../../components";

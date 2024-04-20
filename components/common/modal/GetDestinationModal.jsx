@@ -32,12 +32,6 @@ const GetDestinationModal = ({ isVisible, setVisible, setAllowListen, tourInfor,
                     <Text style={styles.headerText}>Tour Notification</Text>
                     <Text style={styles.contentText}>Turtlebot has just reached your destination! Thank you for your experience.</Text>
                     <View style={styles.btnWrapper}>
-                        {/* <Pressable
-                                style={[styles.button, styles.cancelBtn]}
-                                onPress={handleCancel}
-                            >
-                                <Text style={styles.btnText}>Cancel Tour</Text>
-                            </Pressable> */}
                         <Pressable
                             style={[styles.button, styles.confirmBtn]}
                             onPress={handleClick}

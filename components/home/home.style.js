@@ -16,7 +16,10 @@ const styles = StyleSheet.create({
     color: COLORS.secondary,
     marginTop: 2,
   },
-  searchContainer: {
+  searchContainer : {
+    height: 100
+  },
+  searchBarContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
@@ -25,7 +28,6 @@ const styles = StyleSheet.create({
   searchWrapper: {
     flex: 1,
     backgroundColor: COLORS.white,
-    marginRight: SIZES.small,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: SIZES.medium,
@@ -40,7 +42,6 @@ const styles = StyleSheet.create({
   searchBtn: {
     width: 50,
     height: '100%',
-    backgroundColor: COLORS.primary,
     borderRadius: SIZES.medium,
     justifyContent: 'center',
     alignItems: 'center',
@@ -48,8 +49,12 @@ const styles = StyleSheet.create({
   searchBtnImage: {
     width: '50%',
     height: '50%',
-    tintColor: COLORS.white,
+    tintColor: COLORS.primary,
   },
+  loading : {
+    marginVertical: 5,
+    color: COLORS.primary,
+  }, 
   btnWrapper: {
     flexDirection: 'row',
     marginVertical: SIZES.xSmall,
@@ -69,10 +74,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   // popular stations
-  popularStationContainer: {
-    flex: 1,
+  popularStationContainer: (windowHeight) => ({
+    height: 0.55*windowHeight,
     marginTop: SIZES.small,
-  },
+    marginBottom: SIZES.xxLarge
+  }),
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',

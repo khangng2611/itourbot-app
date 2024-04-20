@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, } from "react-native";
+import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, useWindowDimensions } from "react-native";
 import styles from "./home.style";
 import { COLORS, SIZES } from "../../constants";
 import StationCard from "../common/cards/StationCard";
@@ -8,6 +8,7 @@ import { useContext, useEffect } from "react";
 import { DataContext } from "../context";
 
 const PopularStations = () => {
+  const windowHeight = useWindowDimensions().height;
   const router = useRouter();
   const { setStationsList } = useContext(DataContext);
   const { data, isLoading, error } = useFetch("stations");
@@ -22,7 +23,7 @@ const PopularStations = () => {
   };
 
   return (
-    <View style={styles.popularStationContainer}>
+    <View style={styles.popularStationContainer(windowHeight)}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Popular destinations</Text>
         <TouchableOpacity>

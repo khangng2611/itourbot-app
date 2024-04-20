@@ -1,4 +1,4 @@
-import { SafeAreaView, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native";
 import styles from '../../../styles/app.style';
 import { RequestHeader, RequestContent } from "../../../components";
 

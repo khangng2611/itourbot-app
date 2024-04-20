@@ -5,7 +5,7 @@ import styles from "./home.style";
 import { SIZES, icons, images } from "../../constants";
 import { DataContext } from "../context";
 
-const Welcome = ({ user, searchTerm, setSearchTerm, handleClick }) => {
+const Welcome = ({ user }) => {
   const router = useRouter();
   const { screenHeight } = useContext(DataContext);
   return (
@@ -30,25 +30,6 @@ const Welcome = ({ user, searchTerm, setSearchTerm, handleClick }) => {
             }}
           />
           <Text style={styles.mainFeatText}>Request multi-stations</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.searchContainer}>
-        <View style={styles.searchWrapper}>
-          <TextInput
-            style={styles.searchInput}
-            value={searchTerm}
-            onChangeText={(text) => setSearchTerm(text)}
-            placeholder='What are you looking for?'
-          />
-        </View>
-
-        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
-          <Image
-            source={icons.search}
-            resizeMode='contain'
-            style={styles.searchBtnImage}
-          />
         </TouchableOpacity>
       </View>
     </View>

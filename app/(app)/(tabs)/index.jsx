@@ -3,7 +3,7 @@ import { SafeAreaView, ScrollView, View, StatusBar } from "react-native";
 import { useRouter } from "expo-router";
 import styles from '../../../styles/app.style';
 import { SIZES } from "../../../constants";
-import { PopularStations, Welcome } from "../../../components";
+import { PopularStations, Search, Welcome } from "../../../components";
 import { useAuth } from "../../../components/context";
 
 const Home = () => {
@@ -12,40 +12,29 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      {/* <Tabs.Screen
-        options={{
-          headerShown: false,
-          gestureEnabled: false, // Prevent swipe left
-          // headerStyle: { backgroundColor: COLORS.lightWhite },
-          // headerShadowVisible: false,
-          // headerLeft: () => (
-          //   <ScreenHeaderBtn iconUrl={icons.menu} dimension='60%' />
-          // ),
-          // headerRight: () => (
-          //   <ScreenHeaderBtn iconUrl={images.profile} dimension='100%' />
-          // ),
-          // headerTitle: "",
-        }}
-      /> */}
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }} >
-        <View
+      <ScrollView 
+        showsVerticalScrollIndicator={false} 
+        contentContainerStyle={{ flexGrow: 1 }} 
+        style = {{ padding: SIZES.medium }}
+      >
+        {/* <View
           style={{
             padding: SIZES.medium,
             flex: 1
-          }}
-        >
-          <Welcome
-            user={session.user}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            handleClick={() => {
-              if (searchTerm) {
-                router.push(`/search/${searchTerm}`)
-              }
-            }}
+          }} 
+        > */}
+          <Welcome user={session.user} />
+          <Search
+            // searchTerm={searchTerm}
+            // setSearchTerm={setSearchTerm}
+            // handleClick={() => {
+            //   if (searchTerm) {
+            //     router.push(`/search/${searchTerm}`)
+            //   }
+            // }}
           />
           <PopularStations />
-        </View>
+        {/* </View> */}
       </ScrollView>
       <StatusBar barStyle='dark-content' />
     </SafeAreaView>
