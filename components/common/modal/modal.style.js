@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
     fontFamily: FONT.regular,
     fontSize: SIZES.medium,
     color: COLORS.primary,
-    marginVertical: 5,
+    marginVertical: SIZES.xxSmall,
   },
   btnWrapper: {
-    marginTop: 5,
+    marginTop: SIZES.xxSmall,
     flexDirection: 'row',
     alignItems: 'center',
   },

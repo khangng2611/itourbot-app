@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderTopWidth: 0.5,
     borderColor: COLORS.secondary,
-    paddingVertical: 5
+    paddingVertical: SIZES.xxSmall
   },
   titleText: {
     fontFamily: FONT.medium,

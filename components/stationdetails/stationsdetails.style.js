@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: SIZES.xSmall,
   },
   icon: {
-    marginRight: 5,
+    marginRight: SIZES.xxSmall,
   },
   label: {
     position: 'absolute',

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     tintColor: COLORS.primary,
     width: SIZES.xxLarge,
     height: SIZES.xxLarge,
-    marginRight: 5,
+    marginRight: SIZES.xxSmall,
   },
   headerTitle: {
     fontFamily: FONT.bold,
@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
     fontFamily: FONT.medium,
     fontSize: SIZES.medium,
     color: COLORS.primary,
-    marginVertical: 5,
+    marginVertical: SIZES.xxSmall,
   },
   stationWrapper: (stationsList, stationId) => ({
-    paddingVertical: 5,
+    paddingVertical: SIZES.xxSmall,
     paddingHorizontal: SIZES.small,
     borderRadius: SIZES.medium,
     borderWidth: 1,

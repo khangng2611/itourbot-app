@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   searchContainer : {
-    height: 100
+
   },
   searchBarContainer: {
     justifyContent: 'center',
@@ -51,14 +51,27 @@ const styles = StyleSheet.create({
     height: '50%',
     tintColor: COLORS.primary,
   },
-  loading : {
-    marginVertical: 5,
-    color: COLORS.primary,
-  }, 
   btnWrapper: {
     flexDirection: 'row',
     marginVertical: SIZES.xSmall,
     justifyContent: 'space-between',
+  },
+  loading : {
+    marginVertical: SIZES.xxSmall,
+    color: COLORS.primary,
+  }, 
+  searchResultWrapper: {
+    marginTop: SIZES.xSmall,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  searchResultItem: {
+    paddingVertical: SIZES.xxSmall,
+    paddingHorizontal: SIZES.xSmall,
+    borderColor: COLORS.secondary,
+    borderWidth: 1,
+    borderRadius: SIZES.medium,
+    margin: 3
   },
   mainFeatBtn: (screenHeight) => ({
     height: screenHeight / 9,

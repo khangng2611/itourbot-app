@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.primary,
     borderRadius: SIZES.xxLarge,
-    marginHorizontal: 5,
+    marginHorizontal: SIZES.xxSmall,
   },
   rightInfoWrapper: {
     marginVertical: SIZES.medium,

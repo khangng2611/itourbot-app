@@ -6,18 +6,21 @@ import { updateTourStatus } from "../../../utils/apiRequest";
 import { COLORS, TOUR_STAGE } from '../../../constants';
 import * as database from 'firebase/database';
 
-const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, session, stationsList }) => {
-    const [remainingTime, setRemainingTime] = useState(30);
+const MODAL_TIMEOUT = 30; // seconds
+
+const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, session, stationsList, setCanceledModal }) => {
+    const [remainingTime, setRemainingTime] = useState(MODAL_TIMEOUT);
     const handleCancel = async () => {
         try {
             setVisible(false);
+            setCanceledModal(true);
             updateTourStatus(tourInfor._id, 'canceled', session);
             setRequestStage([], TOUR_STAGE.cancel);
             setTourInfo({})
             setAllowListen(false);
             const reachStationRef = database.ref(db, '/turtlebot_state/isReachStation');
             database.off(reachStationRef);
-            setRemainingTime(30);
+            setRemainingTime(MODAL_TIMEOUT);
         } catch (error) {
             console.log("error");
             console.log(error);
@@ -33,7 +36,7 @@ const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setT
                 ...tourInfor,
                 status: 'leading',
             });
-            setRemainingTime(30);
+            setRemainingTime(MODAL_TIMEOUT);
         } catch (error) {
             console.log(error);
         }
@@ -41,12 +44,10 @@ const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setT
     useEffect(() => {
         if (isVisible) {
             const timeout = setTimeout(() => {
-                if (remainingTime > 0) {
+                if (remainingTime > 0) 
                     setRemainingTime(remainingTime - 1);
-                } else {
+                else 
                     handleCancel();
-                    setRemainingTime(30);
-                }
             }, 1000);
             return () => clearTimeout(timeout);
         }

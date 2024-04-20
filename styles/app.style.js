@@ -15,10 +15,8 @@ const styles = StyleSheet.create({
     padding: SIZES.medium,
   },
   tabBarStyle: {
-    paddingTop: 5,
+    paddingTop: SIZES.xxSmall,
     backgroundColor: COLORS.lightWhite,
-    // borderRadius: SIZES.xLarge,
-    // marginHorizontal: 5
   },
   tabBarLogo: (color) => ({
     width: 25,

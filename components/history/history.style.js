@@ -6,7 +6,7 @@ import {
 const styles = StyleSheet.create({
   headerContainer: {
     paddingHorizontal: SIZES.medium,
-    marginBottom: 5,
+    marginBottom: SIZES.xxSmall,
     flexDirection: 'row', 
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -27,13 +27,13 @@ const styles = StyleSheet.create({
     fontFamily: FONT.medium,
   },
   listContainer: {
-    marginVertical: 5,
+    marginVertical: SIZES.xxSmall,
     paddingHorizontal: SIZES.small,
     flex: 1,
   },
   itemWrapper: {
     marginVertical: SIZES.xSmall,
-    marginHorizontal: 5,
+    marginHorizontal: SIZES.xxSmall,
     padding: SIZES.small,
     borderBlockColor: COLORS.lightWhite,
     borderRadius: SIZES.small,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    marginBottom: 5,
+    marginBottom: SIZES.xxSmall,
   },
   statusText: (color, size) => ({
     fontFamily: FONT.medium,
@@ -54,14 +54,14 @@ const styles = StyleSheet.create({
   statusWrapper: (background) => ({
     backgroundColor: background,
     borderRadius: SIZES.xSmall,
-    padding: 5,
+    padding: SIZES.xxSmall,
   }),
   contentWrapper: {
     borderBottomWidth: 1,
     borderTopWidth: 1,
     borderBlockColor: '#D9D9D9',
     paddingVertical: SIZES.small,
-    marginLeft: 5,
+    marginLeft: SIZES.xxSmall,
     alignItems: 'flex-start'
   },
   stationText: (size) => ({
@@ -72,11 +72,11 @@ const styles = StyleSheet.create({
   }),
   footer: {
     flexDirection: 'row',
-    marginTop: 5,
+    marginTop: SIZES.xxSmall,
     justifyContent: 'space-between',
   },
   ongoingContentWrapper: {
-    marginTop: 5,
+    marginTop: SIZES.xxSmall,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     width: size,
     height: size,
-    marginRight: 5,
+    marginRight: SIZES.xxSmall,
   }),
   stopBtn: {
     width: '60%',

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   locationRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 5,
+    marginTop: SIZES.xxSmall,
   },
   location: (size) => ({
     fontSize: size - 1,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     tintColor: COLORS.white,
     width: size,
     height: size,
-    marginEnd: 5,
+    marginEnd: SIZES.xxSmall,
   }),
   loveWrapper: (size) => ({
     width: 2 * size,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     right: 0,
     justifyContent: 'center',
     padding: size,
-    margin: size - 5,
+    margin: size - SIZES.xxSmall,
     borderRadius: SIZES.xLarge,
     backgroundColor: 'black',
     opacity: 0.5,
