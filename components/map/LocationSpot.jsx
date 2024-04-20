@@ -1,5 +1,6 @@
 import { Text, View, Image, useWindowDimensions } from 'react-native';
 import styles from './map.style';
+import { SIZES } from '../../constants';
 
 // original position from O(0,0)
 const originalPosition = [1, 2];
@@ -31,14 +32,16 @@ export default function LocationSpot({ x, y, icon, caption = '' }) {
     return (
         <View style={styles.locationSpot(positionOnScreen[0], positionOnScreen[1])}>
             <Image
-                style={{ width: iconWidth }}
+                style={{ width: iconWidth}}
                 source={icon}
                 resizeMode='contain'
             >
             </Image>
             {
                 caption !== '' && (
-                    <Text style={styles.locationCaption}>{caption}</Text>
+                    <View style={styles.locationCaptionWrapper}>
+                        <Text style={styles.locationCaption}>{caption}</Text>
+                    </View>
                 )
             }
         </View>

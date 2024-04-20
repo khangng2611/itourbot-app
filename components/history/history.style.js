@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     paddingHorizontal: SIZES.medium,
     marginBottom: SIZES.xxSmall,
-    flexDirection: 'row', 
+    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
@@ -62,7 +62,30 @@ const styles = StyleSheet.create({
     borderBlockColor: '#D9D9D9',
     paddingVertical: SIZES.small,
     marginLeft: SIZES.xxSmall,
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+  },
+  fromStationBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  toStationBox: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  toStationListWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    rowGap: SIZES.xxSmall,
+    columnGap: SIZES.xxSmall,
+  },
+  stationWrapper: {
+    borderColor: COLORS.secondary,
+    borderWidth: 1,
+    paddingHorizontal: SIZES.xxSmall,
+    paddingVertical: 3,
+    borderRadius: SIZES.medium,
   },
   stationText: (size) => ({
     fontFamily: FONT.medium,

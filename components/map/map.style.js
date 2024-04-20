@@ -13,12 +13,20 @@ const styles = StyleSheet.create({
     left: leftPosition,
     bottom: bottomPosition,
   }),
+  locationCaptionWrapper: {
+    borderWidth: 1, 
+    borderColor: COLORS.secondary, 
+    borderRadius: SIZES.small, 
+    width: SIZES.medium,
+    alignItems: 'center', 
+    position: 'absolute', 
+    bottom: -SIZES.xxSmall, 
+    alignSelf:'center'
+  },
   locationCaption: {
     fontFamily: FONT.regular,
-    fontSize: SIZES.xSmall,
-    alignSelf: 'center',
-    position: 'absolute',
-    bottom: 0
+    fontSize: SIZES.small,
+    color: COLORS.primary,
   },  
   mapImage: {
     flex: 2,

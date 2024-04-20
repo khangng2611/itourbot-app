@@ -21,7 +21,7 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
     const tourStatus = TOUR_STATUSES[tourInfor.status];
     const toStationList = tourInfor.toStation.map(stationId => stationsList[stationId - 1]);
     const toStationSpotsComponent = toStationList.map((station) => (
-        <LocationSpot key={station.stationId} x={station.location.x} y={station.location.y} icon={icons.desLocation} caption={`(${station.stationId})`} />
+        <LocationSpot key={station.stationId} x={station.location.x} y={station.location.y} icon={icons.desLocation} caption={`${station.stationId}`} />
     ));
     const toStationListName = toStationList.map((station) => `Station ${station.stationId} - ${station.name}`);
     const cancelTour = () => {
