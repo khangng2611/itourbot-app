@@ -4,6 +4,7 @@ import styles from './home.style';
 import { icons } from '../../constants';
 import { useAuth } from '../context';
 import { searchStation } from '../../utils/apiRequest';
+import { router } from 'expo-router';
 
 const Search = () => {
     const { session } = useAuth();
@@ -18,12 +19,15 @@ const Search = () => {
             setIsLoading(false);
         }
     }
-
+    const handleCardPress = (item) => {
+        router.push({ pathname: `/station-details/${item._id}`, params: { data: JSON.stringify(item) } });
+    };
     return (
         <View style={styles.searchContainer}>
             <View style={styles.searchBarContainer}>
                 <View style={styles.searchWrapper}>
                     <TextInput
+                        autoCapitalize='none'
                         style={styles.searchInput}
                         value={searchTerm}
                         onChangeText={(text) => setSearchTerm(text)}
@@ -41,17 +45,27 @@ const Search = () => {
                     />
                 </TouchableOpacity>
             </View>
-            <ActivityIndicator size={'small'} style={styles.loading} animating={isLoading} />
-            <FlatList
-                data={searchResult}
-                keyExtractor={(item) => item._id}
-                renderItem={({ item }) => (
-                    <View style={styles.searchResultItem}>
-                        <Text>{item.name}</Text>
+            {
+                isLoading && 
+                <ActivityIndicator size={'small'} style={styles.loading} animating={isLoading} />
+            }
+            {
+                searchResult.length > 0 && (
+                    <View style={styles.searchResultWrapper}>
+                        {
+                            searchResult.map((item) => (
+                                <TouchableOpacity
+                                    key={item._id}
+                                    style={styles.searchResultItem}
+                                    onPress={() => handleCardPress(item)}
+                                >
+                                    <Text style={styles.searchResultText}>{item.name}</Text>
+                                </TouchableOpacity>
+                            ))
+                        }
                     </View>
-                )}
-                horizontal
-            />
+                )
+            }
         </View>
     )
 }

@@ -73,6 +73,11 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.medium,
     margin: 3
   },
+  searchResultText: {
+    color: COLORS.primary,
+    fontFamily: FONT.regular,
+    fontSize: SIZES.small
+  },
   mainFeatBtn: (screenHeight) => ({
     height: screenHeight / 9,
     borderRadius: SIZES.medium,
