@@ -10,10 +10,11 @@ import InforModal from '../common/modal/InforModal';
 const SignupForm = ({ setLoading }) => {
     const [inputs, setInputs] = useState({ name: '', email: '', password: '', retypePassword: '' });
     const [errors, setErrors] = useState({});
-    const [invalidModal, setInvalidModal] = useState({
+    const [inforModal, setInforModal] = useState({
         isVisible: false,
         headerText: "",
-        contentText: ""
+        contentText: "",
+        isInvalid: false
     });
     const router = useRouter();
 
@@ -54,12 +55,18 @@ const SignupForm = ({ setLoading }) => {
         try {
             setLoading(true);
             const response = await register(inputs);
-            router.push("/(auth)/Login");
+            setInforModal({
+                isVisible: true,
+                headerText: 'Signup successfully',
+                contentText: "You have successfully signed up. Please login to continue.",
+                isInvalid: false
+            });
         } catch (error) {
-            setInvalidModal({
+            setInforModal({
                 isVisible: true,
                 headerText: 'Signup fail',
-                contentText: error.message ? `${error.message}` : "Invalid Information"
+                contentText: error.message ? `${error.message}` : "Invalid Information",
+                isInvalid: true
             });
         } finally {
             setLoading(false);
@@ -112,11 +119,11 @@ const SignupForm = ({ setLoading }) => {
                 <Text style={styles.loginBtnText}>Sign Up</Text>
             </TouchableOpacity>
             <InforModal
-                isVisible={invalidModal.isVisible}
-                setInForModal={setInvalidModal}
-                headerText={invalidModal.headerText}
-                contentText={invalidModal.contentText}
-                isInvalid={true}
+                isVisible={inforModal.isVisible}
+                setInforModal={setInforModal}
+                headerText={inforModal.headerText}
+                contentText={inforModal.contentText}
+                isInvalid={inforModal.isInvalid}
             />
         </View>
     );
