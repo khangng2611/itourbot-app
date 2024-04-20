@@ -6,6 +6,7 @@ import { useAuth } from "./AuthContext";
 import { DataContext } from "./DataContex";
 import GetPickupModal from "../common/modal/GetPickupModal";
 import GetDestinationModal from "../common/modal/GetDestinationModal";
+import InforModal from "../common/modal/InforModal";
 
 const TourContext = createContext({
     isAllowListen: 0,
@@ -31,6 +32,7 @@ const TourProvider = ({ children }) => {
     const [isAllowListen, setAllowListen] = useState(false);
     const [isPickupModalShown, setPickupModalShown] = useState(false);
     const [isDestinationModalShown, setDestinationModalShown] = useState(false);
+    const [isInforModal, setInforModal] = useState(false);
     useEffect(() => {
         if (!isAllowListen) return;
         const reachStationRef = database.ref(db, '/turtlebot_state/isReachStation');
@@ -67,6 +69,7 @@ const TourProvider = ({ children }) => {
                 setTourInfo={setTourInfo}
                 session={session}
                 stationsList = {stationsList}
+                setCanceledModal={setInforModal}
             />
             <GetDestinationModal
                 isVisible={isDestinationModalShown}
@@ -75,6 +78,13 @@ const TourProvider = ({ children }) => {
                 tourInfor={tourInfor}
                 setTourInfo={setTourInfo}
                 session={session}
+            />
+            <InforModal 
+                isVisible={isInforModal}
+                setInforModal={setInforModal}
+                headerText={"Notification"}
+                contentText={"The tour has been canceled."}
+                isInvalid={true}
             />
             {children}
         </TourContext.Provider>
