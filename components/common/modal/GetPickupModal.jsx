@@ -79,7 +79,7 @@ const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setT
                             style={[styles.button, styles.confirmBtn]}
                             onPress={handleConfirm}
                         >
-                            <Text style={[styles.btnText, {color:COLORS.green}]}>Corrrrrnfirm</Text>
+                            <Text style={[styles.btnText, {color:COLORS.green}]}>Confirm</Text>
                         </Pressable>
                     </View>
                 </View>

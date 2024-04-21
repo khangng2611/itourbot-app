@@ -63,12 +63,7 @@ export default function RequestContent() {
             const pickupStation = stationsList[parseInt(fromStation) - 1];
             setAllowListen(true)
             setRequestStage([pickupStation], TOUR_STAGE.pickup);
-            setTourInfo({
-                _id: tour._id,
-                status: 'picking',
-                fromStation: fromStation,
-                toStation: toStationList
-            });
+            setTourInfo(tour);
             router.back();
             setLoaderVisible(false);
             // setInforModal({

@@ -1,12 +1,15 @@
+import { useState, useEffect } from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import MapImage from "../../components/map/MapImage";
 import LocationSpot from "../map/LocationSpot";
 import { fetchState } from "../../utils/firebase";
 import styles from "./history.style";
-import { FONT, SIZES, icons, TOUR_STATUSES, TOUR_STAGE } from "../../constants";
+import { FONT, SIZES, icons, TOUR_STATUSES, TOUR_STAGE, COLORS } from "../../constants";
 import { updateTourStatus } from "../../utils/apiRequest";
 import { setRequestStage } from "../../utils/firebase";
 import StopTourModal from "../common/modal/StopTourModal";
+import { getDuration } from "../../utils/checkFormat";
+import TourContentWrapper from "./TourContentWrapper";
 
 const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModal, stationsList }) => {
     const { tourInfor, setTourInfo, setAllowListen } = tourContext;
@@ -19,11 +22,11 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
     const fromStation = stationsList[tourInfor.fromStation - 1];
     const { x, y } = fetchState();
     const tourStatus = TOUR_STATUSES[tourInfor.status];
-    const toStationList = tourInfor.toStation.map(stationId => stationsList[stationId - 1]);
-    const toStationSpotsComponent = toStationList.map((station) => (
-        <LocationSpot key={station.stationId} x={station.location.x} y={station.location.y} icon={icons.desLocation} caption={`${station.stationId}`} />
-    ));
-    const toStationListName = toStationList.map((station) => `Station ${station.stationId} - ${station.name}`);
+    const toStationLocations = tourInfor.toStation.map(toStationId => ({
+        stationId: stationsList[toStationId - 1].stationId,
+        location: stationsList[toStationId - 1].location
+    }));
+    const formattedToStationList = tourInfor.toStation.map(stationId => `${stationId} - ${stationsList[stationId - 1].name}`);
     const cancelTour = () => {
         setStopModal(false);
         updateTourStatus(tourInfor._id, 'canceled', session);
@@ -31,32 +34,65 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
         setRequestStage([], TOUR_STAGE.cancel);
         setTourInfo({});
     }
+    const [countTime, setCountTime] = useState("00:00:00");
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const duration = getDuration(tourInfor.createdAt);
+            setCountTime(duration);
+        }, 1000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [tourInfor.createdAt]);
     return (
         <View style={{ flex: 1 }}>
             <View style={{ flex: 2 }}>
                 <MapImage />
                 <LocationSpot x={x} y={y} icon={icons.botLocation} />
                 <LocationSpot x={fromStation.location.x} y={fromStation.location.y} icon={icons.pickupLocation} />
-                {/* <LocationSpot x={toStationList.location.x} y={toStationList.location.y} icon={icons.desLocation} /> */}
-                {toStationSpotsComponent}
+                {
+                    toStationLocations.map((station) => (
+                        <LocationSpot key={station.stationId} x={station.location.x} y={station.location.y} icon={icons.desLocation} caption={`${station.stationId}`} />
+                    ))
+                }
             </View>
             <ScrollView style={{ flex: 1 }}>
-                <View style={{ alignSelf: 'center' }}>
+                <View style={styles.statusBox}>
                     <View style={styles.statusWrapper(tourStatus.background)}>
                         <Text style={styles.statusText(tourStatus.color, SIZES.medium)}> {tourStatus.text} </Text>
                     </View>
+                    <View style={styles.statusWrapper(COLORS.gray2)}>
+                        <Text style={styles.statusText(COLORS.primary, SIZES.medium)}> {countTime} </Text>
+                    </View>
                 </View>
-                <View style={{ paddingHorizontal: SIZES.medium }}>
-                    <View style={styles.ongoingContentWrapper}>
+                <View style={{ paddingHorizontal: SIZES.medium, marginTop: SIZES.xxSmall }}>
+                    {/* <View style={styles.ongoingContentWrapper}>
                         <View style={styles.ongoingSideContentWrapper}>
                             <Image source={icons.pickupLocation} style={styles.icon(0.8 * SIZES.xxLarge)} />
-                            <Text style={[styles.stationText(SIZES.small), { alignSelf: 'flex-start' }]}>Station {fromStation.stationId} {'\n'}{fromStation.name}</Text>
+                            <View style={styles.stationWrapper}>
+                                <Text style={styles.stationText(SIZES.small)}>{fromStation.stationId} - {fromStation.name}</Text>
+                            </View>
                         </View>
                         <View style={styles.ongoingSideContentWrapper}>
                             <Image source={icons.desLocation} style={styles.icon(SIZES.xxLarge)} />
-                            <Text style={styles.stationText(SIZES.small)}>{toStationListName.join('\n')}</Text>
+                            <View style={styles.toStationListWrapper}>
+                                {
+                                    toStationList.length > 0 &&
+                                    toStationList.map((station, id) => (
+                                        <View key={id} style={styles.stationWrapper}>
+                                            <Text style={styles.stationText(SIZES.small)}>{station.stationId} - {station.name}</Text>
+                                        </View>
+                                    ))
+                                }
+                            </View>
                         </View>
-                    </View>
+                    </View> */}
+                    <TourContentWrapper 
+                        fromStation={fromStation}
+                        toStationList={formattedToStationList}
+
+                    />
                 </View>
                 <TouchableOpacity
                     style={styles.stopBtn}
@@ -67,7 +103,6 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
             </ScrollView>
             <StopTourModal isVisible={isStopModal} setVisble={setStopModal} handleConfirm={cancelTour} />
         </View>
-    );
-}
+    );}
 
 export default OnGoingTour;
