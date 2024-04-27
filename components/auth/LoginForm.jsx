@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Input from '../common/input/Input';
 import styles from './auth.style';
 import { validateEmail } from '../../utils/checkFormat';
-import { normalLogin } from '../../utils/apiRequest';
+import { normalSignIn } from '../../utils/apiRequest';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../../components/context';
 import { COLORS, FONT } from '../../constants';
@@ -42,7 +42,7 @@ const LoginForm = ({ setLoading }) => {
     const login = async (inputs) => {
         try {
             setLoading(true);
-            const response = await normalLogin(inputs, signIn);
+            const response = await normalSignIn(inputs, signIn);
             router.push("/(app)/(tabs)");
         } catch (error) {
             setInvalidModal({

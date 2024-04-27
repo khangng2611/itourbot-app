@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getToken } from './tokenStore';
+import { getToken, storeToken } from './tokenStore';
 
 export const register = async ({ name, email, password }) => {
   const options = {
@@ -35,7 +35,7 @@ export const register = async ({ name, email, password }) => {
   return false;
 };
 
-export const normalLogin = async ({ email, password }, signIn) => {
+export const normalSignIn = async ({ email, password }, signIn) => {
   const options = {
     method: 'POST',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}auth/login`,
@@ -64,7 +64,7 @@ export const normalLogin = async ({ email, password }, signIn) => {
   return false;
 };
 
-export const refreshToken = async (email, signIn) => {
+export const refreshToken = async () => {
   const token = await getToken();
   const options = {
     method: 'POST',
@@ -73,13 +73,16 @@ export const refreshToken = async (email, signIn) => {
       'Content-Type': 'application/json',
     },
     data: JSON.stringify({
-      email: email,
+      email: token.email,
       refreshToken: token.refreshToken
     }),
   };
   try {
     const response = await axios.request(options);
-    signIn(response.data);
+    storeToken({
+      ...response.data,
+      email: token.email
+    });
     return true;
   } catch (error) {
     if (error.response) {
@@ -97,9 +100,17 @@ export const refreshToken = async (email, signIn) => {
   return false;
 };
 
+const getValidToken = async () => {
+  const token = await getToken();
+  const validTime = Date.parse(token.expiresIn) - Date.now();
+  // check if accessToken is expired in 5mins
+  if (validTime > 300000) return token;
+  await refreshToken(token.email);
+  return await getToken();
+}
 
 export const addTour = async (fromStation, toStation) => {
-  const token = await getToken();
+  const token = await getValidToken();
   const options = {
     method: 'POST',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}tours`,
@@ -132,7 +143,7 @@ export const addTour = async (fromStation, toStation) => {
 };
 
 export const updateTourStatus = async (tourId, status) => {
-  const token = await getToken();
+  const token = await getValidToken();
   const options = {
     method: 'PATCH',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}tours`,
@@ -163,7 +174,7 @@ export const updateTourStatus = async (tourId, status) => {
 };
 
 export const searchStation = async (searchTerm) => {
-  const token = await getToken();
+  const token = await getValidToken();
   const options = {
     method: 'GET',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}stations/search`,

@@ -20,7 +20,10 @@ export function AuthProvider(props) {
     <AuthContext.Provider value={{
       signIn: (session) => {
         setUser(session.user);
-        storeToken(session.token);
+        storeToken({
+          ...session.token,
+          email: session.user.email
+        });
       },
       signOut: () => {
         setUser(null);
