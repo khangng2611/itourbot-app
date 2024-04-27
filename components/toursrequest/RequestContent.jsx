@@ -12,7 +12,6 @@ import RequestModal from "../common/modal/RequestModal";
 export default function RequestContent() {
     const router = useRouter();
     const { isFree } = fetchState();
-    const { session } = useAuth();
     const { setAllowListen, setTourInfo } = useContext(TourContext);
     const { stationsList, setLoaderVisible } = useContext(DataContext);
     const [toStationList, setToStationList] = useState([]);
@@ -59,7 +58,7 @@ export default function RequestContent() {
     const requestTour = async () => {
         try {
             setLoaderVisible(true);
-            const tour = await addTour(parseInt(fromStation), toStationList, session);
+            const tour = await addTour(parseInt(fromStation), toStationList);
             const pickupStation = stationsList[parseInt(fromStation) - 1];
             setAllowListen(true)
             setRequestStage([pickupStation], TOUR_STAGE.pickup);

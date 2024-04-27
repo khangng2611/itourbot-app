@@ -7,7 +7,7 @@ import { PopularStations, Search, Welcome } from "../../../components";
 import { useAuth } from "../../../components/context";
 
 const Home = () => {
-  const { session } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   return (
@@ -23,7 +23,7 @@ const Home = () => {
             flex: 1
           }} 
         > */}
-          <Welcome user={session.user} />
+          <Welcome user={user} />
           <Search
             // searchTerm={searchTerm}
             // setSearchTerm={setSearchTerm}

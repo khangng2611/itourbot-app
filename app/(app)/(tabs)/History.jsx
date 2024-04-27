@@ -3,12 +3,11 @@ import styles from '../../../styles/app.style';
 import { HistoryHeader, SwitchBar, HistoryList, OngoingTour } from "../../../components";
 import { useState, useContext } from "react";
 import useFetch from "../../../hook/useFetch";
-import { useAuth, TourContext, DataContext } from "../../../components/context";
+import { TourContext, DataContext } from "../../../components/context";
 
 const History = () => {
-    const { session } = useAuth();
     const { stationsList } = useContext(DataContext);
-    const { data, isLoading, error, refetch } = useFetch("tours", null, session);
+    const { data, isLoading, error, refetch } = useFetch("tours", null);
     const { tourInfor, setTourInfo, setAllowListen } = useContext(TourContext);
     const [isTab, setTab] = useState(0);
     const [isStopModal, setStopModal] = useState(false);
@@ -23,7 +22,6 @@ const History = () => {
             <OngoingTour
                 isVisible={isTab == 1}
                 tourContext={{ tourInfor, setTourInfo, setAllowListen }}
-                session={session}
                 isStopModal={isStopModal}
                 setStopModal={setStopModal}
                 stationsList={stationsList}

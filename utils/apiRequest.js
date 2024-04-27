@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { getToken } from './tokenStore';
 
-const register = async ({ name, email, password }) => {
+export const register = async ({ name, email, password }) => {
   const options = {
     method: 'POST',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}auth/register`,
@@ -34,7 +35,7 @@ const register = async ({ name, email, password }) => {
   return false;
 };
 
-const normalLogin = async ({ email, password }, signIn) => {
+export const normalLogin = async ({ email, password }, signIn) => {
   const options = {
     method: 'POST',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}auth/login`,
@@ -45,10 +46,7 @@ const normalLogin = async ({ email, password }, signIn) => {
   };
   try {
     const response = await axios.request(options);
-    signIn({
-      ...response.data,
-      lastLogin: Date.now().toString(),
-    });
+    signIn(response.data);
     return true;
   } catch (error) {
     if (error.response) {
@@ -66,12 +64,47 @@ const normalLogin = async ({ email, password }, signIn) => {
   return false;
 };
 
-const addTour = async (fromStation, toStation, session) => {
+export const refreshToken = async (email, signIn) => {
+  const token = await getToken();
+  const options = {
+    method: 'POST',
+    url: `${process.env.EXPO_PUBLIC_BASE_API_URL}auth/refresh-token`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: JSON.stringify({
+      email: email,
+      refreshToken: token.refreshToken
+    }),
+  };
+  try {
+    const response = await axios.request(options);
+    signIn(response.data);
+    return true;
+  } catch (error) {
+    if (error.response) {
+      throw error.response.data;
+    } else if (error.request) {
+      console.log('error.request');
+      console.log(error.request);
+      throw error.request;
+    } else if (error.message) {
+      console.log('error.message');
+      console.log(error.message);
+      throw error.message;
+    }
+  }
+  return false;
+};
+
+
+export const addTour = async (fromStation, toStation) => {
+  const token = await getToken();
   const options = {
     method: 'POST',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}tours`,
     headers: {
-      Authorization: `Bearer ${session.token.accessToken}`,
+      Authorization: `Bearer ${token.accessToken}`,
       'Content-Type': 'application/json',
     },
     data: JSON.stringify({
@@ -98,12 +131,13 @@ const addTour = async (fromStation, toStation, session) => {
   return false;
 };
 
-const updateTourStatus = async (tourId, status, session) => {
+export const updateTourStatus = async (tourId, status) => {
+  const token = await getToken();
   const options = {
     method: 'PATCH',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}tours`,
     headers: {
-      Authorization: `Bearer ${session.token.accessToken}`,
+      Authorization: `Bearer ${token.accessToken}`,
       'Content-Type': 'application/json',
     },
     data: JSON.stringify({
@@ -128,16 +162,17 @@ const updateTourStatus = async (tourId, status, session) => {
   }
 };
 
-const searchStation = async (text, session) => {
+export const searchStation = async (searchTerm) => {
+  const token = await getToken();
   const options = {
     method: 'GET',
     url: `${process.env.EXPO_PUBLIC_BASE_API_URL}stations/search`,
     headers: {
-      Authorization: `Bearer ${session.token.accessToken}`,
+      Authorization: `Bearer ${token.accessToken}`,
       'Content-Type': 'application/json',
     },
     params: {
-      text,
+      searchTerm,
     },
   };
   try {
@@ -158,6 +193,3 @@ const searchStation = async (text, session) => {
   }
 };
 
-export {
-  register, normalLogin, addTour, updateTourStatus, searchStation,
-};

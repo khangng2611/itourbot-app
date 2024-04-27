@@ -7,14 +7,13 @@ import { searchStation } from '../../utils/apiRequest';
 import { router } from 'expo-router';
 
 const Search = () => {
-    const { session } = useAuth();
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResult, setSearchResult] = useState([])
     const [isLoading, setIsLoading] = useState(false);
     const handleClick = async () => {
         if (searchTerm) {
             setIsLoading(true);
-            const searchResponse = await searchStation(searchTerm, session);
+            const searchResponse = await searchStation(searchTerm);
             setSearchResult(searchResponse);
             setIsLoading(false);
         }

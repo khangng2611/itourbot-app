@@ -5,11 +5,11 @@ import { db, setRequestStage } from '../../../utils/firebase';
 import { COLORS, TOUR_STAGE } from '../../../constants';
 import * as database from 'firebase/database';
 
-const GetDestinationModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, session }) => {
+const GetDestinationModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo }) => {
     const handleClick = async () => {
         try {
             setVisible(false);
-            updateTourStatus(tourInfor._id, 'done', session);
+            updateTourStatus(tourInfor._id, 'done');
             setRequestStage([], TOUR_STAGE.idle);
             setTourInfo({});
             setAllowListen(false);

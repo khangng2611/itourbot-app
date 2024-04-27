@@ -11,7 +11,7 @@ import StopTourModal from "../common/modal/StopTourModal";
 import { getDuration } from "../../utils/checkFormat";
 import TourContentWrapper from "./TourContentWrapper";
 
-const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModal, stationsList }) => {
+const OnGoingTour = ({ isVisible, tourContext, isStopModal, setStopModal, stationsList }) => {
     const { tourInfor, setTourInfo, setAllowListen } = tourContext;
     if (!isVisible) return null;
     if (!tourInfor._id) return (
@@ -29,7 +29,7 @@ const OnGoingTour = ({ isVisible, tourContext, session, isStopModal, setStopModa
     const formattedToStationList = tourInfor.toStation.map(stationId => `${stationId} - ${stationsList[stationId - 1].name}`);
     const cancelTour = () => {
         setStopModal(false);
-        updateTourStatus(tourInfor._id, 'canceled', session);
+        updateTourStatus(tourInfor._id, 'canceled');
         setAllowListen(false);
         setRequestStage([], TOUR_STAGE.cancel);
         setTourInfo({});

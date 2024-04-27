@@ -10,7 +10,6 @@ import InforModal from "../common/modal/InforModal";
 import RequestModal from "../common/modal/RequestModal";
 
 const RequestBar = ({ item }) => {
-    const { session } = useAuth();
     const { setAllowListen, setTourInfo } = useContext(TourContext);
     const { stationsList, setLoaderVisible } = useContext(DataContext);
     const { isFree } = fetchState();
@@ -48,11 +47,7 @@ const RequestBar = ({ item }) => {
     const requestTour = async () => {
         try {
             setLoaderVisible(true);
-            const tour = await addTour(
-                parseInt(fromStation),
-                [parseInt(item.stationId)],
-                session
-            );
+            const tour = await addTour(parseInt(fromStation), [parseInt(item.stationId)]);
             const pickupStation = stationsList[parseInt(fromStation) - 1];
             setRequestStage([pickupStation], TOUR_STAGE.pickup);
             setTourInfo(tour);

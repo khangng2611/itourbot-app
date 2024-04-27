@@ -8,13 +8,13 @@ import * as database from 'firebase/database';
 
 const MODAL_TIMEOUT = 30; // seconds
 
-const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, session, stationsList, setCanceledModal }) => {
+const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo, stationsList, setCanceledModal }) => {
     const [remainingTime, setRemainingTime] = useState(MODAL_TIMEOUT);
     const handleCancel = async () => {
         try {
             setVisible(false);
             setCanceledModal(true);
-            updateTourStatus(tourInfor._id, 'canceled', session);
+            updateTourStatus(tourInfor._id, 'canceled');
             setRequestStage([], TOUR_STAGE.cancel);
             setTourInfo({})
             setAllowListen(false);
@@ -29,7 +29,7 @@ const GetPickupModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setT
     const handleConfirm = async () => {
         try {
             setVisible(false);
-            updateTourStatus(tourInfor._id, 'leading', session);
+            updateTourStatus(tourInfor._id, 'leading');
             const toStationArr = tourInfor.toStation.map(stationId => stationsList[stationId-1]);
             setRequestStage(toStationArr, TOUR_STAGE.destination);
             setTourInfo({

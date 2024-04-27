@@ -34,6 +34,9 @@
             ]
           }
         ]
+      },
+      "config": {
+        "usesNonExemptEncryption": false
       }
     }
   }

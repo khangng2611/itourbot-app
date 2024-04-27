@@ -1,36 +1,32 @@
 import { createContext, useContext } from 'react';
-// import { useStorageState } from './useStorageState';
-import { useStorageState } from '../../utils/asyncStorage';
+import { storeToken, removeToken } from '../../utils/tokenStore';
+import { useState } from 'react';
 
 const AuthContext = createContext({
   signIn: () => null,
   signOut: () => null,
-  session: null,
-  isLoading: false,
+  user: null,
+  // isLoading: false,
 });
 
 export function useAuth() {
   const value = useContext(AuthContext);
-  // if (process.env.NODE_ENV !== 'production') {
-  //   if (!value) {
-  //     throw new Error('useSession must be wrapped in a <SessionProvider />');
-  //   }
-  // }
   return value;
 }
 
 export function AuthProvider(props) {
-  const { session, setSession } = useStorageState();
-
+  const [user, setUser] = useState(null);
   return (
     <AuthContext.Provider value={{
-      signIn: (data) => {
-        setSession(data);
+      signIn: (session) => {
+        setUser(session.user);
+        storeToken(session.token);
       },
       signOut: () => {
-        setSession(null);
+        setUser(null);
+        removeToken();
       },
-      session,
+      user,
     }}
     >
       {props.children}

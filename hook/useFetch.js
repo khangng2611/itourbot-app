@@ -1,26 +1,25 @@
 import { useState, useEffect } from 'react';
+import { getToken } from '../utils/tokenStore';
 import axios from 'axios';
 
-const useFetch = (endpoint, query, session) => {
+const useFetch = (endpoint, query) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const params = query ? { ...query } : {};
-  const headers = session
-    ? {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${session.token.accessToken}`,
-    } : {
-      'Content-Type': 'application/json',
-    };
-  const options = {
-    method: 'GET',
-    url: `${process.env.EXPO_PUBLIC_BASE_API_URL}${endpoint}`,
-    headers,
-    params,
-  };
+
   const fetchData = async () => {
     setIsLoading(true);
+    const token = await getToken();
+    const options = {
+      method: 'GET',
+      url: `${process.env.EXPO_PUBLIC_BASE_API_URL}${endpoint}`,
+      params,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token.accessToken}`,
+      }
+    };
     try {
       const response = await axios.request(options);
       setData(response.data);

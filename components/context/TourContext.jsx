@@ -22,7 +22,6 @@ const TourContext = createContext({
 });
 
 const TourProvider = ({ children }) => {
-    const { session } = useAuth();
     const { stationsList } = useContext(DataContext);
     const [tourInfor, setTourInfo] = useState({
         _id: null,
@@ -69,7 +68,6 @@ const TourProvider = ({ children }) => {
                 setAllowListen={setAllowListen}
                 tourInfor={tourInfor}
                 setTourInfo={setTourInfo}
-                session={session}
                 stationsList = {stationsList}
                 setCanceledModal={setInforModal}
             />
@@ -79,7 +77,6 @@ const TourProvider = ({ children }) => {
                 setAllowListen={setAllowListen}
                 tourInfor={tourInfor}
                 setTourInfo={setTourInfo}
-                session={session}
             />
             <InforModal 
                 isVisible={isInforModal}

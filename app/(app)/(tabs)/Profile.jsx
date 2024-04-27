@@ -4,15 +4,14 @@ import { useAuth } from "../../../components/context";
 import { SignOut, UserInfor } from "../../../components";
 
 const Profile = () => {
-    const { session, signOut } = useAuth();
-    const userInfo = session.user;
+    const { user, signOut } = useAuth();
     return (
         <SafeAreaView style={styles.safeAreaView}>
             <View style={styles.container}>
                 <Text style={styles.title}>Profile</Text>
             </View>
-            <UserInfor user={userInfo}/>
-            <SignOut signOut={signOut}/>
+            <UserInfor user={user} />
+            <SignOut signOut={signOut} />
         </SafeAreaView>
     )
 }
