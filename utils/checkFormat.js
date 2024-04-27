@@ -11,7 +11,7 @@ export const validateEmail = (email) => {
   return emailRegex.test(email);
 };
 
-export function getDuration(fromTime, toTime="") {
+export function getDuration(fromTime, toTime = '') {
   const toDate = toTime ? new Date(toTime) : new Date();
   const fromDate = new Date(fromTime);
   const duration = Math.floor((toDate - fromDate) / 1000);

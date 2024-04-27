@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { COLORS, FONT, SIZES } from '../../constants'
+import { COLORS, FONT, SIZES } from '../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,18 +9,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderTopWidth: 0.5,
     borderColor: COLORS.secondary,
-    paddingVertical: SIZES.xxSmall
+    paddingVertical: SIZES.xxSmall,
   },
   titleText: {
     fontFamily: FONT.medium,
     fontSize: SIZES.medium,
     color: COLORS.secondary,
-    width: '20%'
+    width: '20%',
   },
   infoText: {
     fontFamily: FONT.medium,
     fontSize: SIZES.medium,
-    color: COLORS.primary
+    color: COLORS.primary,
   },
   signOutBtn: {
     width: '60%',
@@ -30,13 +30,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.red,
     borderRadius: SIZES.small,
-    marginTop: SIZES.large
+    marginTop: SIZES.large,
   },
   signOutText: {
     fontFamily: FONT.medium,
     fontSize: SIZES.medium,
-    color: COLORS.red
-  }
+    color: COLORS.red,
+  },
 });
 
 export default styles;

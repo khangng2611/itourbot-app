@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
   },
   statusBox: {
     paddingHorizontal: SIZES.large,
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   statusText: (color, size) => ({
     fontFamily: FONT.medium,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   fromStationBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 5,
+    marginBottom: SIZES.small,
   },
   toStationBox: {
     flexDirection: 'row',

@@ -156,8 +156,8 @@ const searchStation = async (text, session) => {
       throw error.message;
     }
   }
-}
+};
 
 export {
-  register, normalLogin, addTour, updateTourStatus, searchStation
+  register, normalLogin, addTour, updateTourStatus, searchStation,
 };

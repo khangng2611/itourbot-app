@@ -14,20 +14,20 @@ const styles = StyleSheet.create({
     bottom: bottomPosition,
   }),
   locationCaptionWrapper: {
-    borderWidth: 1, 
-    borderColor: COLORS.secondary, 
-    borderRadius: SIZES.small, 
+    borderWidth: 1,
+    borderColor: COLORS.secondary,
+    borderRadius: SIZES.small,
     width: SIZES.medium,
-    alignItems: 'center', 
-    position: 'absolute', 
-    bottom: -SIZES.xxSmall, 
-    alignSelf:'center'
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: -SIZES.xxSmall,
+    alignSelf: 'center',
   },
   locationCaption: {
     fontFamily: FONT.regular,
     fontSize: SIZES.small,
     color: COLORS.primary,
-  },  
+  },
   mapImage: {
     flex: 2,
     width: '100%',

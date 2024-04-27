@@ -55,7 +55,7 @@ export const setRequestStage = (stationObjArr, stage) => {
         description: stationObj.description,
         x: stationObj.location.x,
         y: stationObj.location.y,
-        yaw: stationObj.location.yaw
+        yaw: stationObj.location.yaw,
       },
     };
   }
@@ -64,7 +64,6 @@ export const setRequestStage = (stationObjArr, stage) => {
     numStation: stationObjArr.length,
     ...stations,
   });
-  return;
 };
 // const stationId = parseInt(stationObj.stationId, 10);
 // database.set(requestRef, {

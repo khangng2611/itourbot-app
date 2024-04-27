@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     color: COLORS.secondary,
     marginTop: 2,
   },
-  searchContainer : {
+  searchContainer: {
 
   },
   searchBarContainer: {
@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
     marginVertical: SIZES.xSmall,
     justifyContent: 'space-between',
   },
-  loading : {
+  loading: {
     marginVertical: SIZES.xxSmall,
     color: COLORS.primary,
-  }, 
+  },
   searchResultWrapper: {
     marginTop: SIZES.xSmall,
     flexDirection: 'row',
@@ -71,12 +71,12 @@ const styles = StyleSheet.create({
     borderColor: COLORS.secondary,
     borderWidth: 1,
     borderRadius: SIZES.medium,
-    margin: 3
+    margin: 3,
   },
   searchResultText: {
     color: COLORS.primary,
     fontFamily: FONT.regular,
-    fontSize: SIZES.small
+    fontSize: SIZES.small,
   },
   mainFeatBtn: (screenHeight) => ({
     height: screenHeight / 9,
@@ -93,9 +93,9 @@ const styles = StyleSheet.create({
   },
   // popular stations
   popularStationContainer: (windowHeight) => ({
-    height: 0.55*windowHeight,
+    height: 0.55 * windowHeight,
     marginTop: SIZES.small,
-    marginBottom: SIZES.xxLarge
+    marginBottom: SIZES.xxLarge,
   }),
   header: {
     flexDirection: 'row',

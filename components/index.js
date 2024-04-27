@@ -63,6 +63,6 @@ export {
   RequestHeader,
   RequestContent,
   HistoryHeader,
-  UserInfor, 
-  SignOut
+  UserInfor,
+  SignOut,
 };

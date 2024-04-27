@@ -8,10 +8,10 @@ const TOUR_STATUSES = {
 };
 
 const TOUR_STAGE = {
-  idle: -1,   // allow bot to be idle
-  cancel: 0,  // allow bot to stop 
-  pickup: 1,   // allow bot to go to pickup station
+  idle: -1, // allow bot to be idle
+  cancel: 0, // allow bot to stop
+  pickup: 1, // allow bot to go to pickup station
   destination: 2, // allow bot go to destination
-}
+};
 
-export { TOUR_STATUSES, TOUR_STAGE }
+export { TOUR_STATUSES, TOUR_STAGE };

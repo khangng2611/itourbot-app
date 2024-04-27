@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     borderColor: stationsList.includes(stationId) ? COLORS.green : COLORS.secondary,
   }),
   stationText: (stationsList, stationId) => ({
-    fontFamily: FONT.medium, 
+    fontFamily: FONT.medium,
     fontSize: SIZES.medium,
     color: stationsList.includes(stationId) ? COLORS.green : COLORS.secondary,
   }),
@@ -47,15 +47,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }),
-  confirmText: { 
-    color: COLORS.white, 
-    fontFamily: FONT.medium, 
-    fontSize: SIZES.medium
-  }, 
+  confirmText: {
+    color: COLORS.white,
+    fontFamily: FONT.medium,
+    fontSize: SIZES.medium,
+  },
   flatlistStyle: {
     rowGap: SIZES.xSmall,
     flex: 1,
-    marginHorizontal: SIZES.xSmall
-  }
+    marginHorizontal: SIZES.xSmall,
+  },
 });
 export default styles;
