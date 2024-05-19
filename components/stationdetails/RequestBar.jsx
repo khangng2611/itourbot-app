@@ -84,7 +84,7 @@ const RequestBar = ({ item }) => {
                         inputSearchStyle={styles.textStyle}
                         iconStyle={styles.iconStyle}
                         data={dropdownList}
-                        search
+                        // search
                         maxHeight={300}
                         labelField="label"
                         valueField="value"
