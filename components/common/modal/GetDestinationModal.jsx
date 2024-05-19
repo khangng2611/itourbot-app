@@ -1,23 +1,16 @@
 import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
-import { updateTourStatus } from "../../../utils/apiRequest";
-import { db, setRequestStage } from '../../../utils/firebase';
-import { COLORS, TOUR_STAGE } from '../../../constants';
-import * as database from 'firebase/database';
+import { COLORS } from '../../../constants';
 
-const GetDestinationModal = ({ isVisible, setVisible, setAllowListen, tourInfor, setTourInfo }) => {
+const GetDestinationModal = ({ isVisible, setVisible }) => {
     const handleClick = async () => {
-        try {
-            setVisible(false);
-            updateTourStatus(tourInfor._id, 'done');
-            setRequestStage([], TOUR_STAGE.idle);
-            setTourInfo({});
-            setAllowListen(false);
-            const reachStationRef = database.ref(db, '/turtlebot_state/isReachStation');
-            database.off(reachStationRef);
-        } catch (error) {
-            console.log(error);
-        }
+        setVisible(false);
+        // updateTourStatus(tourInfor._id, 'done');
+        // setRequestStage([], TOUR_STAGE.idle);
+        // setTourInfo({});
+        // setAllowListen(false);
+        // const reachStationRef = database.ref(db, '/turtlebot_state/isReachStation');
+        // database.off(reachStationRef);
     }
     return (
         <Modal
@@ -36,7 +29,7 @@ const GetDestinationModal = ({ isVisible, setVisible, setAllowListen, tourInfor,
                             style={[styles.button, styles.confirmBtn]}
                             onPress={handleClick}
                         >
-                            <Text style={[styles.btnText, {color: COLORS.green}]}>OK</Text>
+                            <Text style={[styles.btnText, { color: COLORS.green }]}>OK</Text>
                         </Pressable>
                     </View>
                 </View>

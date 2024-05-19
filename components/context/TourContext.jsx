@@ -1,12 +1,13 @@
 import { createContext, useContext, useState } from "react";
 import { useEffect } from "react";
 import * as database from 'firebase/database';
-import { db } from '../../utils/firebase';
-import { useAuth } from "./AuthContext";
+import { db, setRequestStage } from '../../utils/firebase';
 import { DataContext } from "./DataContex";
 import GetPickupModal from "../common/modal/GetPickupModal";
 import GetDestinationModal from "../common/modal/GetDestinationModal";
 import InforModal from "../common/modal/InforModal";
+import { updateTourStatus } from "../../utils/apiRequest";
+import { TOUR_STAGE } from "../../constants";
 
 const TourContext = createContext({
     isAllowListen: 0,
@@ -45,6 +46,12 @@ const TourProvider = ({ children }) => {
                     setPickupModalShown(true);
                 } else if (reachStation == 2) {
                     setDestinationModalShown(true);
+
+                    updateTourStatus(tourInfor._id, 'done');
+                    setRequestStage([], TOUR_STAGE.idle);
+                    setTourInfo({});
+                    setAllowListen(false);
+                    database.off(reachStationRef);
                 }
             });
     }, [isAllowListen]);
@@ -74,9 +81,9 @@ const TourProvider = ({ children }) => {
             <GetDestinationModal
                 isVisible={isDestinationModalShown}
                 setVisible={setDestinationModalShown}
-                setAllowListen={setAllowListen}
-                tourInfor={tourInfor}
-                setTourInfo={setTourInfo}
+                // setAllowListen={setAllowListen}
+                // tourInfor={tourInfor}
+                // setTourInfo={setTourInfo}
             />
             <InforModal 
                 isVisible={isInforModal}
