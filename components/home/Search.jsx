@@ -11,10 +11,15 @@ const Search = () => {
     const [isLoading, setIsLoading] = useState(false);
     const handleClick = async () => {
         if (searchTerm) {
-            setIsLoading(true);
-            const searchResponse = await searchStation(searchTerm);
-            setSearchResult(searchResponse);
-            setIsLoading(false);
+            try {
+                setIsLoading(true);
+                const searchResponse = await searchStation(searchTerm);
+                setSearchResult(searchResponse);
+            } catch (e) {
+                setSearchResult(e);
+            } finally {
+                setIsLoading(false);
+            }
         }
     }
     const handleCardPress = (item) => {

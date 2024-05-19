@@ -183,7 +183,7 @@ export const searchStation = async (searchTerm) => {
       'Content-Type': 'application/json',
     },
     params: {
-      searchTerm,
+      text: searchTerm,
     },
   };
   try {
