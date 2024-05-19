@@ -1,10 +1,10 @@
 
-import {Modal, Text, Pressable, View } from 'react-native';
+import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
 import { COLORS } from '../../../constants';
 import { useRouter } from 'expo-router';
 
-const InforModal = ({isVisible, setInforModal, headerText, contentText, isInvalid}) => {
+const InforModal = ({ isVisible, setInforModal, headerText, contentText, isInvalid }) => {
     const router = useRouter();
     const handleCancel = async () => {
         setInforModal({
@@ -26,7 +26,7 @@ const InforModal = ({isVisible, setInforModal, headerText, contentText, isInvali
             }}>
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    <Text style={[styles.headerText, {color: isInvalid ? COLORS.red : COLORS.green}]}>{headerText}</Text>
+                    <Text style={[styles.headerText, { color: isInvalid ? COLORS.red : COLORS.green }]}>{headerText}</Text>
                     <Text style={styles.contentText}>{contentText}</Text>
                     <View style={styles.btnWrapper}>
                         <Pressable

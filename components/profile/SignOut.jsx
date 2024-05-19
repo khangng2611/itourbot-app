@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import styles from "./profile.style";
 import { useState } from "react";
-import { useRouter, Redirect } from "expo-router";
+import { Redirect } from "expo-router";
 import SignOutModal from "../common/modal/SignOutModal";
 
 const SignOut = ({ signOut }) => {

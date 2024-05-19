@@ -2,7 +2,7 @@ import { FlatList, TouchableOpacity, Text, View } from "react-native";
 import { useRouter } from 'expo-router'
 import styles from "./toursrequest.style";
 import { useContext, useState } from "react";
-import { DataContext, TourContext, useAuth } from "../context";
+import { DataContext, TourContext } from "../context";
 import { addTour } from "../../utils/apiRequest";
 import { fetchState, setRequestStage } from '../../utils/firebase'
 import { COLORS, TOUR_STAGE } from "../../constants";
@@ -65,12 +65,6 @@ export default function RequestContent() {
             setTourInfo(tour);
             router.back();
             setLoaderVisible(false);
-            // setInforModal({
-            //     isVisible: true,
-            //     headerText: "Request successfully",
-            //     contentText: "Your request has been successfully sent! Please wait for a minute to meet our Turltebot.",
-            //     isInvalid: false
-            // });
         } catch (error) {
             setInforModal({
                 isVisible: true,

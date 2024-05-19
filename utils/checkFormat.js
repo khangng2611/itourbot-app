@@ -10,11 +10,8 @@ export const validateEmail = (email) => {
   return emailRegex.test(email);
 };
 
-export function getDuration(fromTime, toTime = '') {
-  const toDate = toTime ? new Date(toTime) : new Date();
-  const fromDate = new Date(fromTime);
-  const duration = Math.floor((toDate - fromDate) / 1000);
-  return formatTime(duration);
+function padZero(num) {
+  return num.toString().padStart(2, '0');
 }
 
 export function formatTime(time) {
@@ -24,6 +21,9 @@ export function formatTime(time) {
   return `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
 }
 
-function padZero(num) {
-  return num.toString().padStart(2, '0');
+export function getDuration(fromTime, toTime = '') {
+  const toDate = toTime ? new Date(toTime) : new Date();
+  const fromDate = new Date(fromTime);
+  const duration = Math.floor((toDate - fromDate) / 1000);
+  return formatTime(duration);
 }

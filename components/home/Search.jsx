@@ -1,8 +1,7 @@
-import { View, TextInput, TouchableOpacity, Image, FlatList, Text, ActivityIndicator } from 'react-native';
-import { lazy, useState } from 'react';
+import { View, TextInput, TouchableOpacity, Image, Text, ActivityIndicator } from 'react-native';
+import { useState } from 'react';
 import styles from './home.style';
 import { icons } from '../../constants';
-import { useAuth } from '../context';
 import { searchStation } from '../../utils/apiRequest';
 import { router } from 'expo-router';
 
@@ -45,7 +44,7 @@ const Search = () => {
                 </TouchableOpacity>
             </View>
             {
-                isLoading && 
+                isLoading &&
                 <ActivityIndicator size={'small'} style={styles.loading} animating={isLoading} />
             }
             {

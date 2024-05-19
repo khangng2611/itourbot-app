@@ -1,6 +1,5 @@
 import { Text, View, Image, useWindowDimensions } from 'react-native';
 import styles from './map.style';
-import { SIZES } from '../../constants';
 
 // original position from O(0,0)
 const originalPosition = [1, 2];

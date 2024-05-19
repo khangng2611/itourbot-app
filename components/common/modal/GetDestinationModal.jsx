@@ -5,12 +5,6 @@ import { COLORS } from '../../../constants';
 const GetDestinationModal = ({ isVisible, setVisible }) => {
     const handleClick = async () => {
         setVisible(false);
-        // updateTourStatus(tourInfor._id, 'done');
-        // setRequestStage([], TOUR_STAGE.idle);
-        // setTourInfo({});
-        // setAllowListen(false);
-        // const reachStationRef = database.ref(db, '/turtlebot_state/isReachStation');
-        // database.off(reachStationRef);
     }
     return (
         <Modal

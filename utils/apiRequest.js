@@ -47,7 +47,7 @@ export const normalSignIn = async ({ email, password }, signIn) => {
   try {
     const response = await axios.request(options);
     signIn(response.data);
-    return true;
+    return response;
   } catch (error) {
     if (error.response) {
       throw error.response.data;
@@ -74,14 +74,14 @@ export const refreshToken = async () => {
     },
     data: JSON.stringify({
       email: token.email,
-      refreshToken: token.refreshToken
+      refreshToken: token.refreshToken,
     }),
   };
   try {
     const response = await axios.request(options);
     storeToken({
       ...response.data,
-      email: token.email
+      email: token.email,
     });
     return true;
   } catch (error) {
@@ -107,7 +107,7 @@ const getValidToken = async () => {
   if (validTime > 300000) return token;
   await refreshToken(token.email);
   return await getToken();
-}
+};
 
 export const addTour = async (fromStation, toStation) => {
   const token = await getValidToken();
@@ -203,4 +203,3 @@ export const searchStation = async (searchTerm) => {
     }
   }
 };
-

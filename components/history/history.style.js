@@ -103,21 +103,6 @@ const styles = StyleSheet.create({
     marginTop: SIZES.xxSmall,
     justifyContent: 'space-between',
   },
-  // ongoingContentWrapper: {
-  //   marginTop: SIZES.xxSmall,
-  //   flexDirection: 'row',
-  //   justifyContent: 'space-around',
-  //   alignItems: 'center',
-  //   borderBottomWidth: 1,
-  //   borderTopWidth: 1,
-  //   borderBlockColor: '#D9D9D9',
-  //   paddingVertical: SIZES.medium,
-  // },
-  // ongoingSideContentWrapper: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   flex: 1
-  // },
   icon: (size) => ({
     resizeMode: 'contain',
     width: size,

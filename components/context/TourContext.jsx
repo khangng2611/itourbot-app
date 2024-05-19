@@ -81,9 +81,6 @@ const TourProvider = ({ children }) => {
             <GetDestinationModal
                 isVisible={isDestinationModalShown}
                 setVisible={setDestinationModalShown}
-                // setAllowListen={setAllowListen}
-                // tourInfor={tourInfor}
-                // setTourInfo={setTourInfo}
             />
             <InforModal 
                 isVisible={isInforModal}

@@ -5,7 +5,7 @@ import { COLORS, SIZES, TOUR_STAGE, icons } from "../../constants";
 import { Dropdown } from "react-native-element-dropdown"
 import { fetchState, setRequestStage } from "../../utils/firebase";
 import { addTour } from "../../utils/apiRequest";
-import { useAuth, TourContext, DataContext } from "../context";
+import { TourContext, DataContext } from "../context";
 import InforModal from "../common/modal/InforModal";
 import RequestModal from "../common/modal/RequestModal";
 

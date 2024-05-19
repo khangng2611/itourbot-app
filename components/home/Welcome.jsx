@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
 import styles from "./home.style";
-import { SIZES, icons, images } from "../../constants";
+import { SIZES, images } from "../../constants";
 import { DataContext } from "../context";
 
 const Welcome = ({ user }) => {

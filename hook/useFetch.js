@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getToken } from '../utils/tokenStore';
 import axios from 'axios';
+import { getToken } from '../utils/tokenStore';
 
 const useFetch = (endpoint, query) => {
   const [data, setData] = useState([]);
@@ -17,8 +17,8 @@ const useFetch = (endpoint, query) => {
       params,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token.accessToken}`,
-      }
+        Authorization: `Bearer ${token.accessToken}`,
+      },
     };
     try {
       const response = await axios.request(options);

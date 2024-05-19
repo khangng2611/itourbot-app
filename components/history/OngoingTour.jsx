@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import MapImage from "../../components/map/MapImage";
 import LocationSpot from "../map/LocationSpot";
 import { fetchState } from "../../utils/firebase";
@@ -67,31 +67,9 @@ const OnGoingTour = ({ isVisible, tourContext, isStopModal, setStopModal, statio
                     </View>
                 </View>
                 <View style={{ paddingHorizontal: SIZES.medium, marginTop: SIZES.xxSmall }}>
-                    {/* <View style={styles.ongoingContentWrapper}>
-                        <View style={styles.ongoingSideContentWrapper}>
-                            <Image source={icons.pickupLocation} style={styles.icon(0.8 * SIZES.xxLarge)} />
-                            <View style={styles.stationWrapper}>
-                                <Text style={styles.stationText(SIZES.small)}>{fromStation.stationId} - {fromStation.name}</Text>
-                            </View>
-                        </View>
-                        <View style={styles.ongoingSideContentWrapper}>
-                            <Image source={icons.desLocation} style={styles.icon(SIZES.xxLarge)} />
-                            <View style={styles.toStationListWrapper}>
-                                {
-                                    toStationList.length > 0 &&
-                                    toStationList.map((station, id) => (
-                                        <View key={id} style={styles.stationWrapper}>
-                                            <Text style={styles.stationText(SIZES.small)}>{station.stationId} - {station.name}</Text>
-                                        </View>
-                                    ))
-                                }
-                            </View>
-                        </View>
-                    </View> */}
                     <TourContentWrapper 
                         fromStation={fromStation}
                         toStationList={formattedToStationList}
-
                     />
                 </View>
                 <TouchableOpacity

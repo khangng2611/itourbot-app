@@ -6,7 +6,6 @@ const AuthContext = createContext({
   signIn: () => null,
   signOut: () => null,
   user: null,
-  // isLoading: false,
 });
 
 export function useAuth() {
