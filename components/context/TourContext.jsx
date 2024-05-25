@@ -6,7 +6,7 @@ import { DataContext } from "./DataContex";
 import GetPickupModal from "../common/modal/GetPickupModal";
 import GetDestinationModal from "../common/modal/GetDestinationModal";
 import InforModal from "../common/modal/InforModal";
-import { updateTourStatus } from "../../utils/apiRequest";
+import { updateTourStatus } from "../../utils/api";
 import { TOUR_STAGE } from "../../constants";
 
 const TourContext = createContext({

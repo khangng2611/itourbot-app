@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Modal, Text, Pressable, View } from 'react-native';
 import styles from './modal.style';
 import { db, setRequestStage } from '../../../utils/firebase';
-import { updateTourStatus } from "../../../utils/apiRequest";
+import { updateTourStatus } from "../../../utils/api";
 import { COLORS, TOUR_STAGE } from '../../../constants';
 import * as database from 'firebase/database';
 

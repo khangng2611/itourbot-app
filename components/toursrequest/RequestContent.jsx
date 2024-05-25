@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router'
 import styles from "./toursrequest.style";
 import { useContext, useState } from "react";
 import { DataContext, TourContext } from "../context";
-import { addTour } from "../../utils/apiRequest";
+import { addTour } from "../../utils/api";
 import { fetchState, setRequestStage } from '../../utils/firebase'
 import { COLORS, TOUR_STAGE } from "../../constants";
 import InforModal from "../common/modal/InforModal";

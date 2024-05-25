@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Input from '../common/input/Input';
 import styles from './auth.style';
 import { validateEmail } from '../../utils/checkFormat';
-import { normalSignIn } from '../../utils/apiRequest';
+import { normalSignIn } from '../../utils/api';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../../components/context';
 import { COLORS, FONT } from '../../constants';
@@ -80,14 +80,14 @@ const LoginForm = ({ setLoading }) => {
                 password={true}
             />
             <TouchableOpacity
-                style={styles.loginBtn}
+                style={styles.authBtn}
                 onPress={() => validate()}
             >
-                <Text style={styles.loginBtnText}>Sign In</Text>
+                <Text style={styles.authBtnText}>Sign In</Text>
             </TouchableOpacity>
-            <Text style={styles.forgotText}>Forgot Password ?</Text>
+            <Text onPress={() => router.push("/(auth)/ForgotPassword")} style={styles.returnSigninText}>Forgot Password ?</Text>
             <Text style={styles.signupText}>Don't have account?
-                <Text onPress={() => router.push("/(auth)/Signup")} style={{color:COLORS.primary, fontFamily:FONT.bold}}> Sign Up</Text>
+                <Text onPress={() => router.push("/(auth)/Signup")} style={{ color: COLORS.primary, fontFamily: FONT.bold }}> Sign Up</Text>
             </Text>
             <InforModal
                 isVisible={invalidModal.isVisible}

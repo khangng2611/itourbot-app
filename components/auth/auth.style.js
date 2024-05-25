@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   formContainer: {
     paddingHorizontal: SIZES.xLarge,
   },
-  loginBtn: {
+  authBtn: {
     marginTop: SIZES.large,
     marginBottom: SIZES.medium,
     height: 50,
@@ -23,14 +23,13 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.medium,
     ...SHADOWS.small,
   },
-  loginBtnText: {
+  authBtnText: {
     fontSize: SIZES.medium,
     fontFamily: FONT.bold,
     color: COLORS.lightWhite,
   },
-  forgotText: {
+  returnSigninText: {
     fontSize: SIZES.medium,
-    fontStyle: 'italic',
     color: COLORS.secondary,
     alignSelf: 'center',
   },
@@ -66,6 +65,32 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     width: 30,
     marginRight: 10,
+  },
+  headerTitle: {
+    fontFamily: FONT.bold,
+    fontSize: SIZES.xLarge,
+    color: COLORS.primary,
+
+  },
+  forgotPasswordText: {
+    fontSize: SIZES.medium,
+    color: COLORS.primary,
+  },
+  passcodeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: SIZES.medium,
+  },
+  digitInput: {
+    borderWidth: 1,
+    borderColor: COLORS.secondary,
+    borderRadius: SIZES.xSmall,
+    width: 40,
+    height: 50,
+    textAlign: 'center',
+    fontSize: SIZES.large,
+    marginHorizontal: SIZES.xSmall,
   },
 });
 

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Input from '../common/input/Input';
 import styles from './auth.style';
 import { validateEmail } from '../../utils/checkFormat';
-import { register } from '../../utils/apiRequest';
+import { register } from '../../utils/api';
 import { useRouter } from 'expo-router';
 import InforModal from '../common/modal/InforModal';
 
@@ -113,10 +113,10 @@ const SignupForm = ({ setLoading }) => {
                 password={true}
             />
             <TouchableOpacity
-                style={styles.loginBtn}
+                style={styles.authBtn}
                 onPress={() => validate()}
             >
-                <Text style={styles.loginBtnText}>Sign Up</Text>
+                <Text style={styles.authBtnText}>Sign Up</Text>
             </TouchableOpacity>
             <InforModal
                 isVisible={inforModal.isVisible}

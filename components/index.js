@@ -7,6 +7,9 @@ import PopularStations from './home/PopularStations';
 import LoginImage from './auth/LoginImage';
 import LoginForm from './auth/LoginForm';
 import SignupForm from './auth/SignupForm';
+import EmailForm from './auth/forgot-password/EmailForm';
+import PasscodeForm from './auth/forgot-password/PasscodeForm';
+import NewPasswordForm from './auth/forgot-password/NewPasswordForm';
 
 // common
 import TabNavigator from './common/navigation/TabNavigator';
@@ -53,6 +56,9 @@ export {
   LoginImage,
   LoginForm,
   SignupForm,
+  EmailForm,
+  PasscodeForm,
+  NewPasswordForm,
   Input,
   Loader,
   SwitchBar,

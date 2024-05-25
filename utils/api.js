@@ -100,6 +100,97 @@ export const refreshToken = async () => {
   return false;
 };
 
+export const forgotPassword = async (email) => {
+  const options = {
+    method: 'POST',
+    url: `${process.env.EXPO_PUBLIC_BASE_API_URL}auth/forgot-password`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: JSON.stringify({ email }),
+  };
+  try {
+    const response = await axios.request(options);
+    return true;
+  } catch (error) {
+    if (error.response) {
+      console.log('error.request');
+      console.log(error.response.data);
+      throw error.response.data;
+    } else if (error.request) {
+      console.log('error.request');
+      console.log(error.request);
+      throw error.request;
+    } else if (error.message) {
+      console.log('error.message');
+      console.log(error.message);
+      throw error.message;
+    }
+  }
+  return false;
+}
+
+export const verifyPasscode = async (email, passcode) => {
+  const options = {
+    method: 'POST',
+    url: `${process.env.EXPO_PUBLIC_BASE_API_URL}auth/verify-passcode`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: JSON.stringify({ email, passcode }),
+  };
+  try {
+    const response = await axios.request(options);
+    return true;
+  } catch (error) {
+    if (error.response) {
+      console.log('error.request');
+      console.log(error.response.data);
+      throw error.response.data;
+    } else if (error.request) {
+      console.log('error.request');
+      console.log(error.request);
+      throw error.request;
+    } else if (error.message) {
+      console.log('error.message');
+      console.log(error.message);
+      throw error.message;
+    }
+  }
+  return false;
+}
+
+export const resetPassword = async (email, passcode, newPassword) => {
+  console.log(email, passcode, newPassword)
+  const options = {
+    method: 'POST',
+    url: `${process.env.EXPO_PUBLIC_BASE_API_URL}auth/reset-password`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: JSON.stringify({ email, password: newPassword, passcode }),
+  };
+  try {
+    const response = await axios.request(options);
+    return true;
+  } catch (error) {
+    if (error.response) {
+      console.log('error.request');
+      console.log(error.response.data);
+      throw error.response.data;
+    } else if (error.request) {
+      console.log('error.request');
+      console.log(error.request);
+      throw error.request;
+    } else if (error.message) {
+      console.log('error.message');
+      console.log(error.message);
+      throw error.message;
+    }
+  }
+  return false;
+}
+
 const getValidToken = async () => {
   const token = await getToken();
   const validTime = Date.parse(token.expiresIn) - Date.now();

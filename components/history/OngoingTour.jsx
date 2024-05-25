@@ -5,7 +5,7 @@ import LocationSpot from "../map/LocationSpot";
 import { fetchState } from "../../utils/firebase";
 import styles from "./history.style";
 import { FONT, SIZES, icons, TOUR_STATUSES, TOUR_STAGE, COLORS } from "../../constants";
-import { updateTourStatus } from "../../utils/apiRequest";
+import { updateTourStatus } from "../../utils/api";
 import { setRequestStage } from "../../utils/firebase";
 import StopTourModal from "../common/modal/StopTourModal";
 import { getDuration } from "../../utils/checkFormat";

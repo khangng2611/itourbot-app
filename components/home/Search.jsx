@@ -2,7 +2,7 @@ import { View, TextInput, TouchableOpacity, Image, Text, ActivityIndicator } fro
 import { useState } from 'react';
 import styles from './home.style';
 import { icons } from '../../constants';
-import { searchStation } from '../../utils/apiRequest';
+import { searchStation } from '../../utils/api';
 import { router } from 'expo-router';
 
 const Search = () => {
