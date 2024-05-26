@@ -10,7 +10,7 @@ import { COLORS, FONT } from '../../constants';
 import InforModal from '../common/modal/InforModal';
 
 const LoginForm = ({ setLoading }) => {
-    const [inputs, setInputs] = useState({ email: 'khang@gmail.com', password: '123456' });
+    const [inputs, setInputs] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({});
     const [invalidModal, setInvalidModal] = useState({
         isVisible: false,
