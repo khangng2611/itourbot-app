@@ -4,7 +4,18 @@ Imagine exploring an exhibition with a personalized robot guide by your side! **
 'i' in **iTourbot** stands for *"internet, individual, instruct, inform and inspire"*
 
 ## 🚀 How to use
-Install pacakge
+Setup environment (.env file), you can see in .env.example
+```
+    # Firebase config
+    EXPO_PUBLIC_APIKEY=
+    EXPO_PUBLIC_DATABASE_URL=
+    EXPO_PUBLIC_PROJECT_ID=
+    EXPO_PUBLIC_APP_ID=
+    # API URL config
+    EXPO_PUBLIC_BASE_API_URL=
+```
+
+Install packages
 ```sh
 npm install
 ```
